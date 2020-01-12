@@ -17,6 +17,8 @@ class CreateBuyersTable extends Migration
             $table->bigIncrements('id');
             $table->string('fname');
             $table->string('lname');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->date('date_of_birth');
             $table->timestamps();
         });
