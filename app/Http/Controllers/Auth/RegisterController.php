@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Admin;
+use App\Buyer;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Seller;
@@ -95,7 +96,13 @@ class RegisterController extends Controller
             ]);
             return $user;
         }else{
-
+            Buyer::create([
+                'fname' => $data['fname'],
+                'lname' => $data['lname'],
+                'date_of_birth' => $data['date_of_birth'],
+                'user_id' => $user->id,
+            ]);
+            return $user;
         }
         
     }
