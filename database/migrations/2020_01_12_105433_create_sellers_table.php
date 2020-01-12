@@ -19,7 +19,6 @@ class CreateSellersTable extends Migration
             $table->string('lname');
             $table->date('date_of_birth');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -31,9 +30,6 @@ class CreateSellersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sellers',function(Blueprint $table){
-            $table->dropForeign('user_id');
-            $table->dropColumn('user_id');
-        });
+        Schema::dropIfExists('sellers');
     }
 }
