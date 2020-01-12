@@ -52,7 +52,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                     
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -60,7 +60,15 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-
+                        <div>
+                            <label>Role As</label>
+                            <select class="col-md-6" name="role">
+                                @foreach($roles as $role)
+                                <option value="{{$role}}">{{$role}}</option>
+                
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
