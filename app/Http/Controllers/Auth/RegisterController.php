@@ -80,7 +80,7 @@ class RegisterController extends Controller
             Admin::create([
                 'fname' => $data['fname'],
                 'lname' => $data['lname'],
-                'date_of_birth' => '1900-10-10',
+                'date_of_birth' => $data['date_of_birth'],
                 'user_id' => $user->id,
             ]);
        
@@ -90,17 +90,6 @@ class RegisterController extends Controller
         }else{
 
         }
-        // = User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        //     'role'=>$data['role'],
-        // ]);
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        //     'role'=>$data['role'],
-        // ]);
+        
     }
 }
