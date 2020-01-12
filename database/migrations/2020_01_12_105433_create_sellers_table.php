@@ -31,6 +31,9 @@ class CreateSellersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sellers');
+        Schema::dropIfExists('sellers',function(Blueprint $table){
+            $table->dropForeign('user_id');
+            $table->dropColumn('user_id');
+        });
     }
 }
