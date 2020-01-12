@@ -20,12 +20,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role',['admin','buyer','seller'])->default('buyer');
-            $table->unsignedBigInteger('seller_id');
-            $table->foreign('seller_id')->references('id')->on('sellers')->default(0);
-            $table->unsignedBigInteger('buyer_id');
-            $table->foreign('buyer_id')->references('id')->on('buyers')->default(0);
-            $table->unsignedBigInteger('admin_id');
-            $table->foreign('admin_id')->references('id')->on('admins')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -37,7 +31,8 @@ class CreateUsersTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   
         Schema::dropIfExists('users');
+        
     }
 }
