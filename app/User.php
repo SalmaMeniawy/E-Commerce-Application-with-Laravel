@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Admin;
 use App\Seller;
+use App\Buyer;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -25,9 +26,17 @@ class User extends Authenticatable
     public function admin(){
         return $this->belongsTo(Admin::class);
     }
-
+    /**
+    * eloquent relationship with Seller model    
+    */
     public function seller(){
         return $this->belongsTo(Seller::class);
+    }
+    /**
+     * eloquent relationship with Buyer model 
+     */
+    public function buyer(){
+        return $this->belongsTo(Buyer::class);
     }
     /**
      * The attributes that should be hidden for arrays.
