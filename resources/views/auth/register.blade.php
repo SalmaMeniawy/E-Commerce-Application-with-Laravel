@@ -25,15 +25,16 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="fname">First Name</label>
+                            <label for="fname" class="col-md-4 col-form-label text-md-right">First Name</label>
                             <input name="fname" >
                         </div>
 
                         <div class="form-group row">
-                            <label for="lname">Last Name</label>
+                            <label for="lname" class="col-md-4 col-form-label text-md-right">Last Name</label>
+
                             <input name="lname">
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -77,6 +78,12 @@
                 
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <br>
+                            <label class="form-group row mb-0">Enter Birthdate</label>
+                            <input type="date" name="date_of_birth">
+
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
