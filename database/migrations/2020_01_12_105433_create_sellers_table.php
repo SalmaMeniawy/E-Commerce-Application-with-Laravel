@@ -18,6 +18,8 @@ class CreateSellersTable extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->date('date_of_birth');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
