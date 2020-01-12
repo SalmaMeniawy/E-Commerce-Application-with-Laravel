@@ -31,6 +31,9 @@ class CreateAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('admins',function(Blueprint $table){
+            $table->dropForeign('user_id');
+            $table->dropColumn('user_id');
+        });
     }
 }
