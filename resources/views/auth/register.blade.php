@@ -24,12 +24,12 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row mb-0">
                             <label for="fname" class="col-md-4 col-form-label text-md-right">First Name</label>
                             <input name="fname" >
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-0">
                             <label for="lname" class="col-md-4 col-form-label text-md-right">Last Name</label>
 
                             <input name="lname">

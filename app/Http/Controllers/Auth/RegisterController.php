@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Admin;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Seller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -86,7 +87,13 @@ class RegisterController extends Controller
        
             return $user;
         }elseif($data['role']== 'seller'){
-
+            Seller::create([
+                'fname' => $data['fname'],
+                'lname' => $data['lname'],
+                'date_of_birth' => $data['date_of_birth'],
+                'user_id' => $user->id,
+            ]);
+            return $user;
         }else{
 
         }
