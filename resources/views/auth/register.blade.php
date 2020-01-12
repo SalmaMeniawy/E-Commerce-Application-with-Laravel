@@ -24,7 +24,16 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="fname">First Name</label>
+                            <input name="fname" >
+                        </div>
 
+                        <div class="form-group row">
+                            <label for="lname">Last Name</label>
+                            <input name="lname">
+                        </div>
+                        
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
