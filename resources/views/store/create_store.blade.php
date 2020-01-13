@@ -8,6 +8,13 @@
              <div class="card">
                   <div class="card-header">Store Creation Form</div>
                   <div class="card-body">
+                      @if($errors->any())
+                      <ul id="errors">
+                          @foreach($errors->all() as $error)
+                            <li> {{$error}}</li>
+                          @endforeach
+                      </ul>
+                      @endif
                     <form method="post" action="/stores">
                     @csrf
                          <div class="form-group row">
