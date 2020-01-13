@@ -34,6 +34,11 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'store_name' => 'required|unique:stores|alpha_num|max:125',
+            'sammary' => 'required|between:10,200',
+            
+        ]);
         Store::create([
            'store_name'  => $request->input('store_name'),
             'sammary' => $request->input('sammary'),
