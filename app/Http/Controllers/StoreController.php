@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Store;
 class StoreController extends Controller
 {
     /**
@@ -34,7 +34,11 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Store::create([
+           'store_name'  => $request->input('store_name'),
+            'sammary' => $request->input('sammary'),
+        ]);
+        
     }
 
     /**
