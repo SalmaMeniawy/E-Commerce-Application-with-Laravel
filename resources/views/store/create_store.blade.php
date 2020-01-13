@@ -8,7 +8,7 @@
              <div class="card">
                   <div class="card-header">Store Creation Form</div>
                   <div class="card-body">
-                    <form method="post" action=" ">
+                    <form method="post" action="/stores">
                     @csrf
                          <div class="form-group row">
                              <label for="store_name" class="col-md-4 col-form-label text-md-right">Store name                 </label>
