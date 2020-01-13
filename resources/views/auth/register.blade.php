@@ -80,7 +80,7 @@
                             </select>
                         </div>
                         <div class="form-group row mb-0">
-                            <br>
+                            
                             <label class="form-group row mb-0">Enter Birthdate</label>
                             <input type="date" name="date_of_birth">
 
