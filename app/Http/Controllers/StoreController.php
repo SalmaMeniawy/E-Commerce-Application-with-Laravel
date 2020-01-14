@@ -44,7 +44,7 @@ class StoreController extends Controller
            'store_name'  => $request->input('store_name'),
             'sammary' => $request->input('sammary'),
         ]);
-        
+        return redirect()->route('store.index');
     }
 
     public function home(){
