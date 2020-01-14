@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function(){
      Route::get('admin/home','StoreController@home')->name('admin.home');
      Route::get('stores/create','StoreController@create');
      Route::get('stores/{store_id}','StoreController@show')->name('store.show');
+     Route::delete('stores/{store_id}','StoreController@destroy')->name('store.destroy');
      Route::get('stores' , 'StoreController@index')->name('store.index');
      Route::post('stores' , 'StoreController@store');
         });
