@@ -16,8 +16,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::group([],function(){
-    Route::get('stores/create','StoreController@create');
-    Route::post('stores' , 'StoreController@store');
+Route::middleware('auth')->group(function(){
+    Route::middleware('admin-role')->group(function(){
+     Route::get('admin/home','StoreController@home')->name('admin.home');
+     Route::get('stores/create','StoreController@create');
+     Route::post('stores' , 'StoreController@store');
+        });
 });
+
 Route::get('/home', 'HomeController@index')->name('home');
