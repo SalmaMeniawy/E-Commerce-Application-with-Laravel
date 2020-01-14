@@ -56,9 +56,10 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($store_id)
     {
-        //
+        $store = Store::find($store_id);
+        return view('admin.store.show_store')->with('store',$store);
     }
 
     /**
