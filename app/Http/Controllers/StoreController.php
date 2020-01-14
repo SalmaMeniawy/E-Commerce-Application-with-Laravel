@@ -23,7 +23,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('store.create_store');
+        return view('admin.store.create_store');
     }
 
     /**
@@ -46,6 +46,9 @@ class StoreController extends Controller
         
     }
 
+    public function home(){
+        return view('admin.home');
+    }
     /**
      * Display the specified resource.
      *
