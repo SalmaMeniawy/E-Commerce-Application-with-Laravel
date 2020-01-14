@@ -6,12 +6,15 @@
              <div class="card">
                  @if($store)
                   <div class="card">
-                <div class="card-header" ><h2>Store details</h2></div>
+                <div class="card-header" ><h2>{{$store->store_name}} store's details</h2></div>
                 <div class="card-block">
                     <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><h4>{{$store->store_name}}</h4></li>
-                    <li class="list-group-item">{{$store->sammary}}</li>
-                    
+                    <li class="list-group-item">Store name :{{$store->store_name}}</li>
+                     
+                    <li class="list-group-item">Sammary  :  {{$store->sammary}}</li>
+                    <li class="list-group-item">
+                        Created at : {{$store->created_at}}    
+                    </li>
                 
                 
                 </div>
