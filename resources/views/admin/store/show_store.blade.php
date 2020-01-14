@@ -30,7 +30,7 @@
                 </div>
              </div>
                  <div>
-                    <a href="{{action('StoreController@index')}}"class="btn btn-info"> Back </a>
+                    <a href="{{action('Store\StoreController@index')}}"class="btn btn-info"> Back </a>
                       </div>
     </div>
 </div>

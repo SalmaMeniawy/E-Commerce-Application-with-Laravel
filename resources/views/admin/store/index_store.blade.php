@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-   <a href="{{action('StoreController@create')}}"class="btn btn-primary">Craete new store</a>
+   <a href="{{action('Store\StoreController@create')}}"class="btn btn-primary">Craete new store</a>
          <div class="row justify-content-center">
              @if(isset($failure))
                   <div class="alert alert-danger" role="alert">
@@ -30,7 +30,7 @@
                                         {{$store->store_name}}
                                     </td>
                                     <td>
-                                    <a href="{{action('StoreController@show',[$store->id])}}"class="btn btn-info">view</a>
+                                    <a href="{{action('Store\StoreController@show',[$store->id])}}"class="btn btn-info">view</a>
 
                                     </td>
                                      <td>

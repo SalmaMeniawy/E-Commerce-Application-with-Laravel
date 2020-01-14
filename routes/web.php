@@ -18,13 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware('auth')->group(function(){
     Route::middleware('admin-role')->group(function(){
-     Route::get('admin/home','StoreController@home')->name('admin.home');
-     Route::get('stores/create','StoreController@create');
-     Route::get('stores/{store_id}','StoreController@show')->name('store.show');
-     Route::delete('stores/{store_id}','StoreController@destroy')->name('store.destroy');
-     Route::get('stores' , 'StoreController@index')->name('store.index');
-     Route::post('stores' , 'StoreController@store');
+     Route::get('admin/home','Store\StoreController@home')->name('admin.home');
+     Route::get('stores/create','Store\StoreController@create');
+     Route::get('stores/{store_id}','Store\StoreController@show')->name('store.show');
+     Route::delete('stores/{store_id}','Store\StoreController@destroy')->name('store.destroy');
+     Route::get('stores' , 'Store\StoreController@index')->name('store.index');
+     Route::post('stores' , 'Store\StoreController@store');
         });
+    
+
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
