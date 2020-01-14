@@ -99,7 +99,7 @@ class StoreController extends Controller
     public function destroy($store_id)
     {
         $store = Store::find($store_id);
-        $stores->delete();
-        return redirect()->view('admin.store.index_store');
+        $store->delete();
+        return redirect()->route('store.index');
     }
 }
