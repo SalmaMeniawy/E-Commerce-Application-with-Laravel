@@ -40,11 +40,16 @@ class StoreController extends Controller
             'sammary' => 'required|between:10,200',
             
         ]);
-        Store::create([
+        $store = Store::create([
            'store_name'  => $request->input('store_name'),
             'sammary' => $request->input('sammary'),
         ]);
-        return redirect()->route('store.index');
+        if(isset($store)){
+            return redirect()->route('store.index');
+                
+        }else{
+            return redirect()->route('store.create');
+        }
     }
 
     public function home(){
