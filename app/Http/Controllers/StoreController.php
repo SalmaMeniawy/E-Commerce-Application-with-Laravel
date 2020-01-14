@@ -91,8 +91,10 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($store_id)
     {
-        //
+        $store = Store::find($store_id);
+        $stores->delete();
+        return redirect()->view('admin.store.index_store');
     }
 }
