@@ -3,11 +3,17 @@
 <div class="container">
    <a href="{{action('StoreController@create')}}"class="btn btn-primary">Craete new store</a>
          <div class="row justify-content-center">
+             @if(isset($failure))
+                  <div class="alert alert-danger" role="alert">
+                      {{$failure}}
+                    </div>
+             @endif
             <div class="col-md-8">
              <div class="card">
+                 @if($stores)
                  <div class="card-header"><h2>Available Stores</h2></div>
                   <div class="card-body">
-                      @if(isset($stores))
+                      
                       <table class="table table-sm">
                           <thead>
                             <tr>
@@ -15,7 +21,6 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                           
                             </tr>
                           </thead>
                             <tbody>
@@ -33,18 +38,19 @@
                                             @csrf
                                             @method('DELETE')
                                      <button type="submit" class="btn btn-danger">delete store</button>
-                                          </form>
-                                        
+                        
+                                 </form>        
                                     </td>
                                     
                                 </tr>
                                 @endforeach
                           </tbody>
-                      </table>
-                      @endif
+                      </table> 
                  </div>
+                 @endif
                 </div>
              </div>
+             
     </div>
 </div>
 

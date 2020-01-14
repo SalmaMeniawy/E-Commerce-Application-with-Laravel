@@ -14,7 +14,13 @@ class StoreController extends Controller
     public function index()
     {
         $stores = Store::all();
-        return view('admin.store.index_store')->with('stores',$stores);
+        $failure = 'There is no Stores available ';
+        if(isset($stores) ){
+                    return view('admin.store.index_store')->with('stores',$stores);
+        }else{
+        redirect()->route('store.index')->compact('failure',$failure);
+            
+        }
     }
 
     /**
