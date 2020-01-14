@@ -59,9 +59,7 @@ class StoreController extends Controller
         }
     }
 
-    public function home(){
-        return view('admin.home');
-    }
+    
     /**
      * Display the specified resource.
      *
