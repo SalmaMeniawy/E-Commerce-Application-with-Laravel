@@ -19,7 +19,7 @@ class StoreController extends Controller
         if(isset($stores) ){
                     return view('admin.store.index_store')->with('stores',$stores);
         }else{
-        redirect()->route('store.index')->compact('failure',$failure);
+        return redirect()->route('store.index')->compact('failure',$failure);
             
         }
     }
