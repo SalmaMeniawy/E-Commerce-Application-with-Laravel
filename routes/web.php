@@ -32,8 +32,10 @@ Route::middleware('auth')->group(function(){
                  Route::post('stores' , 'Store\StoreController@store');
                     });
         });
-    
-    
+        //routes for brand Controlelr
+        Route::group([],function(){
+                Route::get('brands/create','Brand\BrandController@create');
+        });
 
 });
 
