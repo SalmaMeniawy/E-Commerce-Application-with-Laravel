@@ -17,7 +17,16 @@
                 						<dd class="col-md-4">
                 							<a href="{{route('category.show',$category->id)}}" class="btn btn-info">Show </a>
                 						</dd>
-                						
+                						<dt class="col-md-3">
+
+		                                 <form action="{{ route('category.destroy', $category->id)}}" method="post">
+		                                            @csrf
+		                                            @method('DELETE')
+		                                     <button type="submit" class="btn btn-danger">delete category</button>
+		                        
+		                                 </form> 
+									
+						                </dt>
 						
 						          </dl>
 
