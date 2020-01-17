@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function(){
         //routes for Coupon Controller
         Route::group([],function(){
             Route::get('coupons/create' , 'Coupon\CouponController@create')->name('coupon.create');
+            Route::post('coupons','Coupon\CouponController@store')->name('coupon.store');
         });
         //routes for Category Controller
         Route::group([],function(){
