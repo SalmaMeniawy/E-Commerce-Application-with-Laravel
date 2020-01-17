@@ -10,24 +10,31 @@
              	 			@if(isset($coupons))
              	 				<ul  class="list-inline">
              	 					<dl class="row">
-             	 						<dt class="col-md-3">
+             	 						<dt class="col-md-4">
              	 							Coupon name
              	 						</dt>
-             	 						<dt class="col-md-3">
-             	 							Available state
-             	 						</dt>
+             	 						
              	 					</dl>
              	 					@foreach($coupons as $coupon)
              	 					<dl class="row">
              	 						<dt class="col-md-3">
              	 							{{$coupon->coupon_name}}
              	 						</dt>
-             	 						<dt class="col-md-3">
-             	 							{{$coupon->validate_state}}
-             	 						</dt>
+             	 						
              	 						<dd class="col-md-4">
              	 							<a href="{{route('coupon.show',$coupon->id)}}" class="btn btn-info">Show </a>
              	 						</dd>
+             	 						<dt class="col-md-3">
+
+		                                 <form action="{{ route('coupon.destroy', $coupon->id)}}" method="post">
+		                                            @csrf
+		                                            @method('DELETE')
+		                                     <button type="submit" class="btn btn-danger">delete coupon</button>
+		                        
+		                                 </form> 
+									
+						                </dt>
+             	 						
              	 					</dl>
 
              	 					@endforeach
