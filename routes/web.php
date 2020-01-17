@@ -32,6 +32,11 @@ Route::middleware('auth')->group(function(){
                  Route::post('stores' , 'Store\StoreController@store');
                     });
         });
+        //routes for Category Controller
+        Route::group([],function(){
+                Route::get('categories/create','Category\CategoryController@create')->name('category.create');
+                Route::post('categories','Category\CategoryController@store')->name('category.store');
+        });
         //routes for brand Controlelr
         Route::group([],function(){
                 Route::get('brands/create','Brand\BrandController@create');
