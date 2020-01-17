@@ -7,7 +7,15 @@
              <div class="card">
              	 <div class="card-header"><h2>Available Brands</h2></div>
                   <div class="card-body">
-                  	@if(isset($brands))
+                  	@if(!isset($brands))
+
+
+                    <div class="alert alert-danger" role="alert">
+                                "There is no Brands available"
+                            </div>
+
+
+                  	@elseif(isset($brands))
                   	
                       <ul  class="list-inline">
                       	@foreach($brands as $brand)
@@ -32,8 +40,9 @@
                      	
                       	@endforeach
                       </ul>
-                  
-             		@endif    
+                  	
+             		@endif        
+             		
                   </div>
              </div>
          </div>
