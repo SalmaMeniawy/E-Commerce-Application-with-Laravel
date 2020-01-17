@@ -38,7 +38,7 @@ class CouponController extends Controller
         $request->validate([
             'coupon_name' => 'required|min:3|max:25|unique:coupons|alpha_num',
             'number_of_usage' => 'numeric|min:5|max:20|required',
-            'lifetime' => 'date_format:2020-01-16|required_with:coupon_name',
+            'lifetime' => 'required_with:coupon_name',
             'coupon_persentage' => 'nullable|required_with:lifetime',
             'coupon_price'=>'nullable',
         ]);
