@@ -15,7 +15,7 @@
              	 							{{$coupon->coupon_name}}
              	 						</dt>
              	 						<dd class="col-md-4">
-             	 							<a href="" class="btn btn-info">Show </a>
+             	 							<a href="{{route('coupon.show',$coupon->id)}}" class="btn btn-info">Show </a>
              	 						</dd>
              	 					</dl>
 
