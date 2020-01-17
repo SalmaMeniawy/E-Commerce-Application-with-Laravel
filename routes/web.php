@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function(){
                 Route::post('brands','Brand\BrandController@store');
                 Route::get('brands','Brand\BrandController@index')->name('brand.index');
                 Route::delete('brands/{brand_id}','Brand\BrandController@destroy')->name('brand.destroy');
+                Route::get('brands/{brand_id}','Brand\BrandController@show')->name('brand.show');
         });
 
 });
