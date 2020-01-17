@@ -20,11 +20,11 @@
                       <ul  class="list-inline">
                       	@foreach($brands as $brand)
                       	<dl class="row">
-						<dt class="col-md-3">{{$brand->brand_name}}</dt>
-						<dd class="col-md-4">
-							<a href="{{route('brand.show',$brand->id)}}" class="btn btn-info">Show </a>
-						</dd>
-						<dt class="col-md-3">
+                						<dt class="col-md-3">{{$brand->brand_name}}</dt>
+                						<dd class="col-md-4">
+                							<a href="{{route('brand.show',$brand->id)}}" class="btn btn-info">Show </a>
+                						</dd>
+                						<dt class="col-md-3">
 
                                  <form action="{{ route('brand.destroy', $brand->id)}}" method="post">
                                             @csrf
@@ -33,9 +33,9 @@
                         
                                  </form> 
 							
-						</dt>
+						                </dt>
 						
-						</dl>
+						          </dl>
 
                      	
                       	@endforeach
