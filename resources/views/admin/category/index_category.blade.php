@@ -13,9 +13,13 @@
              	 				  	@foreach($categories as $category)
 
              	 				  		<dl class="row">
-             	 				  			<dt class="col-md-3">{{$category->category_name}}</dt>
-             	 				  			
-             	 				  		</dl>
+                						<dt class="col-md-3">{{$category->category_name}}</dt>
+                						<dd class="col-md-4">
+                							<a href="{{route('category.show',$category->id)}}" class="btn btn-info">Show </a>
+                						</dd>
+                						
+						
+						          </dl>
 
              	 				  	@endforeach
              	 				  </ul>
