@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Brand;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Brand;
 class BrandController extends Controller
 {
     /**
@@ -35,7 +35,11 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $brand = Brand::create([
+            'brand_name'=> $request->input('brand_name'),
+        ]);
+       
     }
 
     /**
