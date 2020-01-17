@@ -15,13 +15,13 @@ class CreateCouponsTable extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('coupon_name');
+            $table->string('coupon_name')->require();
             $table->integer('number_of_usage')->reuire();
             $table->time('lifetime')->require();
             $table->float('coupon_persentage')->nullable();
             $table->float('coupon_price')->nullable();
-            $table->binary('validate_state');
-            $table->binary('apply_coupon');
+            $table->enum('validate_state',[1,0])->default(1);
+            $table->enum('apply_coupon',[1,0])->default(1);
             $table->timestamps();
         });
     }
