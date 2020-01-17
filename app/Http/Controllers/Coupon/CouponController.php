@@ -35,6 +35,13 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'coupon_name' => 'required|min:3|max:25|unique:coupons|alpha_num',
+            'number_of_usage' => 'numeric|min:5|max:20|required',
+            'lifetime' => 'date_format:2020-01-16|required_with:coupon_name',
+            'coupon_persentage' => 'nullable|required_with:lifetime',
+            'coupon_price'=>'nullable',
+        ]);
         $coupon = Coupon::create([
             'coupon_name' => $request->input('coupon_name'),
             'number_of_usage' => $request->input('number_of_usage'),
