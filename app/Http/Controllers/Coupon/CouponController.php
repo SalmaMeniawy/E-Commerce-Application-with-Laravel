@@ -97,8 +97,10 @@ class CouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($coupon_id)
     {
-        //
+        $coupon = Coupon::find($coupon_id);
+        $coupon->delete();
+        return redirect()->route('coupon.index');
     }
 }
