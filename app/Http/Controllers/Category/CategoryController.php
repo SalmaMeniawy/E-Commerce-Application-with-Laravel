@@ -43,7 +43,7 @@ class CategoryController extends Controller
         $category = Category::create([
             'category_name' => $request->input('category_name'),
         ]);
-        
+        return redirect()->route('category.index');
     }
 
     /**
