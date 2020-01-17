@@ -89,5 +89,6 @@ class BrandController extends Controller
     {
         $brand = Brand::find($brand_id);
         $brand->delete();
+        return redirect()->route('brand.index');
     }
 }
