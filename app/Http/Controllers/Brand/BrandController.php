@@ -35,11 +35,13 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-       
+       $request->validate([
+            'brand_name'=> 'required|unique:brands|alpha_num|max:15|min:3'
+       ]);
         $brand = Brand::create([
             'brand_name'=> $request->input('brand_name'),
         ]);
-       
+
     }
 
     /**
