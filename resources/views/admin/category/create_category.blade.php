@@ -36,6 +36,9 @@
                   </div>
               </div>
           </div>
+          <div>
+            <a href="{{route('category.index')}}"class="btn btn-info"> Back </a>
+          </div>
       </div>
         </div>
 @endsection
