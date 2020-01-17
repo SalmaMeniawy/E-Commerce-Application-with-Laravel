@@ -9,7 +9,7 @@
 
                 <div class="card-header">Coupon Creation Form</div>
                   <div class="card-body">
-                  	<form method="POST" action="">
+                  	<form method="POST" action="/coupons">
                   		@csrf
                   		<div class="form-group row">
 							<label for="coupon_name" class="col-md-4 col-form-label text-md-right">Coupon name                 </label>
@@ -27,7 +27,7 @@
                   		<div class="form-group row">
                   			<label for="lifetime" class="col-md-4 col-form-label text-md-right">Lifetime for coupon              </label>
                   			<div class="col-md-6">
-                                 <input name="lifetime" type="time">
+                                 <input name="lifetime" type="datetime-local"min="2020-01-07T00:00" max="2025-06-14T00:00">
                              </div>
                   		</div>
                   		<div class="form-group row">
@@ -38,7 +38,7 @@
                   		</div>
                   		
                   		<div class="form-group row">
-                  			<label for="coupon_price" class="col-md-4 col-form-label text-md-right">Coupon persentage            </label>
+                  			<label for="coupon_price" class="col-md-4 col-form-label text-md-right">Coupon price            </label>
                   			<div class="col-md-6">
                   				<input type="number"step="0.1" name="coupon_price">
                   			</div>
