@@ -15,8 +15,17 @@
 						<dd class="col-md-4">
 							<a href="action('Brand\BrandController@show',[$brand->id])" class="btn btn-info">Show </a>
 						</dd>
-						<dt class="col-md-3">Address</dt>
-						<dd class="col-md-4">NYC</dd>
+						<dt class="col-md-3">
+
+                                 <form action="{{ route('brand.destroy', $brand->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                     <button type="submit" class="btn btn-danger">delete brand</button>
+                        
+                                 </form> 
+							
+						</dt>
+						
 						</dl>
 
                      	
