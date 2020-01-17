@@ -6,6 +6,15 @@
              <div class="card">
              	 <div class="card-header"><h2>Brand Creation Form</h2></div>
                   <div class="card-body">
+                  	@if($errors->any())
+                  	 <ul id="errors">
+                  	 	@foreach($errors->all() as $error)
+							<div class="alert alert-danger" role="alert">
+                                 {{$error}}
+                            </div>
+                  	 	@endforeach
+                  	 </ul>
+                  	 @endif
                   	<form method="POST" action="/brands">
                   		@csrf
                   		<div class="form-group row">
