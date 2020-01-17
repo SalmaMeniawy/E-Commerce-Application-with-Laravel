@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function(){
                 Route::post('categories','Category\CategoryController@store')->name('category.store');
 
                 Route::get('categories','Category\CategoryController@index')->name('category.index');
+                Route::get('categories/{category_id}','Category\CategoryController@show')->name('category.show');
         });
         //routes for brand Controlelr
         Route::group([],function(){
