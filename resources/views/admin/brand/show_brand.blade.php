@@ -6,7 +6,7 @@
              <div class="card">
              	@if(isset($brand))
              		<div class="card">
-             			 <div class="card-header" ><h2>{{$brand->brand_name}}  details</h2>
+             			 <div class="card-header" ><h2>{{$brand->brand_name}} 	 details</h2>
              			</div>
              			<div class="card-block">
                     <ul class="list-group list-group-flush">
