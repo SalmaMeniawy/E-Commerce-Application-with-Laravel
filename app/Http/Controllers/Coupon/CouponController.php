@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Coupon;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Coupon;
 class CouponController extends Controller
 {
     /**
@@ -35,7 +35,14 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $coupon = Coupon::create([
+            'coupon_name' => $request->input('coupon_name'),
+            'number_of_usage' => $request->input('number_of_usage'),
+            'lifetime' => $request->input('lifetime'),
+            'coupon_persentage' => $request->input('coupon_persentage'),
+            'coupon_price' => $request->input('coupon_price'),
+        ]);
+       
     }
 
     /**
