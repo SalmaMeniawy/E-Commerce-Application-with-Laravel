@@ -13,7 +13,7 @@
                       	<dl class="row">
 						<dt class="col-md-3">{{$brand->brand_name}}</dt>
 						<dd class="col-md-4">
-							<a href="action('Brand\BrandController@show',[$brand->id])" class="btn btn-info">Show </a>
+							<a href="{{route('brand.show',$brand->id)}}" class="btn btn-info">Show </a>
 						</dd>
 						<dt class="col-md-3">
 
