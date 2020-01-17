@@ -51,9 +51,10 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($brand_id)
     {
-        //
+        $brand = Brand::find($brand_id);
+        return view('admin.brand.show_brand')->with('brand',$brand);
     }
 
     /**
