@@ -50,7 +50,7 @@ class CouponController extends Controller
             'coupon_persentage' => $request->input('coupon_persentage'),
             'coupon_price' => $request->input('coupon_price'),
         ]);
-       
+       return redirect()->route('coupon.index');
     }
 
     /**
