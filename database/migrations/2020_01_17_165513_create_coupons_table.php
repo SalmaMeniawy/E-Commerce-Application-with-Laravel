@@ -17,7 +17,7 @@ class CreateCouponsTable extends Migration
             $table->bigIncrements('id');
             $table->string('coupon_name')->require();
             $table->integer('number_of_usage')->reuire();
-            $table->time('lifetime')->require();
+            $table->dateTime('lifetime')->require();
             $table->float('coupon_persentage')->nullable();
             $table->float('coupon_price')->nullable();
             $table->enum('validate_state',[1,0])->default(1);
