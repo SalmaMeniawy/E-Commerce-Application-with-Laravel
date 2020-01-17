@@ -62,6 +62,9 @@ class CouponController extends Controller
     public function show($coupon_id)
     {
         $coupon = Coupon::find($coupon_id);
+        $coupon_input_from_user_in_float = $coupon->coupon_persentage;
+        $coupon->coupon_persentage = Coupon::get_persentage($coupon_input_from_user_in_float);
+        
         return view('admin.coupon.show_coupon')->with('coupon',$coupon);
     }
 
@@ -75,7 +78,7 @@ class CouponController extends Controller
     {
         //
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
