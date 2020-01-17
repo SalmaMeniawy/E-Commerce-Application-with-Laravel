@@ -64,7 +64,7 @@
              </div>
              <div>
                     <a href="{{route('coupon.index')}}" class="btn btn-info">Back</a>
-                  </div>
+                  </div>  
 
         </div>
 @endsection
