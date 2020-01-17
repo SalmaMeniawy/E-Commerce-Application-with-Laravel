@@ -32,6 +32,10 @@ Route::middleware('auth')->group(function(){
                  Route::post('stores' , 'Store\StoreController@store');
                     });
         });
+        //routes for Coupon Controller
+        Route::group([],function(){
+            Route::get('coupons/create' , 'Coupon\CouponController@create')->name('coupon.create');
+        });
         //routes for Category Controller
         Route::group([],function(){
                 Route::get('categories/create','Category\CategoryController@create')->name('category.create');
