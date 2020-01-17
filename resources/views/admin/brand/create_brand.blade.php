@@ -30,6 +30,9 @@
                              </div>
                   	</form>
                   </div>
+                  <div>
+                    <a href="{{action('Brand\BrandController@index')}}"class="btn btn-info"> Back </a>
+                 </div>
               </div>
              </div>
          </div>
