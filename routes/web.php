@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function(){
 
                 Route::get('categories','Category\CategoryController@index')->name('category.index');
                 Route::get('categories/{category_id}','Category\CategoryController@show')->name('category.show');
+                Route::delete('categories/{category_id}','Category\CategoryController@destroy')->name('category.destroy');
         });
         //routes for brand Controlelr
         Route::group([],function(){
