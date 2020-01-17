@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function(){
         //routes for brand Controlelr
         Route::group([],function(){
                 Route::get('brands/create','Brand\BrandController@create');
+                Route::post('brands','Brand\BrandController@store');
         });
 
 });
