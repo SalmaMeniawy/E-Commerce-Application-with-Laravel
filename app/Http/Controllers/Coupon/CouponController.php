@@ -59,9 +59,10 @@ class CouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($coupon_id)
     {
-        //
+        $coupon = Coupon::find($coupon_id);
+        return view('admin.coupon.show_coupon')->with('coupon',$coupon);
     }
 
     /**
