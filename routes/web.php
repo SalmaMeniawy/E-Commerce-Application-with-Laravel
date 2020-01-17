@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function(){
                 Route::get('brands/create','Brand\BrandController@create');
                 Route::post('brands','Brand\BrandController@store');
                 Route::get('brands','Brand\BrandController@index')->name('brand.index');
+                Route::delete('brands/{brand_id}','Brand\BrandController@destroy')->name('brand.destroy');
         });
 
 });
