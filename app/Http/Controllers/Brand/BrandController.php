@@ -42,7 +42,7 @@ class BrandController extends Controller
         $brand = Brand::create([
             'brand_name'=> $request->input('brand_name'),
         ]);
-
+        return redirect()->route('brand.index');
     }
 
     /**
