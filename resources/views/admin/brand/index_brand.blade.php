@@ -3,6 +3,7 @@
 	<div class="container">
          <div class="row justify-content-center">
             <div class="col-md-8">
+            	<a href="{{action('Brand\BrandController@create')}}"class="btn btn-primary">Craete new brand</a>
              <div class="card">
              	 <div class="card-header"><h2>Available Brands</h2></div>
                   <div class="card-body">
