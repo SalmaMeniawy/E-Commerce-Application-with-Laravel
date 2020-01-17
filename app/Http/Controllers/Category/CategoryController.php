@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Category;
 class CategoryController extends Controller
 {
     /**
@@ -24,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        
+
         return view('admin.category.create_category');
     }
 
@@ -36,7 +36,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_name' => 'required|min:3|max:25|unique:categories',
+        ]);
+        $category = Category::create([
+            'category_name' => $request->input('category_name'),
+        ]);
+        
     }
 
     /**
