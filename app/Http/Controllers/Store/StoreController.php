@@ -50,6 +50,7 @@ class StoreController extends Controller
         $store = Store::create([
            'store_name'  => $request->input('store_name'),
             'sammary' => $request->input('sammary'),
+            'admin_id' => auth()->id(),
         ]);
         if(isset($store)){
             return redirect()->route('store.index');
