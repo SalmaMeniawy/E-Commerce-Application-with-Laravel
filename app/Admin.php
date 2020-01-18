@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Brand;
 use App\Store;
+use App\Category;
 class Admin extends Model
 {
     protected $fillable = ['fname','lname','date_of_birth','user_id'];
@@ -17,5 +18,8 @@ class Admin extends Model
     }
     public function stores(){
         return $this->hasMany(Store::class);
+    }
+    public function categories(){
+        return $this->hasMany(Category::class);
     }
 }
