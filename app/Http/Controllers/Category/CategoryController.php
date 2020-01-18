@@ -42,6 +42,7 @@ class CategoryController extends Controller
         ]);
         $category = Category::create([
             'category_name' => $request->input('category_name'),
+            'admin_id' => auth()->id(),
         ]);
         return redirect()->route('category.index');
     }
