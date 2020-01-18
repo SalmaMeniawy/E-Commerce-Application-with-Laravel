@@ -41,6 +41,7 @@ class BrandController extends Controller
        ]);
         $brand = Brand::create([
             'brand_name'=> $request->input('brand_name'),
+            'admin_id' => auth()->id(),
         ]);
         return redirect()->route('brand.index');
     }
