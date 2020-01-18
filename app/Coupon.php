@@ -8,7 +8,7 @@ class Coupon extends Model
 {
     protected $fillable = [
     	'coupon_name','number_of_usage','lifetime','coupon_persentage',
-    	'coupon_price',
+    	'coupon_price','admin_id',
     ];
 	/**
      * 
