@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends(backpack_view('blank'))
 @section('content')
    
         <div class="container">
