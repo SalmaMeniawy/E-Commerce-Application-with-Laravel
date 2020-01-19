@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Admin;
+use App\Buyer;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Seller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -53,6 +56,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role'=>['required'],
+            'fname' => ['required','string','max:255'],
+            'lname' => ['required','string','max:255'],
+          
         ]);
     }
 
@@ -64,10 +71,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user = User::make([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'role'=>$data['role'],
         ]);
+        $user->save();
+        if($data['role'] == 'admin'){
+            Admin::create([
+                'fname' => $data['fname'],
+                'lname' => $data['lname'],
+                'date_of_birth' => $data['date_of_birth'],
+                'user_id' => $user->id,
+            ]);
+       
+            return $user;
+        }elseif($data['role']== 'seller'){
+            Seller::create([
+                'fname' => $data['fname'],
+                'lname' => $data['lname'],
+                'date_of_birth' => $data['date_of_birth'],
+                'user_id' => $user->id,
+            ]);
+            return $user;
+        }else{
+            Buyer::create([
+                'fname' => $data['fname'],
+                'lname' => $data['lname'],
+                'date_of_birth' => $data['date_of_birth'],
+                'user_id' => $user->id,
+            ]);
+            return $user;
+        }
+        
     }
 }
