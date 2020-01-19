@@ -49,7 +49,11 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
+    public function showRegistrationForm()
+    {
+        $roles = ['buyer','seller','admin'];
+        return view('auth.register',compact('roles'));
+    }
     /**
      * Get a validator for an incoming registration request.
      *
