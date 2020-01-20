@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
-
+use App\Brand;
 class ProductController extends Controller
 {
     /**
@@ -26,7 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('seller.product.create_product');
+        $brands = Brand::get_available_brands();
+        return view('seller.product.create_product')->with('brands',$brands);
     }
 
     /**
