@@ -17,6 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware('auth')->group(function(){
+    //routed for seller
+    Route::middleware('seller-role')->group(function(){
+
+    });
+    //routes for admin
     Route::middleware('admin-role')->group(function(){
         //routes related to admin Controller
         Route::group([],function(){
@@ -58,6 +63,7 @@ Route::middleware('auth')->group(function(){
                 Route::delete('brands/{brand_id}','Brand\BrandController@destroy')->name('brand.destroy');
                 Route::get('brands/{brand_id}','Brand\BrandController@show')->name('brand.show');
         });
+
 
 });
 
