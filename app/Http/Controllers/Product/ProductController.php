@@ -56,6 +56,7 @@ class ProductController extends Controller
             'seller_id' =>auth()->id(),
             'price' => $request->input('price'),
         ]);
+        return redirect()->route('product.index');
     }
 
     /**
