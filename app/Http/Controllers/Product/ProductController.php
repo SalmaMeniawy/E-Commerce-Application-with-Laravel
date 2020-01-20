@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Brand;
+use App\Category;
+
 class ProductController extends Controller
 {
     /**
@@ -27,7 +29,8 @@ class ProductController extends Controller
     public function create()
     {
         $brands = Brand::get_available_brands();
-        return view('seller.product.create_product')->with('brands',$brands);
+        $categories = Category::all();
+        return view('seller.product.create_product')->with('brands',$brands)->with('categories',$categories);
     }
 
     /**
