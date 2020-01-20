@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function(){
         Route::get('products/create','Product\ProductController@create')->name('product.create');
         Route::post('products','Product\ProductController@store');
         Route::get('products','Product\ProductController@index')->name('product.index');
+        Route::get('products/{product_id}','Product\ProductController@show')->name('product.show');
     });
     //routes for admin
     Route::middleware('admin-role')->group(function(){
