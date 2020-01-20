@@ -19,7 +19,7 @@ Auth::routes();
 Route::middleware('auth')->group(function(){
     //routed for seller
     Route::middleware('seller-role')->group(function(){
-
+        Route::get('products/create','Product\ProductController@create')->name('product.create');
     });
     //routes for admin
     Route::middleware('admin-role')->group(function(){
