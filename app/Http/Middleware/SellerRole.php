@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Illuminate\Support\Facades\Auth;
 class SellerRole
 {
     /**
@@ -15,6 +15,10 @@ class SellerRole
      */
     public function handle($request, Closure $next)
     {
+        $user = Auth::user();
+        if($user->role != 'seller'){
+            return redirect()->route('home');
+        }
         return $next($request);
     }
 }
