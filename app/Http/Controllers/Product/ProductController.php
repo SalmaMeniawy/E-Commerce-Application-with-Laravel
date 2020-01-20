@@ -48,6 +48,7 @@ class ProductController extends Controller
         $product = Product::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
+            'brand_id'=>$request->input('brand_id'),
             'price' => $request->input('price'),
         ]);
     }
