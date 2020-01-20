@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     /**
@@ -16,7 +16,10 @@ class AdminController extends Controller
     {
         //
     }
-
+    public function logOut(){
+        Auth::logout();
+        return redirect()->route('home');
+    }
     /**
      * Show the form for creating a new resource.
      *
