@@ -12,7 +12,7 @@ Coupons</a></li>
 <li class="nav-item"> <a class="nav-link" 
 href="{{ url('categories') }}">
 Categories</a></li>
-<li class="nav-item"> <a class="nav-link" 
+<li class="nav-item"><a class="nav-link" 
 href="{{ url('admin/logout') }}">
 Logout</a></li>
 
