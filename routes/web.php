@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function(){
         //routes related to admin Controller
         Route::group([],function(){
             Route::get('admin/home','Admin\AdminController@home')->name('admin.home');
+            Route::get('admin/logout','Admin\AdminController@logout')->name('admin.logout');
                  
         });
         //routest for store controller
