@@ -18,7 +18,7 @@ class AdminController extends Controller
     }
     public function logOut(){
         Auth::logout();
-        return redirect()->route('home');
+        return redirect()->route('login');
     }
     /**
      * Show the form for creating a new resource.
