@@ -39,9 +39,20 @@
 
 								@endforeach
 								</select>
-                             </div>
+                            </div>
 							
              	 		</div>
+						  <div class="form-group row">
+						  <label for="category" class="col-md-4 col-form-label text-md-right">category  </label>
+							<div class="col-md-6">
+							<select class="col-md-6"  name="category_id">
+							@foreach($categories as $category)
+
+							<option value="{{$category->id}}">{{$category->category_name}}</option>		
+							@endforeach
+							</select>
+							</div>
+						  </div>
              	 		<div class="form-group row">
                   			<label for="coupon_persentage" class="col-md-4 col-form-label text-md-right">price           </label>
                   			<div class="col-md-6">
