@@ -4,10 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Admin;
+use App\Product;
 class Category extends Model
 {
     protected $fillable = ['category_name','admin_id'];
     public function admin(){
         return $this->belongsTo(Admin::class);
+    }
+    public function products(){
+        return $this->hasMany(Product::class);
     }
 }
