@@ -21,7 +21,7 @@
              	 		<div class="form-group row">
                   			<label for="title" class="col-md-4 col-form-label text-md-right">title          </label>
                   			<div class="col-md-6">
-                                 <input name="title" type="text" value="{{old('text')}}">
+                                 <input name="title" type="text" value="{{old('title')}}">
                              </div>
                   		</div>
              	 		<div class="form-group row">
