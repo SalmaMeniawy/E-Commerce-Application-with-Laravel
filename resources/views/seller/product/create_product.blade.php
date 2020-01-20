@@ -7,7 +7,7 @@
              <div class="card">
              	 <div class="card-header"><h4>Product Creation Form</h4></div>
              	 <div class="card-body">
-             	 	<form method="POST" action="">
+             	 	<form method="POST" action="/products">
              	 		@csrf
              	 		<div class="form-group row">
                   			<label for="title" class="col-md-4 col-form-label text-md-right">title          </label>
