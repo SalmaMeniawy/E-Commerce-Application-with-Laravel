@@ -14,4 +14,8 @@ class Brand extends Model
     public function products(){
     	return $this->hasMany(Product::class);
     }
+    public function get_available_brands(){
+         $brands =  Brand::all();
+         return $brands;
+    }
 }
