@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\brand;
 use App\Category;
+use App\Seller;
 class Product extends Model
 {
     protected $fillable = ['title','description','price',
@@ -14,5 +15,8 @@ class Product extends Model
     }
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+    public function seller(){
+        return $this->belongsTo(Seller::class);
     }
 }
