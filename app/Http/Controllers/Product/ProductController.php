@@ -52,6 +52,7 @@ class ProductController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'brand_id'=>$request->input('brand_id'),
+            'category_id'=>$request->input('category_id'),
             'price' => $request->input('price'),
         ]);
     }
