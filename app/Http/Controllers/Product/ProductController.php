@@ -36,6 +36,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+            'title'=>'required|unique:products|min:3|max:25',
+            'description'=>'required|max:110',
+            'price'=>'required'
+            ]
+        );
         $product = Product::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
