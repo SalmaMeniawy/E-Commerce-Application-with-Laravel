@@ -9,7 +9,7 @@ use App\Seller;
 class Product extends Model
 {
     protected $fillable = ['title','description','price',
-    'brand_id','category_id'];
+    'brand_id','category_id','seller_id'];
     public function brand(){
         return $this->belongsTo(Brand::class);
     }
