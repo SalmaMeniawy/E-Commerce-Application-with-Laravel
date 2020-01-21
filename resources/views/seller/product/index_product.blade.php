@@ -21,8 +21,12 @@
             					<dl class="row">
             						<dt class="col-md-3">
             							{{$product->title}}
-            						</dt>
-            					</dl>
+									</dt>
+									<dd class="col-md-4">
+									<a href="{{route('product.show',$product->id)}}"  class="btn btn-info">Show</a>
+									</dd>
+								</dl>
+								
 
             					@endforeach
             				</ul>
