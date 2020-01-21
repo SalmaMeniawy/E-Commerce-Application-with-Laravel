@@ -18,6 +18,9 @@
                         Product category : {{$product_category_name}}
                     </li>
                     <li class="list-group-item">
+                        Product brand : {{$product_brand_name}}
+                    </li>
+                    <li class="list-group-item">
                         Product description : {{$product->description}}
                     </li>
                     <li class="list-group-item">
