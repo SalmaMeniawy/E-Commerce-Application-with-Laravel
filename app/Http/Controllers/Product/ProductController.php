@@ -68,9 +68,10 @@ class ProductController extends Controller
     public function show($product_id)
     {
         $product = Product::find($product_id);
-        $product_category = $product->category();
+        $product_category = $product->category->where('id',$product->category_id)->get();
+        $product_category_name = $product_category[0]->category_name;
         return view('seller.product.show_product')
-        ->with('product',$product)->with('product_category',$product_category);
+        ->with('product',$product)->with('product_category_name',$product_category_name);
 
     }
 
