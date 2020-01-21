@@ -32,10 +32,16 @@
                 </ul>
 
                 </div>
+               
              </div>
+            
              </div>
              @endif
+             
              </div>
+             <div>
+                    <a href="{{route('product.index')}}" class="btn btn-info">Back</a>
+                </div>
             </div>
          </div>
 </div>
