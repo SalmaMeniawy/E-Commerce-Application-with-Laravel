@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+<a href="{{action('Product\ProductController@create')}}"class="btn btn-primary">Craete new product</a>
 	<div class="row justify-content-center">
             <div class="col-md-8">
             	
