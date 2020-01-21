@@ -21,6 +21,9 @@
                         Product description : {{$product->description}}
                     </li>
                     <li class="list-group-item">
+                        Quentity in Stock : {{$product->in_stock_quantity}}
+                    </li>
+                    <li class="list-group-item">
                         Product price : {{$product->price}}
                     </li>
                 </ul>
