@@ -45,6 +45,7 @@ class ProductController extends Controller
             [
             'title'=>'required|unique:products|min:3|max:25',
             'description'=>'required|max:110',
+            'in_stock_quantity' =>'required|max:500|min:10',
             'price'=>'required'
             ]
         );
