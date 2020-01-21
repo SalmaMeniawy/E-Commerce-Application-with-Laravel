@@ -29,7 +29,13 @@
                   			<div class="col-md-6">
                                  <textarea name="description"></textarea>  
                              </div>
-                  		</div>
+						  </div>
+						  <div class="form-group row">
+						  <label for="description" class="col-md-4 col-form-label text-md-right">quantity          </label>
+						  <div class="col-md-6">
+						  	<input name="in_stock_quantity" type="number" value="{{old('in_stock_quantity')}}">
+						  </div>
+						  </div>
              	 		<div class="form-group row">
 						  <label for="brand" class="col-md-4 col-form-label text-md-right">brand  </label>
 						  <div class="col-md-6">
