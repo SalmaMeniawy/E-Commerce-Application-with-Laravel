@@ -7,7 +7,7 @@
              <div class="card">
              	 <div class="card-header"><h4>Product Creation Form</h4></div>
              	 <div class="card-body">
-             	 	<form method="POST" action="/products">
+             	 	<form method="POST" action="/products" enctype="multipart/form-data">
              	 		@csrf
              	 		@if($errors->any())
              	 			<ul id="errors">
@@ -48,6 +48,14 @@
                             </div>
 							
              	 		</div>
+
+						  <div class="form-group row">
+						  <label for="image" class="col-md-4 col-form-label text-md-right">image </label>
+						  <div class="col-md-6">
+                                 <input name="image" type="file" >
+                             </div>
+						  </div>
+
 						  <div class="form-group row">
 						  <label for="category" class="col-md-4 col-form-label text-md-right">category  </label>
 							<div class="col-md-6">
