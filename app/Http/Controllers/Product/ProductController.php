@@ -45,7 +45,7 @@ class ProductController extends Controller
             [
             'title'=>'required|unique:products|min:3|max:25',
             'description'=>'required|max:110',
-            'in_stock_quantity' =>'required|max:500|min:10',
+            'in_stock_quantity' =>'required|max:500',
             'price'=>'required'
             ]
         );
@@ -58,7 +58,16 @@ class ProductController extends Controller
             'seller_id' =>auth()->id(),
             'price' => $request->input('price'),
         ]);
-        return redirect()->route('product.index');
+       
+        $image = $request->file('image');
+        $name = $product->id.'.'.$image->extension();
+        $destination = public_path('/productImages');
+        $image->move($destination,$name);
+        $same_product = Product::find($product->id);
+        $same_product->image = $name;
+        $same_product->save();
+    
+            return redirect()->action('Product\ProductController@index');
     }
 
     /**
