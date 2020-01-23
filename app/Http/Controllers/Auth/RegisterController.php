@@ -36,7 +36,11 @@ class RegisterController extends Controller
     protected function redirectTo(){
         if(auth()->user()->role == 'admin'){
             return '/admin/dashboard';
-        }else{
+        }elseif(auth()->user()->role == 'seller'){
+            return 'home/seller';
+
+        }
+        else{
             return '/home';
         }
     }
