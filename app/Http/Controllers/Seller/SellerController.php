@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SellerController extends Controller
 {
@@ -16,7 +17,10 @@ class SellerController extends Controller
     {
         //
     }
-
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
     /**
      * Show the form for creating a new resource.
      *
