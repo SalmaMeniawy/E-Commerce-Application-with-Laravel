@@ -16,6 +16,9 @@ Categories</a></li>
 @endif
 @if(auth()->user()->role == 'seller')
 <li class="nav-item"> <a class="nav-link" 
+href="{{ url('home/seller') }}">
+homepage</a></li>
+<li class="nav-item"> <a class="nav-link" 
 href="{{ url('products') }}">
 Products</a></li>
 
