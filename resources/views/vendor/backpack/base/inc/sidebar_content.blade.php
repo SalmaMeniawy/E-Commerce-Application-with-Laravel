@@ -13,6 +13,9 @@ Coupons</a></li>
 <li class="nav-item"> <a class="nav-link" 
 href="{{ url('categories') }}">
 Categories</a></li>
+<li class="nav-item"><a class="nav-link" 
+href="{{ url('admin/logout') }}">
+Logout</a></li>
 @endif
 @if(auth()->user()->role == 'seller')
 <li class="nav-item"> <a class="nav-link" 
@@ -21,9 +24,10 @@ homepage</a></li>
 <li class="nav-item"> <a class="nav-link" 
 href="{{ url('products') }}">
 Products</a></li>
+<li class="nav-item"><a class="nav-link" 
+href="{{ url('seller/logout') }}">
+Logout</a></li>
 
 @endif
-<li class="nav-item"><a class="nav-link" 
-href="{{ url('admin/logout') }}">
-Logout</a></li>
+
 
