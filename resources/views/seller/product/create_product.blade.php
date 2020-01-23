@@ -1,5 +1,5 @@
 @extends(backpack_view('blank'))
-@section('content')
+
 @section('content')
         <div class="container">
          <div class="row justify-content-center">

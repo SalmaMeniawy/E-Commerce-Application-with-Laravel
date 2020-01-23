@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends(backpack_view('blank'))
 @section('content')
 <div class="container">
 <a href="{{action('Product\ProductController@create')}}"class="btn btn-primary">Craete new product</a>
