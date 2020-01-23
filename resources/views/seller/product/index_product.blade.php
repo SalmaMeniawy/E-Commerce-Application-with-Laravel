@@ -26,10 +26,17 @@
 									<dd class="col-md-4">
 									<a href="{{route('product.show',$product->id)}}"  class="btn btn-info">Show</a>
 									</dd>
+									<form method="POST" action="{{ route('product.destroy', $product->id)}}">
+										@csrf
+										@method('DELETE')
+										<button type="submit" class="btn btn-danger">delete product</button>
+
+									</form>
 								</dl>
 								
 
             					@endforeach
+								
             				</ul>
 
             			@endif
