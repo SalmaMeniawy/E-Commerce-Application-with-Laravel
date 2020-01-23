@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function(){
         Route::get('products','Product\ProductController@index')->name('product.index');
         Route::get('products/{product_id}','Product\ProductController@show')->name('product.show');
         Route::delete('products/{product_id}','Product\ProductController@destroy')->name('product.destroy');
+        Route::get('home/seller','Seller\SellerController@create')->name('seller.home');
     });
     //routes for admin
     Route::middleware('admin-role')->group(function(){
