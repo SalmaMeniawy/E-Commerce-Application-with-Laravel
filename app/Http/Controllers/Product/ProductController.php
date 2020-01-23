@@ -63,13 +63,13 @@ class ProductController extends Controller
         $name = $product->id.'.'.$image->extension();
         $destination = public_path('/productImages');
         $image->move($destination,$name);
-        $same_product = Product::find($product->id);
-        $same_product->image = $name;
-        $same_product->save();
+        $product->image = $name;
+        $product->save();
+       
     
             return redirect()->action('Product\ProductController@index');
     }
-
+    
     /**
      * Display the specified resource.
      *
