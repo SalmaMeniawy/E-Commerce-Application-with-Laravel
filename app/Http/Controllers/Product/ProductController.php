@@ -117,8 +117,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($product_id)
     {
-        //
+        $product = Product::find($product_id);
+        $destination = public_path('/productImages');
+        $path = public_path("/productImages/$product->image");
+        if(unlink($path)){
+            $product->delete();
+            return redirect()->route('product.index');
+
+        }
+       
     }
 }
