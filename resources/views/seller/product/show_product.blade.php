@@ -10,6 +10,12 @@
              <div class="card">
              <div class="card-header" ><h2>{{$product->title}} product	 details</h2>
                 <div class="card-block">
+                <div class="container d-flex h-100">
+                    <div class="row justify-content-center align-self-center">
+                    <img src='{{url("/productImages",$product->image)}}' width="200" height="200" class="align-middle"> 
+
+                    </div>
+                </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         Product title : {{$product->title}}
