@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function(){
         Route::post('products','Product\ProductController@store');
         Route::get('products','Product\ProductController@index')->name('product.index');
         Route::get('products/{product_id}','Product\ProductController@show')->name('product.show');
+        Route::delete('products/{product_id}','Product\ProductController@destroy')->name('product.destroy');
     });
     //routes for admin
     Route::middleware('admin-role')->group(function(){
