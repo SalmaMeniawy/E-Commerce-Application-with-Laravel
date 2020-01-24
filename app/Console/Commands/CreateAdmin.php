@@ -3,7 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-
+use App\Admin;
+use App\User;
 class CreateAdmin extends Command
 {
     /**
@@ -37,6 +38,38 @@ class CreateAdmin extends Command
      */
     public function handle()
     {
-        //
+        if($this->argument('password') == $this->argument('confirm_password')){
+            $user = new User;
+            if(is_string($this->argument('name')) && is_string($this->argument('fname'))&&is_string($this->argument('lname')))
+            {
+                $user->name = $this->argument('name');
+                if(filter_var($this->argument('email') ,FILTER_VALIDATE_EMAIL))
+                {
+                    $user->email = $this->argument('email');
+
+                }else{
+                    $this->error('Invalid Email !! ');
+                }
+                $user->password = bcrypt($this->argument('password'));
+                $user->role = 'admin';
+                $user->save();
+                $admin = new Admin;
+                $admin->fname = $this->argument('fname');
+                $admin->lname = $this->argument('lname');
+
+                $date_of_birth = date('Y-m-d',strtotime($this->argument('date_of_birth')));
+                if(isset($date_of_birth)){
+                    $admin->date_of_birth = $this->argument('date_of_birth') ;
+                    $admin->user_id = $user->id;
+                    $admin->save();
+                }else{
+                    $this->error('Invalid Date of Birth');
+                }
+            }else{
+                $this->error('Invalid name');
+            }
+        }else{
+            $this->error("The password confirmation does n't match");
+        }
     }
 }
