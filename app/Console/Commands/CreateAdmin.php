@@ -51,5 +51,20 @@ class CreateAdmin extends Command
             exit();
         }
         $date_of_birth = $this->ask('date of birth ?');
+        $validator = Validator::make([
+            'name'=>$name,
+            'fname'=>$fname,
+            'lname'=>$lname,
+            'password' => $password,
+            'date_of_birth'=>$date_of_birth,
+            'email'=>$email,
+        ],[
+            'name' => 'required|alpha',
+            'fname' => 'required|alpha',
+            'lname' => 'required|alpha',
+            'email' => 'required|unique:users|email',
+            'password'=>'required',
+            'date_of_birth' => 'required|date',
+        ]);
     }
 }
