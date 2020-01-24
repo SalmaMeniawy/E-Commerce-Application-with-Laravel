@@ -42,5 +42,6 @@ class CreateAdmin extends Command
         $name = $this->ask('admin name ?');
         $fname = $this->ask('first name ?');
         $lname = $this->ask('last name ? ');
+        $email = $this->ask('admin Email ?');
     }
 }
