@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Admin;
 class CreateAdmin extends Command
 {
     /**
@@ -78,6 +79,12 @@ class CreateAdmin extends Command
                 'email'=>$email,
                 'role'=>'admin',
                 'password'=>bcrypt($password),
+            ]);
+            $admin = Admin::create([
+                'fname' => $fname,
+                'lname' => $lname ,
+                'date_of_birth' => $date_of_birth,
+                'user_id' => $user->id,
             ]);
 
         }
