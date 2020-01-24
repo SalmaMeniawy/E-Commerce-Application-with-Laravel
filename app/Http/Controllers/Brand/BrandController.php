@@ -55,7 +55,9 @@ class BrandController extends Controller
     public function show($brand_id)
     {
         $brand = Brand::find($brand_id);
-        return view('admin.brand.show_brand')->with('brand',$brand);
+        $admin = $brand->admin->where('user_id',$brand->admin_id)->get()[0]; 
+        return view('admin.brand.show_brand')->with('brand',$brand)
+        ->with('admin',$admin);
     }
 
     /**
