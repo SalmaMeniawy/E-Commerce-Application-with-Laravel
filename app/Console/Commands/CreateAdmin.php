@@ -41,6 +41,6 @@ class CreateAdmin extends Command
         $this->info('we need the basic info to create new admin in the following inputs');
         $name = $this->ask('admin name ?');
         $fname = $this->ask('first name ?');
-        
+        $lname = $this->ask('last name ? ');
     }
 }
