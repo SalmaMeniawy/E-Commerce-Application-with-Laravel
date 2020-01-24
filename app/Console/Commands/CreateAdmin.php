@@ -66,5 +66,11 @@ class CreateAdmin extends Command
             'password'=>'required',
             'date_of_birth' => 'required|date',
         ]);
+        if($validator->fails()){
+            $this->comment("Admin have n't been created see error messages below ");
+            foreach($validator->errors()->all() as $error){
+                $this->error($error);
+            }
+        }
     }
 }
