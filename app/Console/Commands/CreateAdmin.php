@@ -86,6 +86,9 @@ class CreateAdmin extends Command
                 'date_of_birth' => $date_of_birth,
                 'user_id' => $user->id,
             ]);
+            if(isset($user) && isset($admin)){
+                $this->info('Admin created successfully !');
+            }
 
         }
     }
