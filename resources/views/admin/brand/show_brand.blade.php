@@ -11,8 +11,9 @@
              			<div class="card-block">
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item">Brand name :{{$brand->brand_name}}</li>
-                     
-                    
+                    <li class="list-group-item">
+                        Created by : {{$admin->fname}}
+                    </li>
                     <li class="list-group-item">
                         Created at : {{$brand->created_at}}    
                     </li>
