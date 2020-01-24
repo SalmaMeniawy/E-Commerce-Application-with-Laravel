@@ -44,5 +44,11 @@ class CreateAdmin extends Command
         $lname = $this->ask('last name ? ');
         $email = $this->ask('admin Email ?');
         $password = $this->secret('enter password : ');
+        $confirm_password = $this->secret('confirm password :');
+        if($password != $confirm_password){
+            $this->error("the password confirmation does n't match");
+            $this->error('try again later!!');
+            exit();
+        }
     }
 }
