@@ -55,7 +55,7 @@ class RegisterController extends Controller
     }
     public function showRegistrationForm()
     {
-        $roles = ['buyer','seller','admin'];
+        $roles = ['buyer','seller'];
         return view('auth.register',compact('roles'));
     }
     /**
