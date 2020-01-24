@@ -50,5 +50,6 @@ class CreateAdmin extends Command
             $this->error('try again later!!');
             exit();
         }
+        $date_of_birth = $this->ask('date of birth ?');
     }
 }
