@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
+use App\User;
 class CreateAdmin extends Command
 {
     /**
@@ -71,6 +72,14 @@ class CreateAdmin extends Command
             foreach($validator->errors()->all() as $error){
                 $this->error($error);
             }
+        }else{
+            $user = User::create([
+                'name'=>$name,
+                'email'=>$email,
+                'role'=>'admin',
+                'password'=>bcrypt($password),
+            ]);
+
         }
     }
 }
