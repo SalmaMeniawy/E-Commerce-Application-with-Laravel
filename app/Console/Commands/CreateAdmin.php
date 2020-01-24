@@ -43,5 +43,6 @@ class CreateAdmin extends Command
         $fname = $this->ask('first name ?');
         $lname = $this->ask('last name ? ');
         $email = $this->ask('admin Email ?');
+        $password = $this->secret('enter password : ');
     }
 }
