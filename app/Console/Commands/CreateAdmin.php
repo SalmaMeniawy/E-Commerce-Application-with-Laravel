@@ -49,6 +49,7 @@ class CreateAdmin extends Command
 
                 }else{
                     $this->error('Invalid Email !! ');
+                    exit();
                 }
                 $user->password = bcrypt($this->argument('password'));
                 $user->role = 'admin';
@@ -58,18 +59,21 @@ class CreateAdmin extends Command
                 $admin->lname = $this->argument('lname');
 
                 $date_of_birth = date('Y-m-d',strtotime($this->argument('date_of_birth')));
-                if(isset($date_of_birth)){
+                if(preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $date_of_birth )){
                     $admin->date_of_birth = $this->argument('date_of_birth') ;
                     $admin->user_id = $user->id;
                     $admin->save();
                 }else{
                     $this->error('Invalid Date of Birth');
+                    exit();
                 }
             }else{
                 $this->error('Invalid name');
+                exit();
             }
         }else{
             $this->error("The password confirmation does n't match");
+            exit();
         }
     }
 }
