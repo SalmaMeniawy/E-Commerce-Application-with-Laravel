@@ -17,7 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware('auth')->group(function(){
-    //routed for seller
+    //routes for buyer
+    Route::middleware('buyer-role')->group(function(){
+        Route::get('homepage','Buyer\BuyerController@index')->name('buyer.index');
+    });
+    //routes for seller
     Route::middleware('seller-role')->group(function(){
         Route::get('products/create','Product\ProductController@create')->name('product.create');
         Route::post('products','Product\ProductController@store');
