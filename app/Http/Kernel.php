@@ -45,6 +45,9 @@ class Kernel extends HttpKernel
         'seller-role'=>[
             \App\Http\Middleware\SellerRole::class,
         ],
+        'buyer-role'=>[
+            \App\Http\Middleware\BuyerRole::class,
+        ],
 
         'api' => [
             'throttle:60,1',
