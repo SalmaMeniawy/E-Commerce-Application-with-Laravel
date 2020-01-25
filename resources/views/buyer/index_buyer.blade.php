@@ -13,9 +13,8 @@
             <img src='{{url("/productImages",$product->image)}}' width="200" height="200" class="align-middle"> 
 
             <div class="card-block">
-            
-                <a href="" class="btn btn-info"> Details</a>
-                <a href="" class="btn btn-info"> Details</a>
+                <a href="" class="btn btn-info" style="width:49%"> Details</a>
+                <a href="" class="btn btn-info" style="width:49%"> Details</a>
             
             </div>
 
