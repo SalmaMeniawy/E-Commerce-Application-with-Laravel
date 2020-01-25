@@ -1,1 +1,5 @@
-<h1>{{$products}}</h1>
+@extends(backpack_view('blank'))
+@section('content')
+
+
+@endsection
