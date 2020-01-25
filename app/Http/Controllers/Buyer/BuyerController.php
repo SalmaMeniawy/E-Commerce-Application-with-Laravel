@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Buyer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Product;
 class BuyerController extends Controller
 {
     /**
@@ -14,7 +14,9 @@ class BuyerController extends Controller
      */
     public function index()
     {
-        //
+        //creat buyer homepage
+        $products =  Product::all();
+        return view('buyer.index_buyer')->with('products',$products);
     }
 
     /**
