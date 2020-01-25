@@ -14,7 +14,7 @@
 
             <div class="card-block">
                 <a href="" class="btn btn-info" style="width:49%"> Details</a>
-                <a href="" class="btn btn-info" style="width:49%"> Details</a>
+                <a href="" class="btn btn-success" style="width:49%"> Details</a>
             
             </div>
 
