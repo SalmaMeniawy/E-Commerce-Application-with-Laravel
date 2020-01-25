@@ -28,7 +28,16 @@ class BuyerController extends Controller
     {
         //
     }
-
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $product_id
+     * @return \Illuminate\Http\Response
+     */
+    public function get_product_details($product_id){
+        $product = Product::find($product_id);
+        return view('buyer.show_product')->with('product',$product);
+    }
     /**
      * Store a newly created resource in storage.
      *
