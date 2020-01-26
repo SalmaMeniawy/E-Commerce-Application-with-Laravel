@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function(){
         Route::get('product/{product_id}','Buyer\BuyerController@get_product_details')->name('buyer.product.show');
         Route::get('buyer/logout','Buyer\BuyerController@logout')->name('buyer.logout');
         Route::get('shCart/{product_id}','ShoppingCart\ShoppingCartController@add_to_shopping_cart')->name('addShopCart');
+        Route::get('shoppingCart','ShoppingCart\ShoppingCartController@index')->name('shoppingCart.index');
     });
     //routes for seller
     Route::middleware('seller-role')->group(function(){
