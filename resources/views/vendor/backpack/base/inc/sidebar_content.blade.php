@@ -1,7 +1,10 @@
 <!-- This file is used to store sidebar items, starting with Backpack\Base 0.9.0 -->
 @if(auth()->user()->role == 'buyer')
+<li class="nav-item"><a class="nav-link" href="{{ url('homepage') }}"><i class="fa fa-dashboard nav-icon"></i>Homepage</a></li>
+
 <li class="nav-item"> <a class="nav-link" 
 	href="{{ url('buyer/logout') }}">
+	<i  class="fa fa-sign-out"></i>
 	Logout</a></li>
 @endif
 @if(auth()->user()->role == 'admin')
