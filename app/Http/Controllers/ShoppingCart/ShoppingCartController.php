@@ -15,7 +15,9 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
-        //
+
+        $shoppingCartComponent = ShoppingCart::get()->where('buyer_id',auth()->id());
+        return view('buyer.shoppingCart.index_shoppingCart');
     }
     public function add_to_shopping_cart($product_id ){
         $result_of_check = ShoppingCart::check_if_product_added_before_and_return_it($product_id);
