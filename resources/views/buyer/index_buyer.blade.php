@@ -13,7 +13,7 @@
             <img src='{{url("/productImages",$product->image)}}' width="200" height="200" class="align-middle"> 
 
             <div class="card-block">
-                <a href="" class="btn btn-info" style="width:49%"    data-toggle="modal" data-target="exampleModalLong"> Details</a>
+                <a href='{{url("/product",$product->id)}}' class="btn btn-info" style="width:49%"    > Show </a>
                 <a href="" class="btn btn-success" style="width:49%"> Details</a>
                 
             </div>
