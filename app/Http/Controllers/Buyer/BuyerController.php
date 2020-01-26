@@ -36,7 +36,9 @@ class BuyerController extends Controller
      */
     public function get_product_details($product_id){
         $product = Product::find($product_id);
-        return view('buyer.show_product')->with('product',$product);
+        $product_category = $product->category->where('id',$product->category_id)->get()[0]->category_name;
+        return view('buyer.show_product')->with('product',$product)
+        ->with('product_category' ,$product_category);
     }
     /**
      * Store a newly created resource in storage.
