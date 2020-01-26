@@ -11,7 +11,7 @@
                     <img class="img-responsive" style="float:left;width:300px;height:400px;" src='{{url("/productImages",$product->image)}}'>
                     </a>
                   </div>
-                  <div class="media-body">
+                  <div class="media-body ">
                     <h4 class="media-heading">{{$product->title}}</h4>
                     <div>
                       <h5 style="display: inline-block" class="font-weight-bold">title : </h5>   {{$product->title}}
@@ -49,12 +49,16 @@
                      
                       @endif
                     </div>
+                   
                   
                   </div>
                 </div>
              </div>
              </div>
-             
+             <div>
+                    <a href="{{route('addShopCart',$product->id )}}"  class="btn btn-success float-right"> Add to Shopping cart</a>
+
+             </div>
           </div>
 </div>
 
