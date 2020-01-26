@@ -17,7 +17,10 @@
                       <h5 style="display: inline-block" class="font-weight-bold">title : </h5>   {{$product->title}}
                       
                     </div>
-
+                    <div>
+                      <h5 style="display: inline-block" class="font-weight-bold">category : </h5>   {{$product_category}}
+                      
+                    </div>
                     <div>
                        <h5 style="display: inline-block" class="font-weight-bold">description : </h5>
                       <p class="p-3 mb-2 bg-info text-white">
