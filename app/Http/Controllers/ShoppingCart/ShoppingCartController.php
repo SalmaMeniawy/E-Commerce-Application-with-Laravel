@@ -18,13 +18,28 @@ class ShoppingCartController extends Controller
         //
     }
     public function add_to_shopping_cart($product_id ){
-        $shoppingCart = ShoppingCart::create([
-            'product_id'=> $product_id,
-            'buyer_id' => auth()->id(),
+        $result_of_check = ShoppingCart::check_if_product_added_before_and_return_it($product_id);
+        if($result_of_check == TRUE){
 
-        ]);
-        return redirect()->back();
+        
+                $shoppingCart = ShoppingCart::create([
+                    'product_id'=> $product_id,
+                    'buyer_id' => auth()->id(),
+
+                ]);
+                return redirect()->back();
+        }else{
+            $old_quantity = $result_of_check[0]->quantity;
+            $result_of_check[0]->quantity =  $this->increase_product_quantity($old_quantity);
+            $result_of_check[0]->save();
+            return redirect()->back()->with('old',$result_of_check);
+      }
     }
+    public function increase_product_quantity(int $product_quantity){
+        $product_quantity = $product_quantity + 1;
+        return $product_quantity;
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
