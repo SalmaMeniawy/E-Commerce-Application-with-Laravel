@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Brand;
+use App\Product;
 class ShoppingCart extends Model
 {
     protected $fillable = ['product_id','buyer_id','quantity'];
@@ -21,5 +22,8 @@ class ShoppingCart extends Model
     public  function get_items_count_in_shopping_cart(){
         $shoppingCartItems = ShoppingCart::get()->where('buyer_id',auth()->id())->count();
         return (int)$shoppingCartItems;
+    }
+    public function products(){
+        return $this->belongsToMany(Product::class);
     }
 }
