@@ -14,7 +14,7 @@
 
             <div class="card-block">
                 <a href='{{url("/product",$product->id)}}' class="btn btn-info" style="width:49%"    > Show </a>
-                <a href="" class="btn btn-success" style="width:49%"> Details</a>
+                <a href='{{route("addShopCart",$product->id)}}' class="btn btn-success" style="width:49%"> Add to<i class="fa fa-shopping-cart"></i> </a>
                 
             </div>
             

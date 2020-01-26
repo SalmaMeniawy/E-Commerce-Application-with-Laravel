@@ -17,6 +17,8 @@ class ShoppingCartController extends Controller
     {
 
         $shoppingCartComponent = ShoppingCart::get()->where('buyer_id',auth()->id());
+        dump($shoppingCartComponent);
+        // $product_names = $shoppingCartComponent->product->where('')get()
         return view('buyer.shoppingCart.index_shoppingCart')->with('shoppingCartComponent',$shoppingCartComponent);
     }
     public function add_to_shopping_cart($product_id ){
