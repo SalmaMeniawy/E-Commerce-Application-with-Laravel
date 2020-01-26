@@ -26,6 +26,10 @@
                       
                     </div>
                     <div>
+                      <h5 style="display: inline-block" class="font-weight-bold">price : </h5>   $ {{$product->price}}
+                      
+                    </div>
+                    <div>
                        <h5 style="display: inline-block" class="font-weight-bold">description : </h5>
                       <p class="p-3 mb-2 bg-info text-white">
                         {{$product->description}}
