@@ -2,7 +2,7 @@
 @if(auth()->user()->role == 'buyer')
 <li class="nav-item"><a class="nav-link" href="{{ url('homepage') }}"><i class="fa fa-dashboard nav-icon"></i>Homepage</a></li>
 <li class="nav-item">
-<a class="nav-link"  href="" class="btn btn-light">
+<a class="nav-link"  href="{{url('shoppingCart')}}" class="btn btn-light">
 <i class="fa fa-shopping-cart"></i>Shopping Cart <span class="badge badge-light">{{Facades\App\ShoppingCart::get_items_count_in_shopping_cart()}}</span>
 </a>
 </li>
