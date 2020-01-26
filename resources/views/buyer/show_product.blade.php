@@ -22,6 +22,10 @@
                       
                     </div>
                     <div>
+                      <h5 style="display: inline-block" class="font-weight-bold">brand : </h5>   {{$product_brand}}
+                      
+                    </div>
+                    <div>
                        <h5 style="display: inline-block" class="font-weight-bold">description : </h5>
                       <p class="p-3 mb-2 bg-info text-white">
                         {{$product->description}}
