@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function(){
     //routes for buyer
     Route::middleware('buyer-role')->group(function(){
         Route::get('homepage','Buyer\BuyerController@index')->name('buyer.index');
+        Route::get('product/{product_id}','Buyer\BuyerController@get_product_details')->name('buyer.product.show');
     });
     //routes for seller
     Route::middleware('seller-role')->group(function(){
