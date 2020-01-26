@@ -9,21 +9,23 @@
         <tr class="d-flex">
         <th style="width: 100%">
         <div class="card" >
-            <div class="card-header" ><h4>{{$product->title}}</h4> </div>
+                 <div class="card-header" ><h4>{{$product->title}}</h4> </div>
             <img src='{{url("/productImages",$product->image)}}' width="200" height="200" class="align-middle"> 
 
             <div class="card-block">
-                <a href="" class="btn btn-info" style="width:49%"> Details</a>
+                <a href="" class="btn btn-info" style="width:49%"    data-toggle="modal" data-target="exampleModalLong"> Details</a>
                 <a href="" class="btn btn-success" style="width:49%"> Details</a>
-            
+                
             </div>
-
+            
+          
+            
         </div>
         </th>
         </tr>
         </tbody>
         </table>
-
+           
         @endforeach
     </div>
 </div>
