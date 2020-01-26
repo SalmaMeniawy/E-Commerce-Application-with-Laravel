@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Buyer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Product;
 class BuyerController extends Controller
 {
@@ -63,7 +64,10 @@ class BuyerController extends Controller
     {
         //
     }
-
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
     /**
      * Show the form for editing the specified resource.
      *
