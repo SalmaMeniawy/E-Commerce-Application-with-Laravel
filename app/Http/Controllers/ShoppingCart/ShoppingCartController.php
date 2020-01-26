@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ShoppingCart;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\ShoppingCart;
 
 class ShoppingCartController extends Controller
 {
@@ -16,7 +17,14 @@ class ShoppingCartController extends Controller
     {
         //
     }
+    public function add_to_shopping_cart($product_id ){
+        $shoppingCart = ShoppingCart::create([
+            'product_id'=> $product_id,
+            'buyer_id' => auth()->id(),
 
+        ]);
+        return redirect()->back();
+    }
     /**
      * Show the form for creating a new resource.
      *
