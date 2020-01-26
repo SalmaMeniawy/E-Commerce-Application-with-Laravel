@@ -19,7 +19,7 @@ class ShoppingCartController extends Controller
     }
     public function add_to_shopping_cart($product_id ){
         $result_of_check = ShoppingCart::check_if_product_added_before_and_return_it($product_id);
-        if($result_of_check == TRUE){
+        if(!isset($result_of_check)){
 
         
                 $shoppingCart = ShoppingCart::create([
@@ -29,9 +29,9 @@ class ShoppingCartController extends Controller
                 ]);
                 return redirect()->back();
         }else{
-            $old_quantity = $result_of_check[0]->quantity;
-            $result_of_check[0]->quantity =  $this->increase_product_quantity($old_quantity);
-            $result_of_check[0]->save();
+            $old_quantity = $result_of_check->quantity;
+            $result_of_check->quantity =  $this->increase_product_quantity($old_quantity);
+            $result_of_check->save();
             return redirect()->back()->with('old',$result_of_check);
       }
     }
