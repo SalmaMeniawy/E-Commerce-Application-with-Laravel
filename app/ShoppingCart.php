@@ -18,4 +18,8 @@ class ShoppingCart extends Model
                return null;
            }
     }
+    public  function get_items_count_in_shopping_cart(){
+        $shoppingCartItems = ShoppingCart::get()->where('buyer_id',auth()->id())->count();
+        return (int)$shoppingCartItems;
+    }
 }
