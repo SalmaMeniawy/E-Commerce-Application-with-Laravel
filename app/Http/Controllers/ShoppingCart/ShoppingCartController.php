@@ -39,7 +39,10 @@ class ShoppingCartController extends Controller
         $product_quantity = $product_quantity + 1;
         return $product_quantity;
     }
-    
+    public function get_items_count_in_shopping_cart(){
+        $shoppingCartItems = ShoppingCart::get()->where('buyer_id',auth()->id())->count();
+        return $shoppingCart;
+    }
     /**
      * Show the form for creating a new resource.
      *
