@@ -30,24 +30,43 @@ class ShoppingCartController extends Controller
         // ->with('shoppingCartComponent',$shoppingCartComponent);
     }
     public function add_to_shopping_cart($product_id ){
-        $result_of_check = ShoppingCart::check_if_product_added_before_and_return_it($product_id);
-        if(!isset($result_of_check)){
+        // $product_quantity = [$product_id => 1];
+        $product_quantity = ShoppingCart::get_product_id_from_shopping_cart();
+        if(isset($product_quantity)){ //check if the return not empty
+            if(array_key_exists($product_id,$product_quantity)){
+                //to check if the product id exists before
+                $product_quantity[$product_id] = $this->increase_product_quantity($product_quantity[$product_id]);
+                //increase the existance value by one
+            }
+            // array_push($product_quantity,[])
+            // dump($product_quantity);
+        }
+       
+        // $shoppingCart = ShoppingCart::create([
+        //     'buyer_id' => auth()->id(),
+        //     'product_quantity' => json_encode($product_quantity),
+        // ]);
+        // $shoppingCart->products()->attach(json_encode($product_id));
+        // return redirect()->back();
+        ////////////////////////
+    //     $result_of_check = ShoppingCart::check_if_product_added_before_and_return_it($product_id);
+    //     if(!isset($result_of_check)){
 
         
-                $shoppingCart = ShoppingCart::create([
-                    'product_id'=> $product_id,
-                    'buyer_id' => auth()->id(),
+    //             $shoppingCart = ShoppingCart::create([
+    //                 'product_id'=> $product_id,
+    //                 'buyer_id' => auth()->id(),
 
-                ]);
-                $shoppingCart->products()->attach($product_id);
-                $shoppingCart->save();
-                return redirect()->back();
-        }else{
-            $old_quantity = $result_of_check->quantity;
-            $result_of_check->quantity =  $this->increase_product_quantity($old_quantity);
-            $result_of_check->save();
-            return redirect()->back()->with('old',$result_of_check);
-      }
+    //             ]);
+    //             $shoppingCart->products()->attach($product_id);
+    //             $shoppingCart->save();
+    //             return redirect()->back();
+    //     }else{
+    //         $old_quantity = $result_of_check->quantity;
+    //         $result_of_check->quantity =  $this->increase_product_quantity($old_quantity);
+    //         $result_of_check->save();
+    //         return redirect()->back()->with('old',$result_of_check);
+    //   }
     }
     public function increase_product_quantity(int $product_quantity){
         $product_quantity = $product_quantity + 1;
