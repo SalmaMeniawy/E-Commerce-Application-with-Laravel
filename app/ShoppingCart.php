@@ -11,7 +11,17 @@ class ShoppingCart extends Model
     public function buyer(){
         return $this->belongsTo(Brand::class);
     }
+    public static function create_shopping_cart_if_it_does_not_exist(){
+        $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id());
+        if(!isset($shoppingCart))
+        {
+            ShoppingCart::create([
+                'buyer_id'=>auth()->id(),
+            ]);
+        }
+    }
     public static function get_product_id_from_shopping_cart(){
+        self::create_shopping_cart_if_it_does_not_exist();
         $product_quantity= ShoppingCart::get()->where('buyer_id',auth()->id())[0]->product_quantity;
         $product_quanyity_in_array = json_decode($product_quantity,true); //add true to convert string json to array ^^
         if(isset($product_quantity))

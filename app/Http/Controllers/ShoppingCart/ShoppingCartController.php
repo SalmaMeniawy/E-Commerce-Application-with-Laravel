@@ -30,7 +30,7 @@ class ShoppingCartController extends Controller
         // ->with('shoppingCartComponent',$shoppingCartComponent);
     }
     public function add_to_shopping_cart($product_id ){
-     
+        
         $product_quantity = ShoppingCart::get_product_id_from_shopping_cart();
         if(isset($product_quantity)){ //check if the return not empty
             if(array_key_exists($product_id,$product_quantity)){
@@ -69,6 +69,7 @@ class ShoppingCartController extends Controller
         $product_quantity = $product_quantity + 1;
         return $product_quantity;
     }
+    
     /**
      * Show the form for creating a new resource.
      *
