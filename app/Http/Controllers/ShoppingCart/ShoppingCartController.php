@@ -40,12 +40,13 @@ class ShoppingCartController extends Controller
                 $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
                 $shoppingCart->product_quantity = $product_quantity;
                 $shoppingCart->save();
-                
+                return redirect()->back();
             }else{
                 $product_quantity[$product_id] = 1;
                 $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
                 $shoppingCart->product_quantity =json_encode( $product_quantity);
                 $shoppingCart->save();
+                return redirect()->back();
             }
             // array_push($product_quantity,[])
             // dump($product_quantity);
