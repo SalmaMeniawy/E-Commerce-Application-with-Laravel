@@ -5,7 +5,7 @@ namespace App\Http\Controllers\ShoppingCart;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\ShoppingCart;
-
+use App\Product;
 class ShoppingCartController extends Controller
 {
     /**
@@ -15,18 +15,16 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
-
-        // $shoppingCartComponent = ShoppingCart::get()->where('buyer_id',auth()->id());
-        // dump($shoppingCartComponent);
-        // $shoppingCartComponent = ShoppingCart::all();
         $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
-        $products_in_shoppind_cart = ShoppingCart::where('buyer_id',auth()->id())->get('product_id');
-        // dump($products_in_shoppind_cart);
-        $products_titles = $shoppingCart->products();
-        // ->where($products_in_shoppind_cart);
-        dump($products_titles);
+        $product_quantity = json_decode($shoppingCart->product_quantity,true);
+        $products_id = array_keys($product_quantity);
+        // $products = Product::find($products_id);
+        $result = $shoppingCart->products()->where('product_id',$products_id)->get();
+        dump($result);
+      
         
-        return view('buyer.shoppingCart.index_shoppingCart')->with('products_titles',$products_titles);
+        
+        return view('buyer.shoppingCart.index_shoppingCart');
         // ->with('shoppingCartComponent',$shoppingCartComponent);
     }
     public function add_to_shopping_cart($product_id ){
@@ -41,14 +39,16 @@ class ShoppingCartController extends Controller
                 $shoppingCart->product_quantity = $product_quantity;
                 $shoppingCart->save();
                 //add products Id and buyer id in relational table
-                $shoppingCart->products()->attach(json_encode($product_quantity));
+                $products_id = array_keys($product_quantity);
+                $shoppingCart->products()->attach(json_encode($products_id));
                 return redirect()->back();
             }else{
                 $product_quantity[$product_id] = 1;
                 $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
                 $shoppingCart->product_quantity =json_encode( $product_quantity);
                 $shoppingCart->save();
-                $shoppingCart->products()->attach(json_encode($product_quantity));
+                $products_id = array_keys($product_quantity);
+                $shoppingCart->products()->attach(json_encode($products_id));
 
                 return redirect()->back();
             }
@@ -58,7 +58,8 @@ class ShoppingCartController extends Controller
             $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
             $shoppingCart->product_quantity =json_encode( $product_quantity);
             $shoppingCart->save();
-            $shoppingCart->products()->attach(json_encode($product_quantity));
+            $products_id = array_keys($product_quantity);
+            $shoppingCart->products()->attach(json_encode($products_id));
 
             return redirect()->back();
         }
