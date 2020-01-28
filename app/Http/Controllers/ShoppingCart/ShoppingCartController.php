@@ -37,6 +37,10 @@ class ShoppingCartController extends Controller
                 //to check if the product id exists before
                 $product_quantity[$product_id] = $this->increase_product_quantity($product_quantity[$product_id]);
                 //increase the existance value by one
+                $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
+                $shoppingCart->product_quantity = $product_quantity;
+                $shoppingCart->save();
+                
             }
             // array_push($product_quantity,[])
             // dump($product_quantity);
