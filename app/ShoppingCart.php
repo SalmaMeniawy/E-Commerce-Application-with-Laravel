@@ -7,7 +7,7 @@ use App\Brand;
 use App\Product;
 class ShoppingCart extends Model
 {
-    protected $fillable = ['product_id','buyer_id','quantity'];
+    protected $fillable = ['product_id','buyer_id','product_quantity'];
     public function buyer(){
         return $this->belongsTo(Brand::class);
     }
