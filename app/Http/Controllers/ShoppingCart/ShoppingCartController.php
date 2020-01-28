@@ -30,7 +30,7 @@ class ShoppingCartController extends Controller
         // ->with('shoppingCartComponent',$shoppingCartComponent);
     }
     public function add_to_shopping_cart($product_id ){
-        // $product_quantity = [$product_id => 1];
+       
         $product_quantity = ShoppingCart::get_product_id_from_shopping_cart();
         if(isset($product_quantity)){ //check if the return not empty
             if(array_key_exists($product_id,$product_quantity)){
@@ -48,8 +48,7 @@ class ShoppingCartController extends Controller
                 $shoppingCart->save();
                 return redirect()->back();
             }
-            // array_push($product_quantity,[])
-            // dump($product_quantity);
+            
         }
        
         // $shoppingCart = ShoppingCart::create([
@@ -102,7 +101,6 @@ class ShoppingCartController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
