@@ -16,10 +16,18 @@ class ShoppingCartController extends Controller
     public function index()
     {
 
-        $shoppingCartComponent = ShoppingCart::get()->where('buyer_id',auth()->id());
-        dump($shoppingCartComponent);
-        // $product_names = $shoppingCartComponent->product->where('')get()
-        return view('buyer.shoppingCart.index_shoppingCart')->with('shoppingCartComponent',$shoppingCartComponent);
+        // $shoppingCartComponent = ShoppingCart::get()->where('buyer_id',auth()->id());
+        // dump($shoppingCartComponent);
+        // $shoppingCartComponent = ShoppingCart::all();
+        $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
+        $products_in_shoppind_cart = ShoppingCart::where('buyer_id',auth()->id())->get('product_id');
+        // dump($products_in_shoppind_cart);
+        $products_titles = $shoppingCart->products();
+        // ->where($products_in_shoppind_cart);
+        dump($products_titles);
+        
+        return view('buyer.shoppingCart.index_shoppingCart')->with('products_titles',$products_titles);
+        // ->with('shoppingCartComponent',$shoppingCartComponent);
     }
     public function add_to_shopping_cart($product_id ){
         $result_of_check = ShoppingCart::check_if_product_added_before_and_return_it($product_id);
@@ -31,6 +39,8 @@ class ShoppingCartController extends Controller
                     'buyer_id' => auth()->id(),
 
                 ]);
+                $shoppingCart->products()->attach($product_id);
+                $shoppingCart->save();
                 return redirect()->back();
         }else{
             $old_quantity = $result_of_check->quantity;

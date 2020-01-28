@@ -13,7 +13,7 @@
                         <th> </th>
                     </tr>
                 </thead>
-                @foreach($shoppingCartComponent as $row)
+              
                 <tbody>
                     <tr>
                         <td class="col-sm-8 col-md-6">
@@ -35,7 +35,7 @@
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </button></td>
                     </tr>
-                    @endforeach
+                
                     
                     <tr>
                         <td>   </td>
