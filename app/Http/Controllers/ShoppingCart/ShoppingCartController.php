@@ -30,7 +30,7 @@ class ShoppingCartController extends Controller
         // ->with('shoppingCartComponent',$shoppingCartComponent);
     }
     public function add_to_shopping_cart($product_id ){
-       
+     
         $product_quantity = ShoppingCart::get_product_id_from_shopping_cart();
         if(isset($product_quantity)){ //check if the return not empty
             if(array_key_exists($product_id,$product_quantity)){
@@ -40,42 +40,30 @@ class ShoppingCartController extends Controller
                 $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
                 $shoppingCart->product_quantity = $product_quantity;
                 $shoppingCart->save();
+                //add products Id and buyer id in relational table
+                $shoppingCart->products()->attach(json_encode($product_quantity));
                 return redirect()->back();
             }else{
                 $product_quantity[$product_id] = 1;
                 $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
                 $shoppingCart->product_quantity =json_encode( $product_quantity);
                 $shoppingCart->save();
+                $shoppingCart->products()->attach(json_encode($product_quantity));
+
                 return redirect()->back();
             }
             
+        }else{
+            $product_quantity[$product_id] = 1;
+            $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
+            $shoppingCart->product_quantity =json_encode( $product_quantity);
+            $shoppingCart->save();
+            $shoppingCart->products()->attach(json_encode($product_quantity));
+
+            return redirect()->back();
         }
        
-        // $shoppingCart = ShoppingCart::create([
-        //     'buyer_id' => auth()->id(),
-        //     'product_quantity' => json_encode($product_quantity),
-        // ]);
-        // $shoppingCart->products()->attach(json_encode($product_id));
-        // return redirect()->back();
-        ////////////////////////
-    //     $result_of_check = ShoppingCart::check_if_product_added_before_and_return_it($product_id);
-    //     if(!isset($result_of_check)){
-
         
-    //             $shoppingCart = ShoppingCart::create([
-    //                 'product_id'=> $product_id,
-    //                 'buyer_id' => auth()->id(),
-
-    //             ]);
-    //             $shoppingCart->products()->attach($product_id);
-    //             $shoppingCart->save();
-    //             return redirect()->back();
-    //     }else{
-    //         $old_quantity = $result_of_check->quantity;
-    //         $result_of_check->quantity =  $this->increase_product_quantity($old_quantity);
-    //         $result_of_check->save();
-    //         return redirect()->back()->with('old',$result_of_check);
-    //   }
     }
     public function increase_product_quantity(int $product_quantity){
         $product_quantity = $product_quantity + 1;
@@ -99,7 +87,7 @@ class ShoppingCartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
     /**
      * Display the specified resource.
