@@ -7,6 +7,7 @@ use App\Buyer;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Seller;
+use App\ShoppingCart;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -117,6 +118,9 @@ class RegisterController extends Controller
                 'lname' => $data['lname'],
                 'date_of_birth' => $data['date_of_birth'],
                 'user_id' => $user->id,
+            ]);
+            ShoppingCart::create([
+                'buyer_id'=> $user->id,
             ]);
             return $user;
         }
