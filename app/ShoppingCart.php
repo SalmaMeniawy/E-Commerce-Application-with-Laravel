@@ -43,8 +43,11 @@ class ShoppingCart extends Model
            }
     }
     public  function get_items_count_in_shopping_cart(){
-        $shoppingCartItems = ShoppingCart::get()->where('buyer_id',auth()->id())->count();
-        return (int)$shoppingCartItems;
+        $shoppingCartItems = ShoppingCart::get()->where('buyer_id',auth()->id())->first();
+        $shoppingCartItems->product_quantity;
+        $product_items_in_array =json_decode($shoppingCartItems->product_quantity,true);
+        $product_items = sizeof($product_items_in_array);
+        return (int)$product_items;
     }
     public function products(){
         return $this->belongsToMany(Product::class);
