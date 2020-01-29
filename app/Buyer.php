@@ -9,7 +9,7 @@ class Buyer extends Model
 {
     protected $fillable = ['fname','lname','date_of_birth' ,'user_id'];
     public function user(){
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
     public function shopping_cart(){
         return $this->hasOne(ShoppingCart::class);
