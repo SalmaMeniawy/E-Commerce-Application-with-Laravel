@@ -35,13 +35,13 @@ class ShoppingCartController extends Controller
                 //to check if the product id exists before
                 $product_quantity[$product_id] = $this->increase_product_quantity($product_quantity[$product_id]);
                 //increase the existance value by one
-                $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
+                $shoppingCart = ShoppingCart::all()->where('buyer_id',auth()->id())->first();
                 $shoppingCart->product_quantity = $product_quantity;
                 $shoppingCart->save();
                 //add products Id and buyer id in relational table
                 $products_id = array_keys($product_quantity);
                 $shoppingCart->products()->attach(json_encode($products_id));
-                return redirect()->back();
+                // return redirect()->back();
             }else{
                 $product_quantity[$product_id] = 1;
                 dump($product_quantity);
