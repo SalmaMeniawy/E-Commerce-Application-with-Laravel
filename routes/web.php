@@ -22,11 +22,12 @@ Route::middleware('auth')->group(function(){
 
         Route::group([],function(){
             Route::get('shCart/{product_id}','ShoppingCart\ShoppingCartController@add_to_shopping_cart')->name('addShopCart');
-            Route::get('shoppingCart','ShoppingCart\ShoppingCartController@index')->name('shoppingCart.index');
+            // Route::get('shoppingCart','ShoppingCart\ShoppingCartController@index')->name('shoppingCart.index');
         });
         Route::get('homepage','Buyer\BuyerController@index')->name('buyer.index');
         Route::get('product/{product_id}','Buyer\BuyerController@get_product_details')->name('buyer.product.show');
         Route::get('buyer/logout','Buyer\BuyerController@logout')->name('buyer.logout');
+        Route::get('shoppingCart','Buyer\BuyerController@get_shopping_cart_details')->name('buyer.shoppingCart');
       
     });
     //routes for seller
