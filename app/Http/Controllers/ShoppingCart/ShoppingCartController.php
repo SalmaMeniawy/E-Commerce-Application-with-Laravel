@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ShoppingCart;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\ShoppingCart;
+use App\Buyer;
 use App\Product;
 class ShoppingCartController extends Controller
 {
@@ -29,41 +30,45 @@ class ShoppingCartController extends Controller
     }
     public function add_to_shopping_cart($product_id ){
         
-        $product_quantity = ShoppingCart::get_product_id_from_shopping_cart();
+        $product_quantity = ShoppingCart::get_products_id_from_shopping_cart();
         if(isset($product_quantity)){ //check if the return not empty
             if(array_key_exists($product_id,$product_quantity)){
                 //to check if the product id exists before
                 $product_quantity[$product_id] = $this->increase_product_quantity($product_quantity[$product_id]);
                 //increase the existance value by one
-                $shoppingCart = ShoppingCart::all()->where('buyer_id',auth()->id())->first();
-                $shoppingCart->product_quantity = $product_quantity;
+                $buyer = Buyer::all()->where('user_id',auth()->id())->first();
+                $shoppingCart = $buyer->shopping_cart;
+                 $shoppingCart->product_quantity = $product_quantity;
                 $shoppingCart->save();
                 //add products Id and buyer id in relational table
                 $products_id = array_keys($product_quantity);
                 $shoppingCart->products()->attach(json_encode($products_id));
                 return redirect()->back();
+            
             }else{
                 $product_quantity[$product_id] = 1;
-                $shoppingCartAll = ShoppingCart::all();
-                $shoppingCart = $shoppingCartAll->where('buyer_id',auth()->id())->first();
+                $buyer = Buyer::all()->where('user_id',auth()->id())->first();
+                $shoppingCart = $buyer->shopping_cart;
                 $shoppingCart->product_quantity =json_encode( $product_quantity);
                 $shoppingCart->save();
                 $products_id = array_keys($product_quantity);
                 $shoppingCart->products()->attach(json_encode($products_id));
 
                 return redirect()->back();
+              
             }
             
         }else{
             $product_quantity[$product_id] = 1;
-            $shoppingCartAll = ShoppingCart::all();
-            $shoppingCart = $shoppingCartAll->where('buyer_id',auth()->id())->first();
-            $shoppingCart->product_quantity =json_encode( $product_quantity);
+            $buyer = Buyer::all()->where('user_id',auth()->id())->first();
+            $shoppingCart = $buyer->shopping_cart;
+             $shoppingCart->product_quantity =json_encode( $product_quantity);
             $shoppingCart->save();
             $products_id = array_keys($product_quantity);
             $shoppingCart->products()->attach(json_encode($products_id));
 
             return redirect()->back();
+          
         }
        
         
