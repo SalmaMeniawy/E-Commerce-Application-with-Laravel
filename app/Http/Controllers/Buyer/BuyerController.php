@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
+use App\ShoppingCart;
+use App\Buyer;
 class BuyerController extends Controller
 {
     /**
@@ -53,7 +55,16 @@ class BuyerController extends Controller
     {
         //
     }
-
+    public function get_shopping_cart_details(){
+        $shoppingCart = ShoppingCart::all()->where('buyer_id',auth()->id())->first();
+        $product_quantity = json_decode($shoppingCart->product_quantity,true);
+        $products_ids = array_keys($product_quantity);
+        $buyer = Buyer::all()->where('user_id',auth()->id())->first();
+        
+        \dump($buyer);
+        // $products =$shoppingCart->productS()->where('product_id',$products_ids);
+        // \dump($products);
+    }
     /**
      * Display the specified resource.
      *
