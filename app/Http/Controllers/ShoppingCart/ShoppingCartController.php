@@ -41,21 +41,17 @@ class ShoppingCartController extends Controller
                 //add products Id and buyer id in relational table
                 $products_id = array_keys($product_quantity);
                 $shoppingCart->products()->attach(json_encode($products_id));
-                // return redirect()->back();
+                return redirect()->back();
             }else{
                 $product_quantity[$product_id] = 1;
-                dump($product_quantity);
                 $shoppingCartAll = ShoppingCart::all();
-                $shoppingCart = $shoppingCartAll->where('buyer_id',auth()->id());
-                // $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
-                $shoppingCart->first()->product_quantity =json_encode( $product_quantity);
-                // $shoppingCart->product_quantity =json_encode( $product_quantity);
+                $shoppingCart = $shoppingCartAll->where('buyer_id',auth()->id())->first();
+                $shoppingCart->product_quantity =json_encode( $product_quantity);
+                $shoppingCart->save();
+                $products_id = array_keys($product_quantity);
+                $shoppingCart->products()->attach(json_encode($products_id));
 
-                // $shoppingCart->->save();
-                // $products_id = array_keys($product_quantity);
-                // $shoppingCart->products()->attach(json_encode($products_id));
-
-                // return redirect()->back();
+                return redirect()->back();
             }
             
         }else{
