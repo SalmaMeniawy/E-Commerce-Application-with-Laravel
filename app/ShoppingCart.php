@@ -21,8 +21,10 @@ class ShoppingCart extends Model
         }
     }
     public static function get_product_id_from_shopping_cart(){
-        self::create_shopping_cart_if_it_does_not_exist();
-        $product_quantity= ShoppingCart::get()->where('buyer_id',auth()->id())[0]->product_quantity;
+        $shoppingCarts= ShoppingCart::all();
+        $shoppingCart= $shoppingCarts->where('buyer_id',auth()->id())->first();
+        $product_quantity = $shoppingCart->product_quantity;
+       
         $product_quanyity_in_array = json_decode($product_quantity,true); //add true to convert string json to array ^^
         if(isset($product_quantity))
         {
