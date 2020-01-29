@@ -113,15 +113,17 @@ class RegisterController extends Controller
             ]);
             return $user;
         }else{
-            Buyer::create([
+            $user->buyer()->create([
                 'fname' => $data['fname'],
                 'lname' => $data['lname'],
                 'date_of_birth' => $data['date_of_birth'],
-                'user_id' => $user->id,
-            ]);
-            ShoppingCart::create([
-                'buyer_id'=> $user->id,
-            ]);
+
+                ]);
+            $user->save();
+            $buyer = Buyer::all()->where('user_id',$user->id)->first();
+            $buyer->shopping_cart()->create([]);
+            $buyer->save();
+           
             return $user;
         }
         
