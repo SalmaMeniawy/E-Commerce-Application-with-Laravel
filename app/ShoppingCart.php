@@ -23,18 +23,6 @@ class ShoppingCart extends Model
             return null ;
         }
         
-        // $shoppingCarts= ShoppingCart::all();
-        // $shoppingCart= $shoppingCarts->where('buyer_id',auth()->id())->first();
-        // $product_quantity = $shoppingCart->product_quantity;
-       
-        // $product_quanyity_in_array = json_decode($product_quantity,true); //add true to convert string json to array ^^
-        // if(isset($product_quantity))
-        // {
-        //     return $product_quanyity_in_array;
-
-        // }else{
-        //     return null;
-        // }
     }
     public static function check_if_product_added_before_and_return_it(int $product_id){
            $product = ShoppingCart::get()->where('buyer_id',auth()->id())->where('product_id',$product_id)->first();
