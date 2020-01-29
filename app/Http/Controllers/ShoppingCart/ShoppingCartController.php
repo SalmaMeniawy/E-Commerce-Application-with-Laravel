@@ -18,9 +18,9 @@ class ShoppingCartController extends Controller
         $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
         $product_quantity = json_decode($shoppingCart->product_quantity,true);
         $products_id = array_keys($product_quantity);
-        // $products = Product::find($products_id);
+        $products = Product::find($products_id);
         $result = $shoppingCart->products()->where('product_id',$products_id)->get();
-        dump($result);
+        dump($products);
       
         
         
@@ -44,18 +44,24 @@ class ShoppingCartController extends Controller
                 return redirect()->back();
             }else{
                 $product_quantity[$product_id] = 1;
-                $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
-                $shoppingCart->product_quantity =json_encode( $product_quantity);
-                $shoppingCart->save();
-                $products_id = array_keys($product_quantity);
-                $shoppingCart->products()->attach(json_encode($products_id));
+                dump($product_quantity);
+                $shoppingCartAll = ShoppingCart::all();
+                $shoppingCart = $shoppingCartAll->where('buyer_id',auth()->id());
+                // $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
+                $shoppingCart->first()->product_quantity =json_encode( $product_quantity);
+                // $shoppingCart->product_quantity =json_encode( $product_quantity);
 
-                return redirect()->back();
+                // $shoppingCart->->save();
+                // $products_id = array_keys($product_quantity);
+                // $shoppingCart->products()->attach(json_encode($products_id));
+
+                // return redirect()->back();
             }
             
         }else{
             $product_quantity[$product_id] = 1;
-            $shoppingCart = ShoppingCart::get()->where('buyer_id',auth()->id())[0];
+            $shoppingCartAll = ShoppingCart::all();
+            $shoppingCart = $shoppingCartAll->where('buyer_id',auth()->id())->first();
             $shoppingCart->product_quantity =json_encode( $product_quantity);
             $shoppingCart->save();
             $products_id = array_keys($product_quantity);
