@@ -23,7 +23,5 @@ class Product extends Model
     public function shoppingCarts(){
         return $this->belongsToMany(ShoppingCart::class);
     }
-    // public function shoppingCarts(){
-    //     return $this->belongsToMany(ShoppingCart::class);
-    // }
+    
 }
