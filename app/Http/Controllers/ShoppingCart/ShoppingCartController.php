@@ -42,8 +42,14 @@ class ShoppingCartController extends Controller
                 $shoppingCart->save();
                 //add products Id and buyer id in relational table
                 $products_id = array_keys($product_quantity);
-                $shoppingCart->products()->attach(json_encode($products_id));
-                return redirect()->back();
+                // dump($shoppingCart->products());
+                dump(json_encode($products_id));
+                // dump($buyer->shopping_cart->products()->save(json_encode($products_id)));
+                $buyer->shopping_cart->products()->sync(json_encode($products_id));
+                dump($buyer->shopping_cart->products());
+                
+                // $shoppingCart->products()->attach(json_encode($products_id));
+                // return redirect()->back();
             
             }else{
                 $product_quantity[$product_id] = 1;
