@@ -63,11 +63,13 @@ class BuyerController extends Controller
         $products = Product::find($products_ids); //get all products user add to shopping cart
         $calculation_result_for_item_price = ShoppingCart::calculate_total_price_for_each_product($products,$product_quantity);
         $in_stock_result = ShoppingCart::check_product_quantity_stock($products);
+        $total_price_for_shopping_cart = ShoppingCart::calculate_subtotal_price_for_all_products($calculation_result_for_item_price);
        return view('buyer.shoppingCart.index_shoppingCart')
        ->with('products',$products)
        ->with('product_quantity',$product_quantity)
        ->with('calculation_item_price',$calculation_result_for_item_price)
-       ->with('in_stock_state',$in_stock_result);
+       ->with('in_stock_state',$in_stock_result)
+       ->with('total_price_for_shopping_cart',$total_price_for_shopping_cart);
     }
     /**
      * Display the specified resource.
