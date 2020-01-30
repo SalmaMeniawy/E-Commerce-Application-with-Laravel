@@ -32,6 +32,18 @@ class ShoppingCart extends Model
                return null;
            }
     }
+    public static function calculate_total_price_for_each_product($products,array $product_quantity){
+        $calculation_result = [];
+        foreach($products as $product)
+        {
+            $result = $product->price * $product_quantity[$product->id];
+            $calculation_result[$product->id] = $result;
+            // $calculation_result = ["$product->id" => $result];
+        }
+            \dump($calculation_result);
+       
+        return $calculation_result;
+    }
     public  function get_items_count_in_shopping_cart(){
         $buyer = Buyer::all()->where('user_id',auth()->id())->first();
         $shoppingCart = $buyer->shopping_cart;
