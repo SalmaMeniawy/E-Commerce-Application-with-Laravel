@@ -21,6 +21,9 @@ class Product extends Model
         return $this->belongsTo(Seller::class);
     }
     public function shoppingCarts(){
-        return $this->hasMany(ShoppingCart::class);
+        return $this->belongsToMany(ShoppingCart::class);
     }
+    // public function shoppingCarts(){
+    //     return $this->belongsToMany(ShoppingCart::class);
+    // }
 }
