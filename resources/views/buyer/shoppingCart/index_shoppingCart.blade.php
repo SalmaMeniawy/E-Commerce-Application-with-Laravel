@@ -34,7 +34,7 @@
 
                         </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{$product->price}}</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>${{$calculation_item_price[$product->id]}}</strong></td>
                         <td class="col-sm-1 col-md-1">
                         <button type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
