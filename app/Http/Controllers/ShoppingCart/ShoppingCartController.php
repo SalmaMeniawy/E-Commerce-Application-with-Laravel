@@ -43,7 +43,10 @@ class ShoppingCartController extends Controller
                 //add products Id and buyer id in relational table
                 $products_id = array_keys($product_quantity);
                 $buyer->shopping_cart->products()->sync(json_encode($products_id));
-                
+                // $products = Product::find($products_id);
+                // \dump($products);
+                // $buyer->shopping_cart->products()->save($products->first());
+                // dump($buyer->shopping_cart->first()->products()->id);
                 return redirect()->back();
             
             }else{
@@ -53,7 +56,8 @@ class ShoppingCartController extends Controller
                 $shoppingCart->product_quantity =json_encode( $product_quantity);
                 $shoppingCart->save();
                 $products_id = array_keys($product_quantity);
-                $shoppingCart->products()->attach(json_encode($products_id));
+                // $shoppingCart->products()->attach(json_encode($products_id));
+                $buyer->shopping_cart->products()->sync(json_encode($products_id));
 
                 return redirect()->back();
               
@@ -66,7 +70,8 @@ class ShoppingCartController extends Controller
              $shoppingCart->product_quantity =json_encode( $product_quantity);
             $shoppingCart->save();
             $products_id = array_keys($product_quantity);
-            $shoppingCart->products()->attach(json_encode($products_id));
+            // $shoppingCart->products()->attach(json_encode($products_id));
+            $buyer->shopping_cart->products()->sync(json_encode($products_id));
 
             return redirect()->back();
           
@@ -141,6 +146,7 @@ class ShoppingCartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $buyer = Buyer::all()->where('user_id',auth()->id())->first();
+        
     }
 }
