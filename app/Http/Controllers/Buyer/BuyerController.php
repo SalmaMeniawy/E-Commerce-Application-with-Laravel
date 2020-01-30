@@ -61,13 +61,11 @@ class BuyerController extends Controller
         $product_quantity = json_decode($shoppingCart->product_quantity,true);
         $products_ids = array_keys($product_quantity);
         $products = Product::find($products_ids); //get all products user add to shopping cart
-        $quantity = array_values($product_quantity);
-        \dump($products);
-        dump($quantity);
+        
 
        return view('buyer.shoppingCart.index_shoppingCart')
        ->with('products',$products)
-       ->with('quantity',$quantity);
+       ->with('product_quantity',$product_quantity);
     }
     /**
      * Display the specified resource.
