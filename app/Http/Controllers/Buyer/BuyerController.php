@@ -56,14 +56,18 @@ class BuyerController extends Controller
         //
     }
     public function get_shopping_cart_details(){
-        $shoppingCart = ShoppingCart::all()->where('buyer_id',auth()->id())->first();
+        $buyer = Buyer::all()->where('user_id',auth()->id())->first();
+        $shoppingCart = $buyer->shopping_cart;
         $product_quantity = json_decode($shoppingCart->product_quantity,true);
         $products_ids = array_keys($product_quantity);
-        $buyer = Buyer::all()->where('user_id',auth()->id())->first();
-        
-        \dump($buyer);
-        // $products =$shoppingCart->productS()->where('product_id',$products_ids);
-        // \dump($products);
+        $products = Product::find($products_ids); //get all products user add to shopping cart
+        $quantity = array_values($product_quantity);
+        \dump($products);
+        dump($quantity);
+
+       return view('buyer.shoppingCart.index_shoppingCart')
+       ->with('products',$products)
+       ->with('quantity',$quantity);
     }
     /**
      * Display the specified resource.
