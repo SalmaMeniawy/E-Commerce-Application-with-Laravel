@@ -52,7 +52,7 @@
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$24.59</strong></h5></td>
+                        <td class="text-right"><h5><strong>${{$total_price_for_shopping_cart}}</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
