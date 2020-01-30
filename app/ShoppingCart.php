@@ -38,9 +38,7 @@ class ShoppingCart extends Model
         {
             $result = $product->price * $product_quantity[$product->id];
             $calculation_result[$product->id] = $result;
-            // $calculation_result = ["$product->id" => $result];
         }
-            \dump($calculation_result);
        
         return $calculation_result;
     }
