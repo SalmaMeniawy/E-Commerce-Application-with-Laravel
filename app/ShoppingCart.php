@@ -54,6 +54,14 @@ class ShoppingCart extends Model
        
         return $calculation_result;
     }
+    public static function calculate_subtotal_price_for_all_products($product_individual_totlal){
+        $result = 0;
+        foreach($product_individual_totlal as $total_item){
+            $result = $result + $total_item;
+        }
+        return (float)$result;
+
+    }
     public  function get_items_count_in_shopping_cart(){
         $buyer = Buyer::all()->where('user_id',auth()->id())->first();
         $shoppingCart = $buyer->shopping_cart;
