@@ -32,6 +32,18 @@ class ShoppingCart extends Model
                return null;
            }
     }
+    public static function check_product_quantity_stock($products){
+        $result = [];
+        foreach($products as $product){
+            if($product->in_stock_quantity > 0){
+                $result[$product->id] = 1;
+            }else{
+                $result[$product->id] = 0;
+            }
+
+        }
+        return $result;
+    }
     public static function calculate_total_price_for_each_product($products,array $product_quantity){
         $calculation_result = [];
         foreach($products as $product)
