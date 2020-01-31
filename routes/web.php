@@ -17,10 +17,22 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware('auth')->group(function(){
+    //routed for seller
+    Route::middleware('seller-role')->group(function(){
+        Route::get('products/create','Product\ProductController@create')->name('product.create');
+        Route::post('products','Product\ProductController@store');
+        Route::get('products','Product\ProductController@index')->name('product.index');
+        Route::get('products/{product_id}','Product\ProductController@show')->name('product.show');
+        Route::delete('products/{product_id}','Product\ProductController@destroy')->name('product.destroy');
+        Route::get('home/seller','Seller\SellerController@create')->name('seller.home');
+        Route::get('seller/logout','Seller\SellerController@logout')->name('seller.logout');
+    });
+    //routes for admin
     Route::middleware('admin-role')->group(function(){
         //routes related to admin Controller
         Route::group([],function(){
             Route::get('admin/home','Admin\AdminController@home')->name('admin.home');
+            Route::get('admin/logout','Admin\AdminController@logout')->name('admin.logout');
                  
         });
         //routest for store controller
@@ -57,6 +69,7 @@ Route::middleware('auth')->group(function(){
                 Route::delete('brands/{brand_id}','Brand\BrandController@destroy')->name('brand.destroy');
                 Route::get('brands/{brand_id}','Brand\BrandController@show')->name('brand.show');
         });
+
 
 });
 

@@ -36,7 +36,11 @@ class RegisterController extends Controller
     protected function redirectTo(){
         if(auth()->user()->role == 'admin'){
             return '/admin/dashboard';
-        }else{
+        }elseif(auth()->user()->role == 'seller'){
+            return 'home/seller';
+
+        }
+        else{
             return '/home';
         }
     }
@@ -49,7 +53,11 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
+    public function showRegistrationForm()
+    {
+        $roles = ['buyer','seller','admin'];
+        return view('auth.register',compact('roles'));
+    }
     /**
      * Get a validator for an incoming registration request.
      *
