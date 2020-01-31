@@ -12,7 +12,9 @@
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item">Category name :{{$category->category_name}}</li>
                      
-                    
+                    <li class="list-group-item">
+                        Created by : {{$admin->fname}}
+                    </li>
                     <li class="list-group-item">
                         Created at : {{$category->created_at}}    
                     </li>

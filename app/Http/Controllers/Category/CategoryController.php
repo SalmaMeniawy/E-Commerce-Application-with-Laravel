@@ -56,7 +56,9 @@ class CategoryController extends Controller
     public function show($category_id)
     {
         $category = Category::find($category_id);
-        return view('admin.category.show_category')->with('category',$category);
+        $admin = $category->admin->where('user_id',$category->admin_id)->get()[0];
+        return view('admin.category.show_category')->with('category',$category)
+        ->with('admin',$admin);
     }
 
     /**
