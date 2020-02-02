@@ -79,9 +79,8 @@
                         <td>   </td>
                         <td>
                         
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button>
+                        <a href="{{route('buyer.index')}}" class="btn btn-default">Continue Shopping </a>
+                            
                         </td>
                     </tr>
                 </tbody>
