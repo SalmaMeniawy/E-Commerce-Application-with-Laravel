@@ -23,7 +23,7 @@
                           
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">{{$product->title}}</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
+                                <!-- <h5 class="media-heading"> by <a href="#">Brand name</a></h5> -->
                                 @if($in_stock_state[$product->id] == 1)
                                 <span>Status: </span><span class="text-success"><strong>In Stock </strong></span>
                                 @else
