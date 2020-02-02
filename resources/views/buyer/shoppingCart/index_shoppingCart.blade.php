@@ -41,9 +41,14 @@
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{$product->price}}</strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{$calculation_item_price[$product->id]}}</strong></td>
                         <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
+                        <form action='{{route("shoppingcart.destroy",$product->id)}}' method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
+                        </button>
+                        </form>
+                        </td>
                     </tr>
                     @endforeach
                     
@@ -73,13 +78,11 @@
                         <td>   </td>
                         <td>   </td>
                         <td>
+                        
                         <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
-                        <td>
-                        <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                        </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
