@@ -35,7 +35,7 @@
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
                         
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="{{$product_quantity[$product->id]}}">
+                        <input type="number" name="quantity"class="form-control" id="exampleInputEmail1" value="{{$product_quantity[$product->id]}}">
 
                         </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{$product->price}}</strong></td>
@@ -95,5 +95,4 @@
         </div>
     </div>
 </div>
-
 @endsection
