@@ -147,6 +147,12 @@ class ShoppingCartController extends Controller
     public function destroy($id)
     {
         $buyer = Buyer::all()->where('user_id',auth()->id())->first();
-        
+        $product_quantity =ShoppingCart::get_products_id_from_shopping_cart();
+        if(isset($product_quantity)){ //check if the return not empty
+            if(array_key_exists($id,$product_quantity)){
+                unset($product_quantity[$id]);
+                return redirect()->route('buyer.shoppingCart');
+            }       
+        }
     }
 }
