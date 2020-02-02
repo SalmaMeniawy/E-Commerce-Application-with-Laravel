@@ -41,6 +41,8 @@
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{$product->price}}</strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{$calculation_item_price[$product->id]}}</strong></td>
                         <td class="col-sm-1 col-md-1">
+                        @if($in_stock_state[$product->id] == 1)
+
                         <form action='{{route("shoppingcart.destroy",$product->id)}}' method="POST">
                         @csrf
                         @method('DELETE')
@@ -48,6 +50,7 @@
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </button>
                         </form>
+                        @endif
                         </td>
                     </tr>
                     @endforeach
@@ -85,7 +88,7 @@
                         <td>
                         <button type="button" class="btn btn-success">
                             Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                        </button></td>  
                     </tr>
                 </tbody>
             </table>
