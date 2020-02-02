@@ -82,6 +82,10 @@
                         <a href="{{route('buyer.index')}}" class="btn btn-default">Continue Shopping </a>
                             
                         </td>
+                        <td>
+                        <button type="button" class="btn btn-success">
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button></td>
                     </tr>
                 </tbody>
             </table>
