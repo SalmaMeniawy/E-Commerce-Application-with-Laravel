@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function(){
 
         Route::group([],function(){
             Route::get('shCart/{product_id}','ShoppingCart\ShoppingCartController@add_to_shopping_cart')->name('addShopCart');
-            Route::delete('shoppingCart/{id}','ShoppingCart\ShoppingCart@destroy')->name('shoppingcart.destroy');
+            Route::delete('shoppingCart/{id}','ShoppingCart\ShoppingCartController@destroy')->name('shoppingcart.destroy');
         });
         Route::get('homepage','Buyer\BuyerController@index')->name('buyer.index');
         Route::get('product/{product_id}','Buyer\BuyerController@get_product_details')->name('buyer.product.show');
