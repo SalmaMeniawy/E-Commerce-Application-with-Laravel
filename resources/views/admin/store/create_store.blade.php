@@ -38,7 +38,7 @@
                                 <select class="col-md-6" name="seller">
                                     @foreach($sellers as $seller)
                                         @if($seller->store == null)
-                                        <option value="{$seller->id}">{{$seller->fname}}  {{$seller->lname}}</option>
+                                        <option value="{{$seller->id}}">{{$seller->fname}}  {{$seller->lname}}</option>
                                         @endif
                                     @endforeach
                                 </select>
