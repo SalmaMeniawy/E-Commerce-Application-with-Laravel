@@ -33,7 +33,6 @@ class StoreController extends Controller
     public function create()
     {
         $sellers = Seller::all();
-        \dump($sellers);
         return view('admin.store.create_store')->with('sellers',$sellers);
     }
     public function get_all_sellers(){
@@ -52,11 +51,14 @@ class StoreController extends Controller
             'sammary' => 'required|between:10,200',
             
         ]);
-        $store = Store::create([
-           'store_name'  => $request->input('store_name'),
+        $seller = Seller::find($request->input('seller'));
+        $seller->store()->create([
+            'store_name'  => $request->input('store_name'),
             'sammary' => $request->input('sammary'),
             'admin_id' => auth()->id(),
+
         ]);
+        $seller->save();
         if(isset($store)){
             return redirect()->route('store.index');
                 
