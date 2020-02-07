@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function(){
         //routest for store controller
         Route::group([],function(){
                  Route::get('stores/create','Store\StoreController@create');
+                 Route::get('sellers','Store\StoreController@get_all_sellers');
                  Route::get('stores/{store_id}','Store\StoreController@show')->name('store.show');
                  Route::delete('stores/{store_id}','Store\StoreController@destroy')->name('store.destroy');
                  Route::get('stores' , 'Store\StoreController@index')->name('store.index');
