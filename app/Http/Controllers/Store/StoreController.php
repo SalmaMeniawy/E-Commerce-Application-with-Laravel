@@ -32,7 +32,9 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('admin.store.create_store');
+        $sellers = Seller::all();
+        \dump($sellers);
+        return view('admin.store.create_store')->with('sellers',$sellers);
     }
     public function get_all_sellers(){
         return Seller::all();
