@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Store;
 use App\Product;
 class Seller extends Model
 {
@@ -13,5 +14,8 @@ class Seller extends Model
     }
     public function products(){
         return $this->hasMany(Product::class);
+    }
+    public function store(){
+        return $this->hasOne(Store::class);
     }
 }
