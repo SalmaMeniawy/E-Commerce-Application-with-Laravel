@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Store;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Store;
+use App\Seller;
 class StoreController extends Controller
 {
     /**
@@ -33,7 +34,9 @@ class StoreController extends Controller
     {
         return view('admin.store.create_store');
     }
-
+    public function get_all_sellers(){
+        return Seller::all();
+    }
     /**
      * Store a newly created resource in storage.
      *
