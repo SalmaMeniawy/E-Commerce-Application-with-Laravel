@@ -35,9 +35,7 @@ class StoreController extends Controller
         $sellers = Seller::all();
         return view('admin.store.create_store')->with('sellers',$sellers);
     }
-    public function get_all_sellers(){
-        return Seller::all();
-    }
+  
     /**
      * Store a newly created resource in storage.
      *
