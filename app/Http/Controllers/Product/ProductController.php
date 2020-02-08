@@ -67,19 +67,6 @@ class ProductController extends Controller
        $size = \sizeof($store->products) - 1;
        $product = $store->products[$size];
        
-\dump( $product->id)        ;
-        
-        // $product = Product::create([
-        //     'title' => $request->input('title'),
-        //     'description' => $request->input('description'),
-        //     'in_stock_quantity' => $request->input('in_stock_quantity'),
-        //     'brand_id'=>$request->input('brand_id'),
-        //     'category_id'=>$request->input('category_id'),
-        //     'seller_id' =>auth()->id(),
-        //     'price' => $request->input('price'),
-        //     'store_id'=>'2',
-        // ]);
-    //    dump($request->input('title'));
         $image = $request->file('image');
         $name = $product->id.'.'.$image->extension();
         $destination = public_path('/productImages');
