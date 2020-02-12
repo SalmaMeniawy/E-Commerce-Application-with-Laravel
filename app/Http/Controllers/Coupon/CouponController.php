@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Coupon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Coupon;
+use App\Admin;
 class CouponController extends Controller
 {
     /**
@@ -43,15 +44,24 @@ class CouponController extends Controller
             'coupon_persentage' => 'nullable|required_with:lifetime',
             'coupon_price'=>'nullable',
         ]);
-        $coupon = Coupon::create([
+        $admin = Admin::get()->where('user_id',auth()->id())->first();
+        $admin->coupons()->create([
             'coupon_name' => $request->input('coupon_name'),
-            'number_of_usage' => $request->input('number_of_usage'),
-            'lifetime' => $request->input('lifetime'),
-            'coupon_persentage' => $request->input('coupon_persentage'),
-            'coupon_price' => $request->input('coupon_price'),
-            'admin_id' => auth()->id(),
+                    'number_of_usage' => $request->input('number_of_usage'),
+                    'lifetime' => $request->input('lifetime'),
+                    'coupon_persentage' => $request->input('coupon_persentage'),
+                    'coupon_price' => $request->input('coupon_price'),
         ]);
-       return redirect()->route('coupon.index');
+        \dump($admin->coupons   );
+    //     $coupon = Coupon::create([
+    //         'coupon_name' => $request->input('coupon_name'),
+    //         'number_of_usage' => $request->input('number_of_usage'),
+    //         'lifetime' => $request->input('lifetime'),
+    //         'coupon_persentage' => $request->input('coupon_persentage'),
+    //         'coupon_price' => $request->input('coupon_price'),
+    //         'admin_id' => auth()->id(),
+    //     ]);
+    //    return redirect()->route('coupon.index');
     }
 
     /**
