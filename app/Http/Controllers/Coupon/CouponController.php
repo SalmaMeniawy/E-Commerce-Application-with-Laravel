@@ -52,16 +52,8 @@ class CouponController extends Controller
                     'coupon_persentage' => $request->input('coupon_persentage'),
                     'coupon_price' => $request->input('coupon_price'),
         ]);
-        \dump($admin->coupons   );
-    //     $coupon = Coupon::create([
-    //         'coupon_name' => $request->input('coupon_name'),
-    //         'number_of_usage' => $request->input('number_of_usage'),
-    //         'lifetime' => $request->input('lifetime'),
-    //         'coupon_persentage' => $request->input('coupon_persentage'),
-    //         'coupon_price' => $request->input('coupon_price'),
-    //         'admin_id' => auth()->id(),
-    //     ]);
-    //    return redirect()->route('coupon.index');
+        
+       return redirect()->route('coupon.index');
     }
 
     /**
