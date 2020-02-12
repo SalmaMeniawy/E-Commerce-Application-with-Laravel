@@ -7,7 +7,8 @@ use App\User;
 use App\ShoppingCart;
 class Buyer extends Model
 {
-    protected $fillable = ['fname','lname','date_of_birth' ,'user_id'];
+    protected $fillable = ['fname','lname','date_of_birth' 
+    ,'user_id','coupon_id','coupon_uses_number'];
     public function user(){
         return $this->belongsTo(User::class);
     }
