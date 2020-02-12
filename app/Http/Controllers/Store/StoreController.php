@@ -47,6 +47,7 @@ class StoreController extends Controller
         $request->validate([
             'store_name' => 'required|unique:stores|alpha_num|max:125',
             'sammary' => 'required|between:10,200',
+            'seller_id'=>'required',
             
         ]);
         $seller = Seller::find($request->input('seller'));
@@ -56,8 +57,8 @@ class StoreController extends Controller
             'admin_id' => auth()->id(),
 
         ]);
-        $seller->save();
-        if(isset($store)){
+        
+        if($seller->save()){
             return redirect()->route('store.index');
                 
         }else{
