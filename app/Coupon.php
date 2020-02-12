@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Admin;
+use App\Buyer;
 class Coupon extends Model
 {
     protected $fillable = [
@@ -13,6 +14,13 @@ class Coupon extends Model
     public function admin(){
         return $this->belongsTo(Admin::class);
     }
+    /**
+     * eloquent relation with Buyer model 
+     */
+    public function buyers(){
+        return $this->hasMany(Buyer::class);
+    }
+ 
 	/**
      * 
      *get_persentage to convert user input from float 
