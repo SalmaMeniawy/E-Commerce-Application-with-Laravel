@@ -15,4 +15,11 @@ class Buyer extends Model
     public function shopping_cart(){
         return $this->hasOne(ShoppingCart::class);
     }
+    /**
+     * eloquent relation function with Coupon model
+     */
+    public function coupon(){
+        return $this->belongsTo(Coupon::class);
+    }
+
 }
