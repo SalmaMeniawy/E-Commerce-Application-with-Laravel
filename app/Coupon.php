@@ -32,6 +32,16 @@ class Coupon extends Model
 
 
     }
+    /***
+     * 
+     */
+    public static function get_latest_normal_coupon(){
+        $coupons = Coupon::get()->where('coupon_specialize','normal');
+        $size = \sizeof($coupons)-1;
+        $coupon = $coupons[$size];
+        return $coupon;
+            
+    }
 	/**
      * 
      *get_persentage to convert user input from float 
