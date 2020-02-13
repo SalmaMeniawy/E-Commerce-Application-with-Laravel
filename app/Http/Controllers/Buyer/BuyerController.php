@@ -55,6 +55,10 @@ class BuyerController extends Controller
     {
         //
     }
+    /**
+     * function to get all shopping cart details related
+     * to the buyer and display it in there own page
+     */
     public function get_shopping_cart_details(){
         $buyer = Buyer::all()->where('user_id',auth()->id())->first();
         $shoppingCart = $buyer->shopping_cart;
