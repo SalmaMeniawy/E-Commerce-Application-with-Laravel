@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Coupon;
 use App\Admin;
+use App\Buyer;
 class CouponController extends Controller
 {
     /**
@@ -52,6 +53,16 @@ class CouponController extends Controller
                     'coupon_persentage' => $request->input('coupon_persentage'),
                     'coupon_price' => $request->input('coupon_price'),
         ]);
+        $size = \sizeof($admin->coupons->toArray())-1 ;
+        $coupon = $admin->coupons[$size];
+        $buyers = Buyer::get()->where('coupon_uses_number',0);
+        if(isset($buyers)){
+            foreach($buyers as $buyer){
+                $buyer->coupon_uses_number = $coupon->number_of_usage;
+                $coupon->buyers()->save($buyer);
+                
+            }
+        }
         
        return redirect()->route('coupon.index');
     }
