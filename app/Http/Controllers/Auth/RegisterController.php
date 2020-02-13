@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use App\Seller;
 use App\ShoppingCart;
 use App\User;
+use App\Coupon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -113,16 +114,18 @@ class RegisterController extends Controller
             ]);
             return $user;
         }else{
+            $coupon = Coupon::get_latest_normal_coupon();
             $user->buyer()->create([
                 'fname' => $data['fname'],
                 'lname' => $data['lname'],
                 'date_of_birth' => $data['date_of_birth'],
-
+                'coupon_id'=> $coupon->id,
                 ]);
             $user->save();
             $buyer = Buyer::all()->where('user_id',$user->id)->first();
             $buyer->shopping_cart()->create([]);
             $buyer->save();
+            
            
             return $user;
         }
