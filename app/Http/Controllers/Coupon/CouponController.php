@@ -52,6 +52,7 @@ class CouponController extends Controller
                     'lifetime' => $request->input('lifetime'),
                     'coupon_persentage' => $request->input('coupon_persentage'),
                     'coupon_price' => $request->input('coupon_price'),
+                    'hash_id'=>Coupon::set_hash_id_for_each_coupon(),
         ]);
         $size = \sizeof($admin->coupons->toArray())-1 ;
         $coupon = $admin->coupons[$size];
