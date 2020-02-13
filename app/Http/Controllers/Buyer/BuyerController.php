@@ -55,6 +55,9 @@ class BuyerController extends Controller
     {
         //
     }
+    public function get_coupon_details(){
+        
+    }
     /**
      * function to get all shopping cart details related
      * to the buyer and display it in there own page
