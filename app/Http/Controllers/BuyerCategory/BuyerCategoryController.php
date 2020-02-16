@@ -15,7 +15,7 @@ class BuyerCategoryController extends Controller
      */
     public function index()
     {
-        //
+        return $buyer_categories = BuyerCategory::all();
     }
 
     /**
