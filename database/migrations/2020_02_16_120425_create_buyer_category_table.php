@@ -15,6 +15,7 @@ class CreateBuyerCategoryTable extends Migration
     {
         Schema::create('buyer_category', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('buyer_category_name')->require();
             $table->timestamps();
         });
     }
