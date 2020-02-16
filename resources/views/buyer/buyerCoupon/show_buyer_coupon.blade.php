@@ -10,7 +10,7 @@
                         <th >Code</th>
                         <th>Expired date</th>
                         <th class="text-center">Persentage</th>
-                        <th class="text-center">Usage number</th>
+                        <th class="text-center">Usage no.</th>
 
                         <th> </th>
                     </tr>
