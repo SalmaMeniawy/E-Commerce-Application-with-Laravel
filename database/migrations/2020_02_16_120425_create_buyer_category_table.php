@@ -13,8 +13,9 @@ class CreateBuyerCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::table('buyer_category', function (Blueprint $table) {
-            //
+        Schema::create('buyer_category', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +26,6 @@ class CreateBuyerCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::table('buyer_category', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('buyer_category');
     }
 }
