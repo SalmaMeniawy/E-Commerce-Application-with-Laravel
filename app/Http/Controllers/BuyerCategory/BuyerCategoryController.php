@@ -24,7 +24,7 @@ class BuyerCategoryController extends Controller
      */
     public function create()
     {
-        return view('buyer.buyerCategory.create_buyer_category');
+        return view('admin.buyerCategory.create_buyer_category');
     }
 
     /**
