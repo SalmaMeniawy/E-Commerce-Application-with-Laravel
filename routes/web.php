@@ -46,6 +46,11 @@ Route::middleware('auth')->group(function(){
     });
     //routes for admin
     Route::middleware('admin-role')->group(function(){
+        //routes related to buyerCategory Controller
+        Route::group([],function(){
+            Route::get('buyerCategory/create','Buyer\BuyerCategoryController@create')
+            ->name('buyerCategory.create');
+        });
         //routes related to admin Controller
         Route::group([],function(){
             Route::get('admin/home','Admin\AdminController@home')->name('admin.home');
