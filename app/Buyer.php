@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\ShoppingCart;
+use App\BuyerCategory;
 class Buyer extends Model
 {
     protected $fillable = ['fname','lname','date_of_birth' 
@@ -20,6 +21,12 @@ class Buyer extends Model
      */
     public function coupon(){
         return $this->belongsTo(Coupon::class);
+    }
+    /**
+     * eloquent relation function with BuyerCategory model
+     */
+    public function buyerCategory(){
+        return $this->belongsTo(BuyerCategory::class);
     }
 
 }
