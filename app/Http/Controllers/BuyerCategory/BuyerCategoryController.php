@@ -4,6 +4,7 @@ namespace App\Http\Controllers\BuyerCategory;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\BuyerCategory;
 
 class BuyerCategoryController extends Controller
 {
@@ -35,7 +36,9 @@ class BuyerCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        BuyerCategory::create([
+            'buyer_category_name' => $request->input('buyer_category_name'),
+        ]);
     }
 
     /**
