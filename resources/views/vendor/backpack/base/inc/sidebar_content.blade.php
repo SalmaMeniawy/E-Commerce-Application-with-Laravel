@@ -20,6 +20,9 @@
 href="{{ url('brands') }}">
 Brands</a></li>
 <li class="nav-item"> <a class="nav-link" 
+href="{{ url('buyerCategories') }}">
+Buyer Categories</a></li>
+<li class="nav-item"> <a class="nav-link" 
 href="{{ url('coupons') }}">
 Coupons</a></li>
 <li class="nav-item"> <a class="nav-link" 
