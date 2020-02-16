@@ -15,7 +15,9 @@ class BuyerCategoryController extends Controller
      */
     public function index()
     {
-        return $buyer_categories = BuyerCategory::all();
+         $buyer_categories = BuyerCategory::all();
+         return view('admin.buyerCategory.index_buyer_category')->with('buyer_categories',$buyer_categories);
+        
     }
 
     /**
