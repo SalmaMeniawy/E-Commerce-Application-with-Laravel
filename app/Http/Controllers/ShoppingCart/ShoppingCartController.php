@@ -150,10 +150,10 @@ class ShoppingCartController extends Controller
         $product_quantity = \json_decode($buyer->shopping_cart->product_quantity,true);
         if(isset($product_quantity)){
             if(array_key_exists($id,$product_quantity)){
-                \dump($product_quantity);
+                // \dump($product_quantity);
                 unset($product_quantity[$id]);
-                dump($buyer->shopping_cart->product_quantity);
-                dump($buyer->shopping_cart->product_quantity = \json_encode($product_quantity));
+                // dump($buyer->shopping_cart->product_quantity);
+                $buyer->shopping_cart->product_quantity = \json_encode($product_quantity);
                 $buyer->shopping_cart->save();
                 $products_id = array_keys($product_quantity);
                 $buyer->shopping_cart->products()->sync(json_encode($products_id));
