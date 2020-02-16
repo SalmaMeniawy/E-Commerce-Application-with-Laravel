@@ -7,6 +7,9 @@ use App\Buyer;
 class BuyerCategory extends Model
 {
     protected $fillable = ['buyer_category_name'];
+    /**
+     * eloquent relation function with Buyer model
+     */
     public function buyers(){
         return $this->hasMany(Buyer::class);
     }
