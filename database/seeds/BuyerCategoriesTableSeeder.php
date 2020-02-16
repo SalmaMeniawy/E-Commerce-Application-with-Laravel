@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 class BuyerCategoriesTableSeeder extends Seeder
 {
-    protected $available_buyer_category_names = ['Gold','Silver','Bronz','normal'];
+    protected $available_buyer_category_names = ['Gold','Silver','Bronz','Normal'];
     /**
      * Run the database seeds.
      *
