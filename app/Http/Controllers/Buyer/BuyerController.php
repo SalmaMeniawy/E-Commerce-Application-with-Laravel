@@ -9,6 +9,7 @@ use App\Product;
 use App\ShoppingCart;
 use App\Buyer;
 use App\BuyerCategory;
+use App\Coupon;
 class BuyerController extends Controller
 {
     /**
@@ -83,16 +84,18 @@ class BuyerController extends Controller
      * function to get Coupon details for each buyer
      */
     public function get_coupoun_details(){
-        $not_available_coupons = 1;
         $buyer = Buyer::get()->where('user_id',auth()->id())->first();
         $buyer_coupon = $buyer->coupon;
         if($buyer_coupon->coupon_specialize == 'normal'){
             $normal_buyer_category = BuyerCategory::get()->where('buyer_category_name','Normal')->first();
             $normal_buyer_category->buyers()->save($buyer);
         }
-        
+        //get coupon persntage in "%" way 
+        $buyer_coupon_persentage = Coupon::get_persentage($buyer_coupon->coupon_persentage);
         if($buyer_coupon->validate_state == 1 && $buyer->coupon_uses_number > 0){
-            return view('buyer.buyerCoupon.show_buyer_coupon');
+            return view('buyer.buyerCoupon.show_buyer_coupon')->with('buyer',$buyer)
+            ->with('buyer_coupon',$buyer_coupon)
+            ->with('buyer_coupon_persentage',$buyer_coupon_persentage);
         }
     }
     /**
