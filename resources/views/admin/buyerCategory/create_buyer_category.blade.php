@@ -8,6 +8,13 @@
                     <h2>Create Buyer Category</h2>
                 </div>
                 <div class="card-body">
+                    @if($errors->any())
+                        @foreach($errors->all() as $error)
+                        <div class="alert alert-danger" role="alert">
+                                 {{$error}}
+                            </div>
+                        @endforeach
+                    @endif
                     <form method="POST" action="/buyerCategory">
                     @csrf
                     <div class="form-group row">
