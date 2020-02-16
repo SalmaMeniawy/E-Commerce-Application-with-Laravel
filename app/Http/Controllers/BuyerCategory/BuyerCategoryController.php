@@ -36,6 +36,9 @@ class BuyerCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'buyer_category_name'=> 'required',
+        ]);
         BuyerCategory::create([
             'buyer_category_name' => $request->input('buyer_category_name'),
         ]);
