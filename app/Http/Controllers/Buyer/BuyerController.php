@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\ShoppingCart;
 use App\Buyer;
+use App\BuyerCategory;
 class BuyerController extends Controller
 {
     /**
@@ -79,6 +80,23 @@ class BuyerController extends Controller
        ->with('total_price_for_shopping_cart',$total_price_for_shopping_cart);
     }
     /**
+     * function to get Coupon details for each buyer
+     */
+    public function get_coupoun_details(){
+        $not_available_coupons = 1;
+        $buyer = Buyer::get()->where('user_id',auth()->id())->first();
+        $buyer_coupon = $buyer->coupon;
+        if($buyer_coupon->coupon_specialize == 'normal'){
+            $normal_buyer_category = BuyerCategory::get()->where('buyer_category_name','Normal')->first();
+            $normal_buyer_category->buyers()->save($buyer);
+        }
+        
+        if($buyer_coupon->validate_state == 1 && $buyer->coupon_uses_number > 0){
+            return view('buyer.buyerCoupon.show_buyer_coupon');
+        }
+    }
+    /**
+     * 
      * Display the specified resource.
      *
      * @param  int  $id
