@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function(){
         Route::group([],function(){
             Route::get('buyerCategory/create','BuyerCategory\BuyerCategoryController@create')
             ->name('buyerCategory.create');
+            Route::post('buyerCategory','BuyerCategory\BuyerCategoryController@store');
         });
         //routes related to admin Controller
         Route::group([],function(){
