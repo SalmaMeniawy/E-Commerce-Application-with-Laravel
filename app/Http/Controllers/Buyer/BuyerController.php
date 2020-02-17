@@ -68,17 +68,24 @@ class BuyerController extends Controller
         $buyer = Buyer::all()->where('user_id',auth()->id())->first();
         $shoppingCart = $buyer->shopping_cart;
         $product_quantity = json_decode($shoppingCart->product_quantity,true);
-        $products_ids = array_keys($product_quantity);
-        $products = Product::find($products_ids); //get all products user add to shopping cart
-        $calculation_result_for_item_price = ShoppingCart::calculate_total_price_for_each_product($products,$product_quantity);
-        $in_stock_result = ShoppingCart::check_product_quantity_stock($products);
-        $total_price_for_shopping_cart = ShoppingCart::calculate_subtotal_price_for_all_products($calculation_result_for_item_price);
-       return view('buyer.shoppingCart.index_shoppingCart')
-       ->with('products',$products)
-       ->with('product_quantity',$product_quantity)
-       ->with('calculation_item_price',$calculation_result_for_item_price)
-       ->with('in_stock_state',$in_stock_result)
-       ->with('total_price_for_shopping_cart',$total_price_for_shopping_cart);
+        if(isset($product_quantity)){
+                $products_ids = array_keys($product_quantity);
+                $products = Product::find($products_ids); //get all products user add to shopping cart
+                $calculation_result_for_item_price = ShoppingCart::calculate_total_price_for_each_product($products,$product_quantity);
+                $in_stock_result = ShoppingCart::check_product_quantity_stock($products);
+                $total_price_for_shopping_cart = ShoppingCart::calculate_subtotal_price_for_all_products($calculation_result_for_item_price);
+               return view('buyer.shoppingCart.index_shoppingCart')
+               ->with('products',$products)
+               ->with('product_quantity',$product_quantity)
+               ->with('calculation_item_price',$calculation_result_for_item_price)
+               ->with('in_stock_state',$in_stock_result)
+               ->with('total_price_for_shopping_cart',$total_price_for_shopping_cart);
+        }else{
+            return view('buyer.shoppingCart.empty_shopping_cart')
+            ->with('empty_shopping_cart',"the shopping cart is empty");
+           
+        }
+    
     }
     /**
      * function to get Coupon details for each buyer
