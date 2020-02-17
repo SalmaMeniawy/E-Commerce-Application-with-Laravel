@@ -86,17 +86,24 @@ class BuyerController extends Controller
     public function get_coupoun_details(){
         $buyer = Buyer::get()->where('user_id',auth()->id())->first();
         $buyer_coupon = $buyer->coupon;
-        if($buyer_coupon->coupon_specialize == 'normal'){
+        if($buyer->buyerCategory == null){
             $normal_buyer_category = BuyerCategory::get()->where('buyer_category_name','Normal')->first();
             $normal_buyer_category->buyers()->save($buyer);
         }
-        //get coupon persntage in "%" way 
-        $buyer_coupon_persentage = Coupon::get_persentage($buyer_coupon->coupon_persentage);
-        if($buyer_coupon->validate_state == 1 && $buyer->coupon_uses_number > 0){
-            return view('buyer.buyerCoupon.show_buyer_coupon')->with('buyer',$buyer)
-            ->with('buyer_coupon',$buyer_coupon)
-            ->with('buyer_coupon_persentage',$buyer_coupon_persentage);
+        if(isset($buyer_coupon)){
+             //get coupon persntage in "%" way 
+             $buyer_coupon_persentage = Coupon::get_persentage($buyer_coupon->coupon_persentage);
+             if($buyer_coupon->validate_state == 1 && $buyer->coupon_uses_number > 0){
+                return view('buyer.buyerCoupon.show_buyer_coupon')->with('buyer',$buyer)
+                  ->with('buyer_coupon',$buyer_coupon)
+                  ->with('buyer_coupon_persentage',$buyer_coupon_persentage);
+              }
+        }//buyer doesn 't have coupon
+        else{
+            return view('buyer.buyerCoupon.unavailable_coupon')
+            ->with('notfound_coupon',"there is no available Coupons");
         }
+       
     }
     /**
      * 
