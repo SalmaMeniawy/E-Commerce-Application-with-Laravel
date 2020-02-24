@@ -24,6 +24,13 @@ Route::middleware('auth')->group(function(){
             Route::get('shCart/{product_id}','ShoppingCart\ShoppingCartController@add_to_shopping_cart')->name('addShopCart');
             Route::delete('shoppingCart/{id}','ShoppingCart\ShoppingCartController@destroy')->name('shoppingcart.destroy');
         });
+        Route::group([],function(){
+            Route::get('coupon','Buyer\BuyerController@get_coupon_details')->name('buyer.coupon');
+        });
+        Route::group([],function(){
+            Route::get('buyerCoupon','Buyer\BuyerController@get_coupoun_details')
+            ->name('buyer.coupon');
+        });
         Route::get('homepage','Buyer\BuyerController@index')->name('buyer.index');
         Route::get('product/{product_id}','Buyer\BuyerController@get_product_details')->name('buyer.product.show');
         Route::get('buyer/logout','Buyer\BuyerController@logout')->name('buyer.logout');
@@ -43,6 +50,14 @@ Route::middleware('auth')->group(function(){
     });
     //routes for admin
     Route::middleware('admin-role')->group(function(){
+        //routes related to buyerCategory Controller
+        Route::group([],function(){
+            Route::get('buyerCategory/create','BuyerCategory\BuyerCategoryController@create')
+            ->name('buyerCategory.create');
+            Route::post('buyerCategory','BuyerCategory\BuyerCategoryController@store');
+            Route::get('buyerCategories','BuyerCategory\BuyerCategoryController@index')
+            ->name('buyerCategory.index');
+        });
         //routes related to admin Controller
         Route::group([],function(){
             Route::get('admin/home','Admin\AdminController@home')->name('admin.home');

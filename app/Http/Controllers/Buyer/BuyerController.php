@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\ShoppingCart;
 use App\Buyer;
+use App\BuyerCategory;
+use App\Coupon;
 class BuyerController extends Controller
 {
     /**
@@ -55,23 +57,63 @@ class BuyerController extends Controller
     {
         //
     }
+    public function get_coupon_details(){
+        
+    }
+    /**
+     * function to get all shopping cart details related
+     * to the buyer and display it in there own page
+     */
     public function get_shopping_cart_details(){
         $buyer = Buyer::all()->where('user_id',auth()->id())->first();
         $shoppingCart = $buyer->shopping_cart;
         $product_quantity = json_decode($shoppingCart->product_quantity,true);
-        $products_ids = array_keys($product_quantity);
-        $products = Product::find($products_ids); //get all products user add to shopping cart
-        $calculation_result_for_item_price = ShoppingCart::calculate_total_price_for_each_product($products,$product_quantity);
-        $in_stock_result = ShoppingCart::check_product_quantity_stock($products);
-        $total_price_for_shopping_cart = ShoppingCart::calculate_subtotal_price_for_all_products($calculation_result_for_item_price);
-       return view('buyer.shoppingCart.index_shoppingCart')
-       ->with('products',$products)
-       ->with('product_quantity',$product_quantity)
-       ->with('calculation_item_price',$calculation_result_for_item_price)
-       ->with('in_stock_state',$in_stock_result)
-       ->with('total_price_for_shopping_cart',$total_price_for_shopping_cart);
+        if(isset($product_quantity)){
+                $products_ids = array_keys($product_quantity);
+                $products = Product::find($products_ids); //get all products user add to shopping cart
+                $calculation_result_for_item_price = ShoppingCart::calculate_total_price_for_each_product($products,$product_quantity);
+                $in_stock_result = ShoppingCart::check_product_quantity_stock($products);
+                $total_price_for_shopping_cart = ShoppingCart::calculate_subtotal_price_for_all_products($calculation_result_for_item_price);
+               return view('buyer.shoppingCart.index_shoppingCart')
+               ->with('products',$products)
+               ->with('product_quantity',$product_quantity)
+               ->with('calculation_item_price',$calculation_result_for_item_price)
+               ->with('in_stock_state',$in_stock_result)
+               ->with('total_price_for_shopping_cart',$total_price_for_shopping_cart);
+        }else{
+            return view('buyer.shoppingCart.empty_shopping_cart')
+            ->with('empty_shopping_cart',"the shopping cart is empty");
+           
+        }
+    
     }
     /**
+     * function to get Coupon details for each buyer
+     */
+    public function get_coupoun_details(){
+        $buyer = Buyer::get()->where('user_id',auth()->id())->first();
+        $buyer_coupon = $buyer->coupon;
+        if($buyer->buyerCategory == null){
+            $normal_buyer_category = BuyerCategory::get()->where('buyer_category_name','Normal')->first();
+            $normal_buyer_category->buyers()->save($buyer);
+        }
+        if(isset($buyer_coupon)){
+             //get coupon persntage in "%" way 
+             $buyer_coupon_persentage = Coupon::get_persentage($buyer_coupon->coupon_persentage);
+             if($buyer_coupon->validate_state == 1 && $buyer->coupon_uses_number > 0){
+                return view('buyer.buyerCoupon.show_buyer_coupon')->with('buyer',$buyer)
+                  ->with('buyer_coupon',$buyer_coupon)
+                  ->with('buyer_coupon_persentage',$buyer_coupon_persentage);
+              }
+        }//buyer doesn 't have coupon
+        else{
+            return view('buyer.buyerCoupon.unavailable_coupon')
+            ->with('notfound_coupon',"there is no available Coupons");
+        }
+       
+    }
+    /**
+     * 
      * Display the specified resource.
      *
      * @param  int  $id

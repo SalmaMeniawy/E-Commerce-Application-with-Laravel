@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Coupon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Coupon;
+use App\Admin;
+use App\Buyer;
 class CouponController extends Controller
 {
     /**
@@ -43,14 +45,26 @@ class CouponController extends Controller
             'coupon_persentage' => 'nullable|required_with:lifetime',
             'coupon_price'=>'nullable',
         ]);
-        $coupon = Coupon::create([
+        $admin = Admin::get()->where('user_id',auth()->id())->first();
+        $admin->coupons()->create([
             'coupon_name' => $request->input('coupon_name'),
-            'number_of_usage' => $request->input('number_of_usage'),
-            'lifetime' => $request->input('lifetime'),
-            'coupon_persentage' => $request->input('coupon_persentage'),
-            'coupon_price' => $request->input('coupon_price'),
-            'admin_id' => auth()->id(),
+                    'number_of_usage' => $request->input('number_of_usage'),
+                    'lifetime' => $request->input('lifetime'),
+                    'coupon_persentage' => $request->input('coupon_persentage'),
+                    'coupon_price' => $request->input('coupon_price'),
+                    'hash_id'=>Coupon::set_hash_id_for_each_coupon(),
         ]);
+        $size = \sizeof($admin->coupons->toArray())-1 ;
+        $coupon = $admin->coupons[$size];
+        $buyers = Buyer::get()->where('coupon_uses_number',0);
+        if(isset($buyers)){
+            foreach($buyers as $buyer){
+                $buyer->coupon_uses_number = $coupon->number_of_usage;
+                $coupon->buyers()->save($buyer);
+                
+            }
+        }
+        
        return redirect()->route('coupon.index');
     }
 
