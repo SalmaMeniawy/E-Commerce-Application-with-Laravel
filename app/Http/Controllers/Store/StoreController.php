@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Store;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Store;
+use App\Seller;
 class StoreController extends Controller
 {
     /**
@@ -31,9 +32,10 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('admin.store.create_store');
+        $sellers = Seller::all();
+        return view('admin.store.create_store')->with('sellers',$sellers);
     }
-
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -45,14 +47,18 @@ class StoreController extends Controller
         $request->validate([
             'store_name' => 'required|unique:stores|alpha_num|max:125',
             'sammary' => 'required|between:10,200',
+            'seller_id'=>'required',
             
         ]);
-        $store = Store::create([
-           'store_name'  => $request->input('store_name'),
+        $seller = Seller::find($request->input('seller'));
+        $seller->store()->create([
+            'store_name'  => $request->input('store_name'),
             'sammary' => $request->input('sammary'),
             'admin_id' => auth()->id(),
+
         ]);
-        if(isset($store)){
+        
+        if($seller->save()){
             return redirect()->route('store.index');
                 
         }else{

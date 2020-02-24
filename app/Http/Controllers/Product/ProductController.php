@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Brand;
 use App\Category;
+use App\Seller;
 
 class ProductController extends Controller
 {
@@ -50,7 +51,9 @@ class ProductController extends Controller
             'price'=>'required'
             ]
         );
-        $product = Product::create([
+        $seller = Seller::get()->where('user_id',auth()->id())->first();
+        $store = $seller->store;
+        $store->products()->create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'in_stock_quantity' => $request->input('in_stock_quantity'),
@@ -59,6 +62,10 @@ class ProductController extends Controller
             'seller_id' =>auth()->id(),
             'price' => $request->input('price'),
         ]);
+        
+        $store->save();
+       $size = \sizeof($store->products) - 1;
+       $product = $store->products[$size];
        
         $image = $request->file('image');
         $name = $product->id.'.'.$image->extension();
