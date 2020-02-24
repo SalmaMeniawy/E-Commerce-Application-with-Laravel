@@ -95,5 +95,31 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="/js/app.js"></script>
+<script type="text/javascript">
+   $(function(){
+   let removeButton =  $("form").on("submit",function(event){
+                event.preventDefault();
+                let myEvent = event;
+                swal("Are you sure you want to remove item ? ", {
+                    buttons: {
+                       cancel : "cancel",
+                       delete :{
+                        text : "Yes",
+                        value: "yes",
+                       },
+                      
+                    },
+                    
+                    }).then(function(value){
+                        if(value == "yes"){
+                                removeButton.off();          
+                                $("form").trigger("submit");
+                                console.log(myEvent);
+                            
+                        }
+                    });
+        });
+   });
+</script>
 @endsection
