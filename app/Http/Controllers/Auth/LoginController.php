@@ -33,6 +33,8 @@ class LoginController extends Controller
         }
         elseif(auth()->user()->role == 'seller'){
             return 'home/seller';
+        }elseif(auth()->user()->role == 'buyer'){
+            return '/homepage';
         }
         else{
             return '/home';

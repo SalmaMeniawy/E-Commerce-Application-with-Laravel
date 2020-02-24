@@ -37,7 +37,7 @@ class User extends Authenticatable implements CanResetPassword
      * eloquent relationship with Buyer model 
      */
     public function buyer(){
-        return $this->belongsTo(Buyer::class);
+        return $this->hasOne(Buyer::class);
     }
     /**
      * The attributes that should be hidden for arrays.

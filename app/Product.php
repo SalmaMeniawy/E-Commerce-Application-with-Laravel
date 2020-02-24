@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Brand;
 use App\Category;
 use App\Seller;
+use App\ShoppingCart;
 class Product extends Model
 {
     protected $fillable = ['title','description','price',
@@ -19,4 +20,8 @@ class Product extends Model
     public function seller(){
         return $this->belongsTo(Seller::class);
     }
+    public function shoppingCarts(){
+        return $this->belongsToMany(ShoppingCart::class);
+    }
+    
 }

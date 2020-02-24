@@ -1,4 +1,16 @@
 <!-- This file is used to store sidebar items, starting with Backpack\Base 0.9.0 -->
+@if(auth()->user()->role == 'buyer')
+<li class="nav-item"><a class="nav-link" href="{{ url('homepage') }}"><i class="fa fa-dashboard nav-icon"></i>Homepage</a></li>
+<li class="nav-item">
+<a class="nav-link"  href="{{url('shoppingCart')}}" class="btn btn-light">
+<i class="fa fa-shopping-cart"></i>Shopping Cart <span class="badge badge-light">{{Facades\App\ShoppingCart::get_items_count_in_shopping_cart()}}</span>
+</a>
+</li>
+<li class="nav-item"> <a class="nav-link" 
+	href="{{ url('buyer/logout') }}">
+	<i  class="fa fa-sign-out"></i>
+	Logout</a></li>
+@endif
 @if(auth()->user()->role == 'admin')
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
 <li class="nav-item"> <a class="nav-link" 
