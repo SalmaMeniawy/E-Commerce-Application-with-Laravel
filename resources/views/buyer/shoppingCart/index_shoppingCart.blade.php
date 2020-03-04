@@ -66,8 +66,11 @@
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right"><h5><strong>$6.94</strong></h5></td>
+                        <td><h5>Estimated shipping</h5>
+                        </td>
+                        <td class="text-right" id="coupon_price_with_total">
+                        <input name="coupon_hash" id="coupon_hash" type="text" value="">
+                            <h5 id="coupon_hash_value"><strong>$0</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
@@ -98,6 +101,13 @@
 <script type="text/javascript" src="/js/app.js"></script>
 <script type="text/javascript">
 $(function(){
+    /**
+        event fire when make any changes on the coupon input 
+        and call function  get_coupon_hash_from_buyer
+     */
+    $("#coupon_hash").on("change",function(){
+        get_coupon_hash_from_buyer();
+    });
     /***
         craete event when change the quantity field in the shopping cart
      */
@@ -114,7 +124,6 @@ $(function(){
         let result_of_total_items_in_shopping_cart = get_total_price_for_shopping_cart_before_coupon();
         //add the result of get_total_price_for_shopping_cart_before_coupon to the shopping cart and display it
         let total_price_before_coupon = $('tbody').find('#total_price_before_coupon').eq(0).html(`<h5>`+`<strong>`+'$'+result_of_total_items_in_shopping_cart+`</strong>`+`</h5>`);
-        
        
     });
     /***
@@ -152,6 +161,17 @@ $(function(){
         }
        
         return total_result; //return the total
+    }
+    /***
+        function to get the coupon hash from buyer and start proceses on it
+     */
+    get_coupon_hash_from_buyer = function(){
+        let coupon_input = $("#coupon_hash");
+        if(coupon_input.val()){
+            coupon_hash = coupon_input.val();
+            console.log( coupon_hash);
+        }
+        
     }
 });
 
