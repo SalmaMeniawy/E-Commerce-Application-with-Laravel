@@ -79,9 +79,7 @@ class CouponController extends Controller
         $coupon = Coupon::find($coupon_id);
         $coupon_input_from_user_in_float = $coupon->coupon_persentage;
         $coupon->coupon_persentage = Coupon::get_persentage($coupon_input_from_user_in_float);
-        $admin = $coupon->admin->where('user_id',$coupon->admin_id)->get()[0];
-        return view('admin.coupon.show_coupon')->with('coupon',$coupon)
-        ->with('admin',$admin);
+        return view('admin.coupon.show_coupon')->with('coupon',$coupon);
     }
 
     /**
