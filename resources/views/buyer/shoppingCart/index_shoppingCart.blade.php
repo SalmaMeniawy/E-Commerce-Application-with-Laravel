@@ -39,7 +39,7 @@
 
                         </td>
                         <td class="col-sm-1 col-md-1 text-center" id="price"><strong>${{$product->price}}</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center" id="total_item_price"><strong>${{$calculation_item_price[$product->id]}}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center" id="total_item_price"><strong >${{$calculation_item_price[$product->id]}}</strong></td>
                         <td class="col-sm-1 col-md-1">
                         @if($in_stock_state[$product->id] == 1)
 
@@ -108,6 +108,13 @@ $(function(){
         let result = change_total_price_per_item(quantity_new_value,price_per_item);
         //change the total price per item by display the result in total column
         $(this).parent().next().next().html(`<strong>`+'$'+result+`</strong>`);
+        /*call function get_total_price_for_shopping_cart_before_coupon to get the
+             total price of the shopping cart before coupon
+        */
+        let result_of_total_items_in_shopping_cart = get_total_price_for_shopping_cart_before_coupon();
+        //add the result of get_total_price_for_shopping_cart_before_coupon to the shopping cart and display it
+        let total_price_before_coupon = $('tbody').find('#total_price_before_coupon').eq(0).html(`<h5>`+`<strong>`+'$'+result_of_total_items_in_shopping_cart+`</strong>`+`</h5>`);
+        
        
     });
     /***
@@ -127,7 +134,25 @@ $(function(){
 
         }
     }
+    /**
+        function to calculate total price for all shopping cart before use coupons
+     */
+    get_total_price_for_shopping_cart_before_coupon = function(){
 
+
+        let total_result = 0; //variable before calculate total items
+        let all_items_price = $('tbody').find('#total_item_price');//get all total price per item
+        let length_of_all_items_price = all_items_price.length; // get length of total price per item
+        for(let i = 0 ; i <length_of_all_items_price ; i++ ){
+           
+            let item_total = all_items_price.eq(i).text();
+            let item_total_number= parseFloat($.trim(item_total.replace('$','')));//convert value to float
+            total_result = total_result + item_total_number;
+         
+        }
+       
+        return total_result; //return the total
+    }
 });
 
 </script>
