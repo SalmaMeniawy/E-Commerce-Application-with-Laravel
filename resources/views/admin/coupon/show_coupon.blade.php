@@ -24,7 +24,7 @@
                     				Price : {{$coupon->coupon_price}}
                     			</li>
 								<li class="list-group-item">
-									Craeted by : {{$admin->fname}}
+									Craeted by : {{$coupon->admin->fname}}
 								</li>
              				 	<li class="list-group-item">
                         			Created at : {{$coupon->created_at}}    
