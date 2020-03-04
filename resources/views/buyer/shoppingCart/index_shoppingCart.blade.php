@@ -33,9 +33,9 @@
                             </div>
                            
                         </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                        <td class="col-sm-1 col-md-1" style="text-align: center" id="quantity-td">
                         
-                        <input type="email" class="form-control" id="quantity" value="{{$product_quantity[$product->id]}}">
+                        <input type="number" class="form-control" id="quantity" value="{{$product_quantity[$product->id]}}">
 
                         </td>
                         <td class="col-sm-1 col-md-1 text-center" id="price"><strong>${{$product->price}}</strong></td>
@@ -97,118 +97,38 @@
 </div>
 <script type="text/javascript" src="/js/app.js"></script>
 <script type="text/javascript">
+$(function(){
+    /***
+        craete event when change the quantity field in the shopping cart
+     */
+    $("tr").on("change","#quantity",function(event){
+      
+        let quantity_new_value = $(this).val();
+        let price_per_item = $(this).parent().next().text();
+        let result = change_total_price_per_item(quantity_new_value,price_per_item);
+        //change the total price per item by display the result in total column
+        $(this).parent().next().next().html(`<strong>`+'$'+result+`</strong>`);
+       
+    });
+    /***
+        function that take quantity and price and return the multiplication of them
+        that mean the total price per item 
+     */
+    change_total_price_per_item = function(quantity , price){
+       
+        let myQuantity = parseInt(quantity);
+        let  myPrice = parseFloat($.trim(price.replace('$','')));
+       
+        let result = (myQuantity * myPrice);
+        if(parseInt(result) === result){
+            return (result);
+        }else{
+            return (result.toFixed(2));
 
+        }
+    }
 
-//    $(function(){
-    //    $("form").bind("submit",function(event){
-    //         event.preventDefault();
-    //         swal("hello");
-    //         // swal("re you sure you want to remove item ?",{
-    //         //     buttons:{
-    //         //         cancel : "cancel",
-    //         //         delete : {
-    //         //             text : "yes",
-    //         //             value: "yes",}
-    //         //     }
-    //         // }).then(function(value){
-    //         //     console.log(value);
-    //         // });
-    //    });
-//        $("form > button").bind("click",function(){
-//         swal("Are you sure you want to remove item ? ", {
-//                     buttons: {
-//                        cancel : "cancel",
-//                        delete :{
-//                         text : "Yes",
-//                         value: "yes",
-//                          },
-                      
-//                     },
-                    
-//                     });
-//                     // .then(function(value){
-//                     //     if(value == "yes"){
-//                     //         $(this).unbind("click");
-//                     //         $("form > button").trigger("click");
-//                     //     }
-//                     // });
-//        });
-//     //    let myForm = $("form");
-//     //    $("form").bind("click",function(){
-//         // swal("Are you sure you want to remove item ? ", {
-//         //             buttons: {
-//         //                cancel : "cancel",
-//         //                delete :{
-//         //                 text : "Yes",
-//         //                 value: "yes",
-//         //                },
-                      
-//         //             },
-                    
-//                     // }).then(function(value){
-//                     //     if(value == "yes"){
-//                     //         // myForm.trigger("submit").submit();
-//                     //       myForm.unbind("click");
-//                     //     //   $("form > button").trigger("click");
-                            
-//                     //         // myForm.toggle("submit").submit();
-//                     //         // mySwal.hide();
-                        
-//                     //     }else{
-//                     //         return;
-//                     //     }
-//     //    });
-//     //    let myForm = $("form");
-//     //    myForm.one("submit",function(event){
-//     //        let myEvent = event;   
-//     //        myEvent.preventDefault();
-//     //       var mySwal= swal("Are you sure you want to remove item ? ", {
-//     //                 buttons: {
-//     //                    cancel : "cancel",
-//     //                    delete :{
-//     //                     text : "Yes",
-//     //                     value: "yes",
-//     //                    },
-                      
-//     //                 },
-                    
-//     //                 }).then(function(value){
-//     //                     if(value == "yes"){
-//     //                         // myForm.trigger("submit").submit();
-                          
-                            
-//     //                         myForm.toggle("submit").submit();
-//     //                         // mySwal.hide();
-                        
-//     //                     }else{
-//     //                         return;
-//     //                     }
-//     //                 });
+});
 
-//     //    });
-// //   let removeItemButton = function(event){
-// //     let myEvent = event;
-// //     myEvent.preventDefault();
-// //     swal("Are you sure you want to remove item ? ", {
-// //                     buttons: {
-// //                        cancel : "cancel",
-// //                        delete :{
-// //                         text : "Yes",
-// //                         value: "yes",
-// //                        },
-                      
-// //                     },
-                    
-// //                     }).then(function(value){
-// //                         if(value != "yes"){
-// //                             return;
-// //                         }
-// //                     }
-// //     $(this).unbind(myEvent);
-
-// //   };
-// //   let myForm = $("form");
-// //   myForm.bind("submit",removeItemButton);
-//    });
 </script>
 @endsection
