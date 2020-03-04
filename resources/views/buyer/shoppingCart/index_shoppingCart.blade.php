@@ -35,11 +35,11 @@
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
                         
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="{{$product_quantity[$product->id]}}">
+                        <input type="email" class="form-control" id="quantity" value="{{$product_quantity[$product->id]}}">
 
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>${{$product->price}}</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>${{$calculation_item_price[$product->id]}}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center" id="price"><strong>${{$product->price}}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center" id="total_item_price"><strong>${{$calculation_item_price[$product->id]}}</strong></td>
                         <td class="col-sm-1 col-md-1">
                         @if($in_stock_state[$product->id] == 1)
 
@@ -97,29 +97,118 @@
 </div>
 <script type="text/javascript" src="/js/app.js"></script>
 <script type="text/javascript">
-   $(function(){
-   let removeButton =  $("form").on("submit",function(event){
-                event.preventDefault();
-                let myEvent = event;
-                swal("Are you sure you want to remove item ? ", {
-                    buttons: {
-                       cancel : "cancel",
-                       delete :{
-                        text : "Yes",
-                        value: "yes",
-                       },
+
+
+//    $(function(){
+    //    $("form").bind("submit",function(event){
+    //         event.preventDefault();
+    //         swal("hello");
+    //         // swal("re you sure you want to remove item ?",{
+    //         //     buttons:{
+    //         //         cancel : "cancel",
+    //         //         delete : {
+    //         //             text : "yes",
+    //         //             value: "yes",}
+    //         //     }
+    //         // }).then(function(value){
+    //         //     console.log(value);
+    //         // });
+    //    });
+//        $("form > button").bind("click",function(){
+//         swal("Are you sure you want to remove item ? ", {
+//                     buttons: {
+//                        cancel : "cancel",
+//                        delete :{
+//                         text : "Yes",
+//                         value: "yes",
+//                          },
                       
-                    },
+//                     },
                     
-                    }).then(function(value){
-                        if(value == "yes"){
-                                removeButton.off();          
-                                $("form").trigger("submit");
-                                console.log(myEvent);
+//                     });
+//                     // .then(function(value){
+//                     //     if(value == "yes"){
+//                     //         $(this).unbind("click");
+//                     //         $("form > button").trigger("click");
+//                     //     }
+//                     // });
+//        });
+//     //    let myForm = $("form");
+//     //    $("form").bind("click",function(){
+//         // swal("Are you sure you want to remove item ? ", {
+//         //             buttons: {
+//         //                cancel : "cancel",
+//         //                delete :{
+//         //                 text : "Yes",
+//         //                 value: "yes",
+//         //                },
+                      
+//         //             },
+                    
+//                     // }).then(function(value){
+//                     //     if(value == "yes"){
+//                     //         // myForm.trigger("submit").submit();
+//                     //       myForm.unbind("click");
+//                     //     //   $("form > button").trigger("click");
                             
-                        }
-                    });
-        });
-   });
+//                     //         // myForm.toggle("submit").submit();
+//                     //         // mySwal.hide();
+                        
+//                     //     }else{
+//                     //         return;
+//                     //     }
+//     //    });
+//     //    let myForm = $("form");
+//     //    myForm.one("submit",function(event){
+//     //        let myEvent = event;   
+//     //        myEvent.preventDefault();
+//     //       var mySwal= swal("Are you sure you want to remove item ? ", {
+//     //                 buttons: {
+//     //                    cancel : "cancel",
+//     //                    delete :{
+//     //                     text : "Yes",
+//     //                     value: "yes",
+//     //                    },
+                      
+//     //                 },
+                    
+//     //                 }).then(function(value){
+//     //                     if(value == "yes"){
+//     //                         // myForm.trigger("submit").submit();
+                          
+                            
+//     //                         myForm.toggle("submit").submit();
+//     //                         // mySwal.hide();
+                        
+//     //                     }else{
+//     //                         return;
+//     //                     }
+//     //                 });
+
+//     //    });
+// //   let removeItemButton = function(event){
+// //     let myEvent = event;
+// //     myEvent.preventDefault();
+// //     swal("Are you sure you want to remove item ? ", {
+// //                     buttons: {
+// //                        cancel : "cancel",
+// //                        delete :{
+// //                         text : "Yes",
+// //                         value: "yes",
+// //                        },
+                      
+// //                     },
+                    
+// //                     }).then(function(value){
+// //                         if(value != "yes"){
+// //                             return;
+// //                         }
+// //                     }
+// //     $(this).unbind(myEvent);
+
+// //   };
+// //   let myForm = $("form");
+// //   myForm.bind("submit",removeItemButton);
+//    });
 </script>
 @endsection
