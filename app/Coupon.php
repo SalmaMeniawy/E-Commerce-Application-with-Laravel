@@ -43,4 +43,15 @@ class Coupon extends Model
     public static function get_persentage($float_value_for_coupon_from_user){
         return round((float)$float_value_for_coupon_from_user * 100)."%";
     }
+    /**
+     * get_coupon_by_hash function to get coupon by hash from DB
+     */
+    public static function get_coupon_by_hash($coupon_hash){
+        $coupon = Coupon::where("hash_id",$coupon_hash)->get()->first();
+        if(isset($coupon)){
+            return $coupon;
+        }else{
+            return false;
+        }
+    }
 }
