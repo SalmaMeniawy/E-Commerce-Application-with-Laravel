@@ -160,4 +160,11 @@ class BuyerController extends Controller
     {
         //
     }
+    /**
+     * function to get coupon by hash depending on method in Coupon model
+     * and it just use it
+     */
+    public function get_coupon_to_buyer($coupon_hash){
+        return Coupon::get_coupon_by_hash($coupon_hash);
+    }
 }
