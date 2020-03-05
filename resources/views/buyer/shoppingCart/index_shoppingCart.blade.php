@@ -66,7 +66,7 @@
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Estimated shipping</h5>
+                        <td><h5>Coupon Value</h5>
                         </td>
                         <td class="text-right" id="coupon_price_with_total">
                         <input name="coupon_hash" id="coupon_hash" type="text" value="">
@@ -77,7 +77,7 @@
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                        <td class="text-right" id="total_price"><h3><strong>$0</strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>
@@ -166,13 +166,49 @@ $(function(){
         function to get the coupon hash from buyer and start proceses on it
      */
     get_coupon_hash_from_buyer = function(){
-        let coupon_input = $("#coupon_hash");
-        if(coupon_input.val()){
-            coupon_hash = coupon_input.val();
-            console.log( coupon_hash);
+        let coupon_input = $("#coupon_hash"); //get coupon hash from user
+        //total price for subtotal
+        var total_price_before_coupon = parseFloat($.trim($("#total_price_before_coupon").text().replace('$','')));
+        if(coupon_input.val()){ //check if the input of hash has value
+            coupon_hash = coupon_input.val(); //get hash input value
+            let req = $.ajax({ //start to hit route buyerCoupon with value to get coupon of the buyer
+                "url":"buyerCoupon/"+coupon_hash,
+                "dataType":"json",
+            });
+            //after connect and get data
+            req.done(function(data){
+        
+              if(!false || !null){
+                let persentage = data.coupon_persentage; //get persentage value from the coupon 
+                //get coupon_persentage_value_from_subtotal and convert it to float
+                let coupon_persentage_value_from_subtotal = (persentage *total_price_before_coupon).toFixed(2);
+                //display coupon_persentage_value_from_subtotal
+                $("#coupon_hash_value").html("<strong>"+"$"+coupon_persentage_value_from_subtotal+"</strong>");
+                //remove the value of coupon from total and display it
+                let total_price_after_coupon = (total_price_before_coupon - coupon_persentage_value_from_subtotal).toFixed(2);
+                $("#total_price").html("<strong>"+"$"+total_price_after_coupon+"</strong>");
+                
+              }
+            });
+            /**
+                control the fails of connection by ajax
+             */
+            req.fail(function(fail){
+                swal("Invalid Code for Coupon!", {
+                    icon: 'error',
+                    title: 'Oops...',
+                    buttons: {
+                       ok : "Ok",      
+                    },
+                    
+                 })
+            });
+           
+            
         }
         
     }
+   
 });
 
 </script>
