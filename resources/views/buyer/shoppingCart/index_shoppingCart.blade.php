@@ -124,7 +124,8 @@ $(function(){
         let result_of_total_items_in_shopping_cart = get_total_price_for_shopping_cart_before_coupon();
         //add the result of get_total_price_for_shopping_cart_before_coupon to the shopping cart and display it
         let total_price_before_coupon = $('tbody').find('#total_price_before_coupon').eq(0).html(`<h5>`+`<strong>`+'$'+result_of_total_items_in_shopping_cart+`</strong>`+`</h5>`);
-       
+        $("#total_price").html("<h3><strong>"+"$"+result_of_total_items_in_shopping_cart+"</strong></h3>")
+        get_coupon_hash_from_buyer();//to recalculate total and coupon
     });
     /***
         function that take quantity and price and return the multiplication of them
