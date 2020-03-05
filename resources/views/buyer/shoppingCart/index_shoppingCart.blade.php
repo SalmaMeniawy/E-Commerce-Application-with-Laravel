@@ -77,7 +77,7 @@
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right" id="total_price"><h3><strong>$0</strong></h3></td>
+                        <td class="text-right" id="total_price"><h3><strong>${{$total_price_for_shopping_cart}}</strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>
@@ -185,7 +185,7 @@ $(function(){
                 $("#coupon_hash_value").html("<strong>"+"$"+coupon_persentage_value_from_subtotal+"</strong>");
                 //remove the value of coupon from total and display it
                 let total_price_after_coupon = (total_price_before_coupon - coupon_persentage_value_from_subtotal).toFixed(2);
-                $("#total_price").html("<strong>"+"$"+total_price_after_coupon+"</strong>");
+                $("#total_price").html("<h3><strong>"+"$"+total_price_after_coupon+"</strong></h3>");
                 
               
             });
