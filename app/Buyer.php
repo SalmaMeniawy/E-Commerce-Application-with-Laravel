@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\ShoppingCart;
 use App\BuyerCategory;
+use App\Coupon;
 class Buyer extends Model
 {
     protected $fillable = ['fname','lname','date_of_birth' 
