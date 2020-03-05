@@ -178,7 +178,6 @@ $(function(){
             //after connect and get data
             req.done(function(data){
         
-              if(!false || !null){
                 let persentage = data.coupon_persentage; //get persentage value from the coupon 
                 //get coupon_persentage_value_from_subtotal and convert it to float
                 let coupon_persentage_value_from_subtotal = (persentage *total_price_before_coupon).toFixed(2);
@@ -188,7 +187,7 @@ $(function(){
                 let total_price_after_coupon = (total_price_before_coupon - coupon_persentage_value_from_subtotal).toFixed(2);
                 $("#total_price").html("<strong>"+"$"+total_price_after_coupon+"</strong>");
                 
-              }
+              
             });
             /**
                 control the fails of connection by ajax
