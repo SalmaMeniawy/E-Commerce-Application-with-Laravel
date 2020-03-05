@@ -161,10 +161,15 @@ class BuyerController extends Controller
         //
     }
     /**
-     * function to get coupon by hash depending on method in Coupon model
-     * and it just use it
+     * function to get coupon by hash from the eloquent relation
      */
     public function get_coupon_to_buyer($coupon_hash){
-        return Coupon::get_coupon_by_hash($coupon_hash);
+        $buyer = Buyer::where("user_id",auth()->id())->get()->first();
+        $coupon = $buyer->coupon->where('hash_id',$coupon_hash)->get()->first();
+        if(isset($coupon)){
+            return $coupon;
+        }else{
+            return false;
+        }
     }
 }
