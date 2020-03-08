@@ -146,21 +146,23 @@ $(function(){
             "quantity" : final_quantity,
             "products" : final_products,
         }
-        console.log("hello");
+        // console.log(data.quantity);
         let req = $.ajax({
             "url":"shoppingCart/"+shoppingCart_id,
             "type" : "PUT",
             "dataType" : "json",
             "data" : data,
         }).done(function(data){
-            console.log(data);
+            // console.log(data);
             console.log("it is work");
         });
         req.fail(function(err){
-            console.log(err);
+            console.log(err.statusText);
         })
     }
-    $(document).ready("change",saveAllShoppingCartAfterChange());
+    $(document).ready(function(){
+        $(window).on("unload",saveAllShoppingCartAfterChange());
+    })
 
    
 });
