@@ -116,7 +116,7 @@ $(function(){
         let final_quantity = [];
         get_quantity_from_view.each(function(){
             final_quantity.push($(this).val());
-            console.log($(this).val());
+            // console.log($(this).val());
         });
         return final_quantity;
     }
@@ -124,10 +124,20 @@ $(function(){
         let shoppingCart_id = $("#shoppingCart_id").val() ;
         return shoppingCart_id;
     }
+    let get_products_id = function(){
+        let get_all_products_from_view = $("tbody").find("#product_id");
+        let final_products = [];
+        get_all_products_from_view.each(function(){
+            final_products.push($(this).val());
+        });
+        return final_products;
+    }
     let saveAllShoppingCartAfterChange = function(event){
         //get shopping cart ID from hidden input in view
         let shoppingCart_id = get_shoppingCart_id();
         let final_quantity = get_all_quantity();
+        let final_products = get_products_id();
+        // console.log(all_products);
         console.log("hello");
         let req = $.ajax({
             "url":"shoppingCart/"+shoppingCart_id,
