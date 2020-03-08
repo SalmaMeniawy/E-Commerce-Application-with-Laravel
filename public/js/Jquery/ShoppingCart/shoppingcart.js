@@ -146,23 +146,24 @@ $(function(){
             "quantity" : final_quantity,
             "products" : final_products,
         }
-        // console.log(data.quantity);
         let req = $.ajax({
             "url":"shoppingCart/"+shoppingCart_id,
             "type" : "PUT",
             "dataType" : "json",
             "data" : data,
-        }).done(function(data){
-            // console.log(data);
-            console.log("it is work");
         });
-        req.fail(function(err){
-            console.log(err.statusText);
-        })
+       
     }
-    $(document).ready(function(){
-        $(window).on("unload",saveAllShoppingCartAfterChange());
-    })
+    /**
+     * create event to fire unload event when any change happen in the 
+     * document
+     */
+    $(document).ready(function(e){
+        $(document).on("change",function(){
+            $(window).on("unload",saveAllShoppingCartAfterChange());
+
+        });
+    });
 
    
 });
