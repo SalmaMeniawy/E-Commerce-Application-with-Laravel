@@ -126,7 +126,7 @@ $(function(){
     }
     let saveAllShoppingCartAfterChange = function(event){
         //get shopping cart ID from hidden input in view
-        let shoppingCart_id = $("#shoppingCart_id").val() ;
+        let shoppingCart_id = get_shoppingCart_id();
         let final_quantity = get_all_quantity();
         console.log("hello");
         let req = $.ajax({
