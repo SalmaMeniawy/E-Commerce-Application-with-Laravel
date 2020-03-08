@@ -158,12 +158,14 @@ $(function(){
      * create event to fire unload event when any change happen in the 
      * document
      */
-    $(document).ready(function(e){
-        $(document).on("change",function(){
-            $(window).on("unload",saveAllShoppingCartAfterChange());
 
+    $(document).ready(function(){
+        
+        $(window).on('beforeunload', function(e){
+            saveAllShoppingCartAfterChange();
         });
+      
+       
     });
-
    
 });
