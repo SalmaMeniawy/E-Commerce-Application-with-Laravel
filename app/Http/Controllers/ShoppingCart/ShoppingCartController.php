@@ -136,29 +136,21 @@ class ShoppingCartController extends Controller
     public function update(Request $request, $shopping_cart_id)
     {
         $shoppingCart = ShoppingCart::findOrFail($shopping_cart_id);
-        
-
         $final_quantity = $request->quantity;
         $final_products = $request->products;
         $product_quantity = [];
-        
-        foreach($final_quantity as $quantity){
-            foreach($final_products as $product){
-                $product_quantity[$product] = $quantity;
-            };
-        };
-        $product_quantity_in_json = \json_encode($product_quantity);
-        $shoppingCart->product_quantity = $product_quantity_in_json;
-        $shoppingCart->save();  
-        // error_log($final_quantity);
-        // for($i = 0 ; i<sizeof($final_products)&& i <sizeof($final_quantity);$i ++){
-
-        // } 
-        // $product_quantity[$final_products] = 
-        // $shoppingCart->product_quantity = 
-    
        
+        if(\sizeof($final_products) === \sizeof($final_quantity)){
+            for($i =0 ; $i < \sizeof($final_quantity);$i ++){
+                $product_quantity [$final_products[$i]] = $final_quantity[$i];
+            }
+          
+            $shoppingCart->product_quantity = \json_encode($product_quantity);
+            $shoppingCart->save();  
+            $shoppingCart->products()->sync(json_encode($final_products));
 
+        }
+       
     }
 
     /**
