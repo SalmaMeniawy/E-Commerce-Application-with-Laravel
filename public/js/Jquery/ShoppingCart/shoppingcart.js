@@ -116,14 +116,19 @@ $(function(){
         let final_quantity = [];
         get_quantity_from_view.each(function(){
             final_quantity.push($(this).val());
-            // console.log($(this).val());
         });
         return final_quantity;
     }
+    /**
+     * function to get shopping cart from the view
+     */
     let get_shoppingCart_id = function(){
         let shoppingCart_id = $("#shoppingCart_id").val() ;
         return shoppingCart_id;
     }
+    /**
+     * function to get all products ID in the view
+     */
     let get_products_id = function(){
         let get_all_products_from_view = $("tbody").find("#product_id");
         let final_products = [];
@@ -135,9 +140,8 @@ $(function(){
     let saveAllShoppingCartAfterChange = function(event){
         //get shopping cart ID from hidden input in view
         let shoppingCart_id = get_shoppingCart_id();
-        let final_quantity = get_all_quantity();
-        let final_products = get_products_id();
-        // console.log(all_products);
+        let final_quantity = get_all_quantity(); //get final quantity in the view
+        let final_products = get_products_id(); //get final products ID in the view
         console.log("hello");
         let req = $.ajax({
             "url":"shoppingCart/"+shoppingCart_id,
