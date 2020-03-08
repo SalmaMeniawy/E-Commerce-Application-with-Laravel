@@ -118,6 +118,7 @@ $(function(){
             final_quantity.push($(this).val());
             console.log($(this).val());
         });
+        return final_quantity;
     }
     let get_shoppingCart_id = function(){
         let shoppingCart_id = $("#shoppingCart_id").val() ;
