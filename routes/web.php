@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function(){
         Route::group([],function(){
             Route::get('shCart/{product_id}','ShoppingCart\ShoppingCartController@add_to_shopping_cart')->name('addShopCart');
             Route::delete('shoppingCart/{id}','ShoppingCart\ShoppingCartController@destroy')->name('shoppingcart.destroy');
+            Route::put('shoppingCart/{shopping_cart_id}','ShoppingCart\ShoppingCartController@update')->name('shoppingcart.update');
         });
         Route::group([],function(){
             Route::get('coupon','Buyer\BuyerController@get_coupon_details')->name('buyer.coupon');
