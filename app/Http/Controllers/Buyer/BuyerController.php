@@ -67,6 +67,7 @@ class BuyerController extends Controller
     public function get_shopping_cart_details(){
         $buyer = Buyer::all()->where('user_id',auth()->id())->first();
         $shoppingCart = $buyer->shopping_cart;
+        $shoppingCart_id = $shoppingCart->id;
         $product_quantity = json_decode($shoppingCart->product_quantity,true);
         if(isset($product_quantity)){
                 $products_ids = array_keys($product_quantity);
@@ -79,7 +80,8 @@ class BuyerController extends Controller
                ->with('product_quantity',$product_quantity)
                ->with('calculation_item_price',$calculation_result_for_item_price)
                ->with('in_stock_state',$in_stock_result)
-               ->with('total_price_for_shopping_cart',$total_price_for_shopping_cart);
+               ->with('total_price_for_shopping_cart',$total_price_for_shopping_cart)
+               ->with('shoppingCart_id',$shoppingCart_id);
         }else{
             return view('buyer.shoppingCart.empty_shopping_cart')
             ->with('empty_shopping_cart',"the shopping cart is empty");
