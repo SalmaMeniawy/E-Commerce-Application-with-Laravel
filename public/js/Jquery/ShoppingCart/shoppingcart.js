@@ -142,10 +142,15 @@ $(function(){
         let shoppingCart_id = get_shoppingCart_id();
         let final_quantity = get_all_quantity(); //get final quantity in the view
         let final_products = get_products_id(); //get final products ID in the view
+        let data = {
+            "quantity" : final_quantity,
+            "products" : final_products,
+        }
         console.log("hello");
         let req = $.ajax({
             "url":"shoppingCart/"+shoppingCart_id,
             "type" : "PUT",
+           
         }).done(function(data){
             console.log(data);
             console.log("it is work");
