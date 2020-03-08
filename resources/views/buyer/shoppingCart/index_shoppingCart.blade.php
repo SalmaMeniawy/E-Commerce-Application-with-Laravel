@@ -6,6 +6,7 @@
 </head>
 @section('content')
 <div class="container">
+    <input class="invisible" id="shoppingCart_id" value={{$shoppingCart_id}}>
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <table class="table table-hover">
@@ -25,7 +26,7 @@
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src='{{url("/productImages",$product->image)}}' style="width: 72px; height: 72px;"> </a>
-                          
+                            <input class="invisible" id="product_id" value="{{$product->id}}">
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">{{$product->title}}</a></h4>
                                 <!-- <h5 class="media-heading"> by <a href="#">Brand name</a></h5> -->
