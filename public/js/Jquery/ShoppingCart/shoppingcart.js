@@ -119,6 +119,10 @@ $(function(){
             console.log($(this).val());
         });
     }
+    let get_shoppingCart_id = function(){
+        let shoppingCart_id = $("#shoppingCart_id").val() ;
+        return shoppingCart_id;
+    }
     let saveAllShoppingCartAfterChange = function(event){
         //get shopping cart ID from hidden input in view
         let shoppingCart_id = $("#shoppingCart_id").val() ;
