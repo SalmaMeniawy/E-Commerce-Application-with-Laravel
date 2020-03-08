@@ -107,5 +107,35 @@ $(function(){
         }
         
     }
+    /**
+     * function to get all quantity in the shopping cart
+     * and return the values in array
+     */
+    let get_all_quantity = function(){
+        let get_quantity_from_view = $("tbody").find("#quantity");
+        let final_quantity = [];
+        get_quantity_from_view.each(function(){
+            final_quantity.push($(this).val());
+            console.log($(this).val());
+        });
+    }
+    let saveAllShoppingCartAfterChange = function(event){
+        //get shopping cart ID from hidden input in view
+        let shoppingCart_id = $("#shoppingCart_id").val() ;
+       
+        console.log("hello");
+        let req = $.ajax({
+            "url":"shoppingCart/"+shoppingCart_id,
+            "type" : "PUT",
+        }).done(function(data){
+            console.log(data);
+            console.log("it is work");
+        });
+        req.fail(function(err){
+            console.log(err);
+        })
+    }
+    $(document).ready("change",saveAllShoppingCartAfterChange());
+
    
 });
