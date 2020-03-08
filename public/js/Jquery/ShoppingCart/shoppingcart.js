@@ -150,7 +150,8 @@ $(function(){
         let req = $.ajax({
             "url":"shoppingCart/"+shoppingCart_id,
             "type" : "PUT",
-           
+            "dataType" : "json",
+            "data" : data,
         }).done(function(data){
             console.log(data);
             console.log("it is work");
