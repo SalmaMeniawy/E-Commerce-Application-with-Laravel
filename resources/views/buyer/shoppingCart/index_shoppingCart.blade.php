@@ -95,7 +95,7 @@
                             
                         </td>
                         <td>
-                        <button type="button" class="btn btn-success">
+                        <button type="button" class="btn btn-success" id="checkout">
                             Checkout <span class="glyphicon glyphicon-play"></span>
                         </button></td>  
                     </tr>
