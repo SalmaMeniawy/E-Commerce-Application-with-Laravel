@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function(){
         Route::group([],function(){
             Route::get('buyerCoupon','Buyer\BuyerController@get_coupoun_details')
             ->name('buyer.coupon');
+            // Route::get('buyerCouponHash','Buyer\BuyerController@get_buyer_coupon_hash_id');
         });
         Route::get('homepage','Buyer\BuyerController@index')->name('buyer.index');
         Route::get('product/{product_id}','Buyer\BuyerController@get_product_details')->name('buyer.product.show');

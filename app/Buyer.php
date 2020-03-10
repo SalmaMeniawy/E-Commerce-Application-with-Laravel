@@ -49,6 +49,16 @@ class Buyer extends Model
        
     }
     /**
+     * static fucnction to get buyer coupon hash
+     */
+    // public static function get_buyer_coupon_hash(){
+    //     $buyer = Buyer::where('user_id',auth()->id())->get()->first();
+    //     if(isset($buyer->coupon->hash_id)){
+    //         return $buyer->coupon->hash_id;
+    //     }
+
+    // }
+    /**
      * function to decrese the number of usage for coupon 
      * when buyer use it
      */

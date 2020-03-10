@@ -154,6 +154,32 @@ $(function(){
         });
        
     }
+
+    // let get_hash_of_buyer_from_db = function(){
+    //     let req = $.ajax({
+    //         "url":"buyerCouponHash",
+    //         "type":"GET",
+    //         "dataType" : "text",
+    //     });
+       
+    //     req.done(function(data){
+    //         // return compare_hash_input_for_coupon_and_hash_of_buyer(data);  
+    //     });
+    //     console.log(req);
+    //     // let compare_hash_input_for_coupon_and_hash_of_buyer=function(coupon_hash_buyer){
+    //     //     let coupoun_hash_input = $("#coupon_hash").val();
+    //     //     let coupon_hash_buyer_value = coupon_hash_buyer;
+    //     //     if(coupon_hash_buyer_value == coupoun_hash_input){
+    //     //         return true;
+    //     //         console.log("true0");
+    //     //     }else{
+    //     //         return false;
+    //     //     }
+    //     // }
+        
+    // }
+    
+
     /**
      * function that contain Ajax to call route decreaseCouponUsage 
      * to decrease the coupon_uses_number if it available
@@ -169,12 +195,13 @@ $(function(){
                 swal({
                     icon: 'error',
                     title: 'Oops...',
-                    text: "Your Coupon is not valid!!",
+                    text: "number of usage or lifeTime for your Coupon is Expired!!",
                   });
             }
         });
        
     }
+    
     /**
      * create event to fire unload event when any change happen in the 
      * document
@@ -188,7 +215,7 @@ $(function(){
         let checkout = $("#checkout"); //get object element for checkout button
         //create event on the checkout button to fire on click decrease_coupon_uses_number_for_buyer
         checkout.on("click",decrease_coupon_uses_number_for_buyer);
-       
+        get_hash_of_buyer_from_db();
     });
    
 });
