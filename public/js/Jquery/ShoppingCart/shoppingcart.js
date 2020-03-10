@@ -155,6 +155,27 @@ $(function(){
        
     }
     /**
+     * function that contain Ajax to call route decreaseCouponUsage 
+     * to decrease the coupon_uses_number if it available
+     */
+    let decrease_coupon_uses_number_for_buyer = function(){
+        let req = $.ajax({
+            "url" : "decreaseCouponUsage",
+            "type" : "GET",
+        });
+        req.done(function(data){
+          
+            if(data == 1){
+                swal({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "Your Coupon is not valid!!",
+                  });
+            }
+        });
+       
+    }
+    /**
      * create event to fire unload event when any change happen in the 
      * document
      */
@@ -164,7 +185,9 @@ $(function(){
         $(window).on('beforeunload', function(e){
             saveAllShoppingCartAfterChange();
         });
-      
+        let checkout = $("#checkout"); //get object element for checkout button
+        //create event on the checkout button to fire on click decrease_coupon_uses_number_for_buyer
+        checkout.on("click",decrease_coupon_uses_number_for_buyer);
        
     });
    
