@@ -134,7 +134,8 @@ class BuyerController extends Controller
      * if the coupon valid 
      */
     public function decrease_coupon_uses_number_for_buyer(){
-        Buyer::check_coupon_uses_number();
+        $result = Buyer::decrease_coupon_uses_number();
+      //I need to display alert if the Coupon not valid for user 'buyer'
     }
     /**
      * Show the form for editing the specified resource.

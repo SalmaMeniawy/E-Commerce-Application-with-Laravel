@@ -40,9 +40,11 @@ class Buyer extends Model
                 $checkTime = $buyer->coupon->check_lifeTime_for_coupon($buyer->coupon);
                  if(isset($checkTime)){
                      return $buyer;
+                 }else{
+                     return null;
                  }
              }else{
-                 return false;
+                 return null;
              }     
        
     }
