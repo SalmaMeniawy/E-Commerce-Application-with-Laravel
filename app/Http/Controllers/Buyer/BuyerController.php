@@ -129,6 +129,13 @@ class BuyerController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+     /**
+     * function to decrease the coupon_uses_number for each buyer 
+     * if the coupon valid 
+     */
+    public function decrease_coupon_uses_number_for_buyer(){
+        Buyer::check_coupon_uses_number();
+    }
     /**
      * Show the form for editing the specified resource.
      *
