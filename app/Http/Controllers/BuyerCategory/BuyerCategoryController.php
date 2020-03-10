@@ -79,7 +79,14 @@ class BuyerCategoryController extends Controller
     {
         //
     }
+    /**
+     * function to decrease the coupon_uses_number for each buyer 
+     * if the coupon valid 
+     */
+    public function decrease_coupon_uses_number_for_buyer(){
 
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
