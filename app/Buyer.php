@@ -35,11 +35,16 @@ class Buyer extends Model
      */
     public static function check_coupon_uses_number(){
         $buyer = Buyer::where('user_id',auth()->id())->get()->first();
-        if($buyer->coupon_uses_number > 0){
-            return $buyer;
-        }else{
-            return false;
-        }
+            if($buyer->coupon_uses_number > 0){
+                //use method in coupon model to check the lifetime  for coupon
+                $checkTime = $buyer->coupon->check_lifeTime_for_coupon($buyer->coupon);
+                 if(isset($checkTime)){
+                     return $buyer;
+                 }
+             }else{
+                 return false;
+             }     
        
     }
+    // public static 
 }
