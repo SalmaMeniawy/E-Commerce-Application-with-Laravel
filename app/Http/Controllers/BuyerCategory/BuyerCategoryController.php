@@ -5,6 +5,7 @@ namespace App\Http\Controllers\BuyerCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\BuyerCategory;
+use App\Buyer;
 
 class BuyerCategoryController extends Controller
 {
@@ -79,14 +80,7 @@ class BuyerCategoryController extends Controller
     {
         //
     }
-    /**
-     * function to decrease the coupon_uses_number for each buyer 
-     * if the coupon valid 
-     */
-    public function decrease_coupon_uses_number_for_buyer(){
-
-    }
-    
+   
     /**
      * Remove the specified resource from storage.
      *
