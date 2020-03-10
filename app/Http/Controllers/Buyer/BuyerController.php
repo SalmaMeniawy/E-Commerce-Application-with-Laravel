@@ -135,7 +135,10 @@ class BuyerController extends Controller
      */
     public function decrease_coupon_uses_number_for_buyer(){
         $result = Buyer::decrease_coupon_uses_number();
-      //I need to display alert if the Coupon not valid for user 'buyer'
+        if(!$result){
+            return "1"; 
+            //return "1" if the any return null or false to form the user that the couponnot valid
+        }
     }
     /**
      * Show the form for editing the specified resource.
