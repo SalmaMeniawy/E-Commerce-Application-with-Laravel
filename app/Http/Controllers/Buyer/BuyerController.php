@@ -106,6 +106,9 @@ class BuyerController extends Controller
                 return view('buyer.buyerCoupon.show_buyer_coupon')->with('buyer',$buyer)
                   ->with('buyer_coupon',$buyer_coupon)
                   ->with('buyer_coupon_persentage',$buyer_coupon_persentage);
+              }else{
+                return view('buyer.buyerCoupon.unavailable_coupon')
+                ->with('notfound_coupon',"there is no available Coupons");
               }
         }//buyer doesn 't have coupon
         else{
@@ -185,4 +188,11 @@ class BuyerController extends Controller
             return false;
         }
     }
+    /**
+     * function get_buyer_coupon_hash_id that call static function in Buyer 
+     * model to  get_buyer_coupon_hash and return it
+     */
+    // public function get_buyer_coupon_hash_id(){
+    //     return Buyer::get_buyer_coupon_hash();
+    // }
 }
