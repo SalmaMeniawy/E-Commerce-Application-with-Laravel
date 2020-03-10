@@ -46,5 +46,20 @@ class Buyer extends Model
              }     
        
     }
-    // public static 
+    /**
+     * function to decrese the number of usage for coupon 
+     * when buyer use it
+     */
+   public static function decrease_coupon_uses_number(){
+        $buyer = self::check_coupon_uses_number();
+        if(isset($buyer)){
+            $buyer->coupon_uses_number =  $buyer->coupon_uses_number - 1;
+            $buyer->save();
+            return true;
+        }else{
+            return false;
+        }
+      
+
+   }
 }
