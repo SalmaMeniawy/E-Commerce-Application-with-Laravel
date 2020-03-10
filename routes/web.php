@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function(){
             Route::get('coupon','Buyer\BuyerController@get_coupon_details')->name('buyer.coupon');
             //for get coupon by hash
             Route::get('buyerCoupon/{coupon_hash}','Buyer\BuyerController@get_coupon_to_buyer')->name('buyerCouponByHash');
-            Route::get('checkUsageOfCoupon','Buyer\BuyerController@decrease_coupon_uses_number_for_buyer');
+            Route::get('decreaseCouponUsage','Buyer\BuyerController@decrease_coupon_uses_number_for_buyer');
         });
         Route::group([],function(){
             Route::get('buyerCoupon','Buyer\BuyerController@get_coupoun_details')
