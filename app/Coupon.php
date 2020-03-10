@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Admin;
 use App\Buyer;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+
 class Coupon extends Model
 {
     protected $fillable = [
@@ -21,7 +23,17 @@ class Coupon extends Model
     public function buyers(){
         return $this->hasMany(Buyer::class);
     }
- 
+    /**
+     * fucntion to check if the lifeTime for coupon is available or no
+     */
+    public  function check_lifeTime_for_coupon($coupon){
+        $time = Carbon::parse($coupon->lifetime);
+        if($time > now()){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
     /***
      * function to generate new hash_id for each coupon
      * when create it
