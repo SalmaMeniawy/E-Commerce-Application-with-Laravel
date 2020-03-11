@@ -29,11 +29,11 @@ class Coupon extends Model
     public  function check_lifeTime_for_coupon($coupon){
         $lifeTime = Carbon::parse($coupon->lifetime);
         if($lifeTime > now()){
-            return TRUE;
+            return true;
         }else{
             $coupon->validate_state = 0;
             $coupon->save();
-            return FALSE;
+            return false;
         }
     }
     /***
