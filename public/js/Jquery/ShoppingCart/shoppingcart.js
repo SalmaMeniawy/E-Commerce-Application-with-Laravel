@@ -86,6 +86,18 @@ $(function(){
         });
         return final_products;
     }
+    /**
+     * 
+     * function to get the final total price in Shopping cart
+     */
+    let get_total_price = function(){
+        let total_price = $("#total_price").val();
+        return total_price;
+    }
+    /**
+     * 
+     * function that save all changes of shopping cart
+     */
     let saveAllShoppingCartAfterChange = function(event){
         //get shopping cart ID from hidden input in view
         let shoppingCart_id = get_shoppingCart_id();
@@ -103,7 +115,14 @@ $(function(){
         });
        
     }
+    let send_shopping_cart_data_to_submit_order_view = function(){
+        let final_products = get_products_id();//get products ID by call get_products_id 
+        let final_quantity = get_all_quantity();//get all quantity by call get_products_id()
+        let req = $.ajax({
+            
 
+        });
+    }
    
     /**
      * create event to fire unload event when any change happen in the 
