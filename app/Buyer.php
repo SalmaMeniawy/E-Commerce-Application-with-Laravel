@@ -38,7 +38,7 @@ class Buyer extends Model
             if($buyer->coupon_uses_number > 0){
                 //use method in coupon model to check the lifetime  for coupon
                 $checkLifeTime = $buyer->coupon->check_validation_lifeTime_for_coupon();
-                 if(isset($checkLifeTime)){
+                 if($checkLifeTime){
                      return $buyer;
                  }else{
                      return null;
