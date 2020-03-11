@@ -37,8 +37,8 @@ class Buyer extends Model
         $buyer = Buyer::where('user_id',auth()->id())->get()->first();
             if($buyer->coupon_uses_number > 0){
                 //use method in coupon model to check the lifetime  for coupon
-                $checkTime = $buyer->coupon->check_lifeTime_for_coupon($buyer->coupon);
-                 if(isset($checkTime)){
+                $checkLifeTime = $buyer->coupon->check_lifeTime_for_coupon();
+                 if(isset($checkLifeTime)){
                      return $buyer;
                  }else{
                      return null;

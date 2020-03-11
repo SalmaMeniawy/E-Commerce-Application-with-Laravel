@@ -26,7 +26,7 @@ class Coupon extends Model
     /**
      * fucntion to check if the lifeTime for coupon is available or no
      */
-    public  function check_lifeTime_for_coupon($coupon){
+    public  function check_lifeTime_for_coupon(){
         $life_time_for_coupon = Carbon::parse($this->lifetime);
         if($life_time_for_coupon > now()){
             return true;
