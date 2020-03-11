@@ -72,11 +72,7 @@
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Coupon Value</h5>
-                        </td>
-                        <td class="text-right" id="coupon_price_with_total">
-                        <input name="coupon_hash" id="coupon_hash" type="text" value="">
-                            <h5 id="coupon_hash_value"><strong>$0</strong></h5></td>
+                       
                     </tr>
                     <tr>
                         <td>   </td>
