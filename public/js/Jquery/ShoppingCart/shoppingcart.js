@@ -1,12 +1,6 @@
 
 $(function(){
-    /**
-        event fire when make any changes on the coupon input 
-        and call function  get_coupon_hash_from_buyer
-     */
-    $("#coupon_hash").on("change",function(){
-        get_coupon_hash_from_buyer();
-    });
+   
     /***
         craete event when change the quantity field in the shopping cart
      */
@@ -24,7 +18,6 @@ $(function(){
         //add the result of get_total_price_for_shopping_cart_before_coupon to the shopping cart and display it
         let total_price_before_coupon = $('tbody').find('#total_price_before_coupon').eq(0).html(`<h5>`+`<strong>`+'$'+result_of_total_items_in_shopping_cart+`</strong>`+`</h5>`);
         $("#total_price").html("<h3><strong>"+"$"+result_of_total_items_in_shopping_cart+"</strong></h3>")
-        get_coupon_hash_from_buyer();//to recalculate total and coupon
     });
     /***
         function that take quantity and price and return the multiplication of them
@@ -62,51 +55,7 @@ $(function(){
        
         return total_result; //return the total
     }
-    /***
-        function to get the coupon hash from buyer and start proceses on it
-     */
-    get_coupon_hash_from_buyer = function(){
-        let coupon_input = $("#coupon_hash"); //get coupon hash from user
-        //total price for subtotal
-        var total_price_before_coupon = parseFloat($.trim($("#total_price_before_coupon").text().replace('$','')));
-        if(coupon_input.val()){ //check if the input of hash has value
-            coupon_hash = coupon_input.val(); //get hash input value
-            let req = $.ajax({ //start to hit route buyerCoupon with value to get coupon of the buyer
-                "url":"buyerCoupon/"+coupon_hash,
-                "dataType":"json",
-            });
-            //after connect and get data
-            req.done(function(data){
-        
-                let persentage = data.coupon_persentage; //get persentage value from the coupon 
-                //get coupon_persentage_value_from_subtotal and convert it to float
-                let coupon_persentage_value_from_subtotal = (persentage *total_price_before_coupon).toFixed(2);
-                //display coupon_persentage_value_from_subtotal
-                $("#coupon_hash_value").html("<strong>"+"$"+coupon_persentage_value_from_subtotal+"</strong>");
-                //remove the value of coupon from total and display it
-                let total_price_after_coupon = (total_price_before_coupon - coupon_persentage_value_from_subtotal).toFixed(2);
-                $("#total_price").html("<h3><strong>"+"$"+total_price_after_coupon+"</strong></h3>");
-                
-              
-            });
-            /**
-                control the fails of connection by ajax
-             */
-            req.fail(function(fail){
-                swal("Invalid Code for Coupon!", {
-                    icon: 'error',
-                    title: 'Oops...',
-                    buttons: {
-                       ok : "Ok",      
-                    },
-                    
-                 })
-            });
-           
-            
-        }
-        
-    }
+   
     /**
      * function to get all quantity in the shopping cart
      * and return the values in array
@@ -155,53 +104,7 @@ $(function(){
        
     }
 
-    // let get_hash_of_buyer_from_db = function(){
-    //     let req = $.ajax({
-    //         "url":"buyerCouponHash",
-    //         "type":"GET",
-    //         "dataType" : "text",
-    //     });
-       
-    //     req.done(function(data){
-    //         // return compare_hash_input_for_coupon_and_hash_of_buyer(data);  
-    //     });
-    //     console.log(req);
-    //     // let compare_hash_input_for_coupon_and_hash_of_buyer=function(coupon_hash_buyer){
-    //     //     let coupoun_hash_input = $("#coupon_hash").val();
-    //     //     let coupon_hash_buyer_value = coupon_hash_buyer;
-    //     //     if(coupon_hash_buyer_value == coupoun_hash_input){
-    //     //         return true;
-    //     //         console.log("true0");
-    //     //     }else{
-    //     //         return false;
-    //     //     }
-    //     // }
-        
-    // }
-    
-
-    /**
-     * function that contain Ajax to call route decreaseCouponUsage 
-     * to decrease the coupon_uses_number if it available
-     */
-    let decrease_coupon_uses_number_for_buyer = function(){
-        let req = $.ajax({
-            "url" : "decreaseCouponUsage",
-            "type" : "GET",
-        });
-        req.done(function(data){
-          
-            if(data == 1){
-                swal({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: "number of usage or lifeTime for your Coupon is Expired!!",
-                  });
-            }
-        });
-       
-    }
-    
+   
     /**
      * create event to fire unload event when any change happen in the 
      * document
@@ -212,10 +115,7 @@ $(function(){
         $(window).on('beforeunload', function(e){
             saveAllShoppingCartAfterChange();
         });
-        let checkout = $("#checkout"); //get object element for checkout button
-        //create event on the checkout button to fire on click decrease_coupon_uses_number_for_buyer
-        checkout.on("click",decrease_coupon_uses_number_for_buyer);
-        get_hash_of_buyer_from_db();
+      
     });
    
 });
