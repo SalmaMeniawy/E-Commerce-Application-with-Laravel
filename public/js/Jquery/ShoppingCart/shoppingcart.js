@@ -91,8 +91,8 @@ $(function(){
      * function to get the final total price in Shopping cart
      */
     let get_total_price = function(){
-        let total_price = $("#total_price").val();
-        return total_price;
+        let total_price = $("tbody").find("#total_price_before_coupon").text();
+        return parseFloat($.trim(total_price.replace('$','')));
     }
     /**
      * 
@@ -100,9 +100,9 @@ $(function(){
      */
     let saveAllShoppingCartAfterChange = function(event){
         //get shopping cart ID from hidden input in view
-        let shoppingCart_id = get_shoppingCart_id();
-        let final_quantity = get_all_quantity(); //get final quantity in the view
-        let final_products = get_products_id(); //get final products ID in the view
+        let shoppingCart_id = [get_shoppingCart_id()];
+        let final_quantity = [get_all_quantity()]; //get final quantity in the view
+        let final_products = [get_products_id()]; //get final products ID in the view
         let data = {
             "quantity" : final_quantity,
             "products" : final_products,
@@ -118,10 +118,19 @@ $(function(){
     let send_shopping_cart_data_to_submit_order_view = function(){
         let final_products = get_products_id();//get products ID by call get_products_id 
         let final_quantity = get_all_quantity();//get all quantity by call get_products_id()
-        let req = $.ajax({
-            
-
-        });
+        let final_total_price = get_total_price();//get total price
+        let shopping_cart_data = [
+           [ final_products ],
+            [final_quantity ] ,
+           [ final_total_price],
+        ];
+        // let shopping_cart_data = {
+        //     "final_products":final_products,
+        //     "final_quantity":final_quantity,
+        //     "final_total_price" :final_total_price,
+        // }
+        $("#checkout").attr("href","/create_order"+"/"+shopping_cart_data+"'");
+       
     }
    
     /**
@@ -134,7 +143,11 @@ $(function(){
         $(window).on('beforeunload', function(e){
             saveAllShoppingCartAfterChange();
         });
-      
+        $("#checkout").on("click",function(){
+            console.log("hello from checkout");
+            send_shopping_cart_data_to_submit_order_view();
+        });
+        
     });
    
 });
