@@ -123,28 +123,6 @@ $(function(){
             });
         });
     }
-    let send_shopping_cart_data_to_submit_order_view = function(){
-        let final_products = get_products_id();//get products ID by call get_products_id 
-        let final_quantity = get_all_quantity();//get all quantity by call get_products_id()
-        let data ={
-            "products_id" : final_products,
-            "quantity" : final_quantity,
-        };
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     }
-        // });
-        console.log(data);
-        // $.get("/create_order");
-        let req = $.ajax({
-            "url":'/create_order',
-            "dataType":"json",
-            "data":data,
-
-        });
-    }
-   
     /**
      * create event to fire unload event when any change happen in the 
      * document
@@ -156,19 +134,40 @@ $(function(){
         $(window).on('beforeunload', function(e){
             saveAllShoppingCartAfterChange();
         });
-        $("#checkout").on('click',function(){
-            console.log(get_all_quantity());
-            // $product_quanity = get_all_quantity();
-            //    $product_quantaty = Array(get_all_quantity());
-            // console.log($product_quanity);
-            // var href = this.href;
-            // event.preventDefault();
-            // send_shopping_cart_data_to_submit_order_view();
-            // saveAllShoppingCartAfterChange();
-            // window.location = href;
-            // console.log("hello"); 
 
+    });
+    /**
+     * create Event on checkout button to take all shopping cart data and passe it to Submit Order view
+     */
+    $(document).on("click","#checkout",function(event){
+        let final_products = get_products_id();//get products ID by call get_products_id 
+        let final_quantity = get_all_quantity();//get all quantity by call get_products_id()
+        let data ={
+            "products_id" : final_products,
+            "quantity" : final_quantity,
+        };
+        let route = $(this).data("route");
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        let req = $.ajax({
+            "url":route,
+            "type":"POST",
+            "dataType":"json",
+            "data":data,
+            
+        });
+        req.fail(function(response){
+            if(response.statusText == "OK"){
+                 $("body").html(response.responseText);
+           
+            }
+           
         })
+
+        
     });
    
 });
