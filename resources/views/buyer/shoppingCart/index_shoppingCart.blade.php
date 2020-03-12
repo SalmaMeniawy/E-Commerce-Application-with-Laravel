@@ -79,6 +79,10 @@
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
+                        <!-- {$shopping_cart_data = [
+                            'product_quantity' => $product_quantity,
+                            'total_price_for_shopping_cart'=>$total_price_for_shopping_cart
+                            ];} -->
                         <td class="text-right" id="total_price"><h3><strong>${{$total_price_for_shopping_cart}}</strong></h3></td>
                     </tr>
                     <tr>
@@ -91,9 +95,13 @@
                             
                         </td>
                         <td>
-                        <button type="button" class="btn btn-success" id="checkout">
+                          
+                            <a href="{{route('create_order' ,['product_quantity'=>$product_quantity,'total_price_for_shopping_cart'=>$total_price_for_shopping_cart])}}"class="btn btn-success" id="checkout" >
                             Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>  
+                            </a>
+                        <!-- <button type="button" class="btn btn-success" id="checkout">
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button></td>   -->
                     </tr>
                 </tbody>
             </table>
