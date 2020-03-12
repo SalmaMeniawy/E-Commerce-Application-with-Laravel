@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Product;
 class OrderController extends Controller
 {
     /**
@@ -22,13 +22,13 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($shopping_cart_data)
+    public function create()
     {
-        // dd("yse");
-        dd($shopping_cart_data);
-        // dd($request->product_quantity);
-        return view("buyer.order.create_order")
-        ->with('shopping_cart_data', $shopping_cart_data);
+        $product_quantity = request()->input('product_quantity');
+        $product_id = \array_keys($product_quantity);
+        $products = Product::find($product_id);
+        return view("buyer.order.create_order")->with(compact(['products','product_quantity']));
+       
     }
     /**
      * Store a newly created resource in storage.
