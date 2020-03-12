@@ -49,7 +49,7 @@
                         <td class="col-sm-1 col-md-1">
                         @if($in_stock_state[$product->id] == 1)
 
-                        <form action='{{route("shoppingcart.destroy",$product->id)}}' method="POST">
+                        <form action='{{route("shoppingcart.destroy",$product->id)}}' method="POST" id="deleteItem">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">
@@ -95,13 +95,20 @@
                             
                         </td>
                         <td>
-                          
-                            <a href="{{route('create_order' ,['product_quantity'=>$product_quantity,'total_price_for_shopping_cart'=>$total_price_for_shopping_cart])}}"class="btn btn-success" id="checkout" >
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                            </a>
-                        <!-- <button type="button" class="btn btn-success" id="checkout">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>   -->
+                         
+                             <a href="{{route('create_order' ,['product_quantity'=>$product_quantity,'total_price_for_shopping_cart'=>$total_price_for_shopping_cart])}}"class="btn btn-success" id="checkout" > 
+                                Checkout <span class="glyphicon glyphicon-play"></span>
+                                </a> 
+                            <!-- <a href="{{route('create_order' ,['product_quantity'=>$product_quantity,'total_price_for_shopping_cart'=>$total_price_for_shopping_cart])}}"class="btn btn-success" id="checkout" > 
+                                Checkout <span class="glyphicon glyphicon-play"></span>
+                                </a>  
+                              <a href='{{}}'class="btn btn-success" id="checkout" > 
+                             Checkout <span class="glyphicon glyphicon-play"></span> 
+                            </a>  --> -->
+                            <!-- <button type="submit" class="btn btn-success" id="checkout">
+                                Checkout <span class="glyphicon glyphicon-play"></span>
+                            </button> -->
+                    </td>   
                     </tr>
                 </tbody>
             </table>
