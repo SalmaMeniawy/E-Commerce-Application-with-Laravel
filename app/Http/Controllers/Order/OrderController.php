@@ -22,13 +22,16 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $product_quantity = request()->input('product_quantity');
-        $product_id = \array_keys($product_quantity);
-        $products = Product::find($product_id);
-        return view("buyer.order.create_order")->with(compact(['products','product_quantity']));
        
+       
+    }
+    public function create_order(Request $request){
+        $shopping_cart_data = $request->input();
+        // dump($request->input());
+        return view("buyer.order.create_order");
+        // return "hello salma";
     }
     /**
      * Store a newly created resource in storage.
