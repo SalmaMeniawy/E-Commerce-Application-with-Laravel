@@ -108,7 +108,42 @@ $(function(){
         });
        
     }
-    
+    /**
+     * this method to fire event when the user try to delete item from shopping cart it will be display alert
+     */
+    let desplay_message_when_remove_item_from_shopping_cart = function(){
+         $("#deleteItem").one("submit",function(event){
+            event.preventDefault();
+            swal("Are you sure you want to remove item ?",{
+                buttons: ["Oh noez!", true],
+            }).then(function(value){
+                if(value == true){
+                    event.currentTarget.submit();
+                }
+            });
+        });
+    }
+    let send_shopping_cart_data_to_submit_order_view = function(){
+        let final_products = get_products_id();//get products ID by call get_products_id 
+        let final_quantity = get_all_quantity();//get all quantity by call get_products_id()
+        let data ={
+            "products_id" : final_products,
+            "quantity" : final_quantity,
+        };
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
+        console.log(data);
+        // $.get("/create_order");
+        let req = $.ajax({
+            "url":'/create_order',
+            "dataType":"json",
+            "data":data,
+
+        });
+    }
    
     /**
      * create event to fire unload event when any change happen in the 
@@ -116,11 +151,24 @@ $(function(){
      */
 
     $(document).ready(function(){
-        
+        //call  desplay_message_when_remove_item_from_shopping_cart to display alert when try to delete item
+        desplay_message_when_remove_item_from_shopping_cart();
         $(window).on('beforeunload', function(e){
             saveAllShoppingCartAfterChange();
         });
-        
+        $("#checkout").on('click',function(){
+            console.log(get_all_quantity());
+            // $product_quanity = get_all_quantity();
+            //    $product_quantaty = Array(get_all_quantity());
+            // console.log($product_quanity);
+            // var href = this.href;
+            // event.preventDefault();
+            // send_shopping_cart_data_to_submit_order_view();
+            // saveAllShoppingCartAfterChange();
+            // window.location = href;
+            // console.log("hello"); 
+
+        })
     });
    
 });
