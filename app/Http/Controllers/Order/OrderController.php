@@ -22,11 +22,14 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($shopping_cart_data)
     {
-        //
+        // dd("yse");
+        dd($shopping_cart_data);
+        // dd($request->product_quantity);
+        return view("buyer.order.create_order")
+        ->with('shopping_cart_data', $shopping_cart_data);
     }
-
     /**
      * Store a newly created resource in storage.
      *
