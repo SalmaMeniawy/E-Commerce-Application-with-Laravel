@@ -79,10 +79,7 @@
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <!-- {$shopping_cart_data = [
-                            'product_quantity' => $product_quantity,
-                            'total_price_for_shopping_cart'=>$total_price_for_shopping_cart
-                            ];} -->
+                     
                         <td class="text-right" id="total_price"><h3><strong>${{$total_price_for_shopping_cart}}</strong></h3></td>
                     </tr>
                     <tr>
@@ -95,19 +92,10 @@
                             
                         </td>
                         <td>
-                         
-                             <a href="{{route('create_order' ,['product_quantity'=>$product_quantity,'total_price_for_shopping_cart'=>$total_price_for_shopping_cart])}}"class="btn btn-success" id="checkout" > 
+                           <button  data-route="{{route('create_order')}}" type="submit" class="btn btn-success" id="checkout">
                                 Checkout <span class="glyphicon glyphicon-play"></span>
-                                </a> 
-                            <!-- <a href="{{route('create_order' ,['product_quantity'=>$product_quantity,'total_price_for_shopping_cart'=>$total_price_for_shopping_cart])}}"class="btn btn-success" id="checkout" > 
-                                Checkout <span class="glyphicon glyphicon-play"></span>
-                                </a>  
-                              <a href='{{}}'class="btn btn-success" id="checkout" > 
-                             Checkout <span class="glyphicon glyphicon-play"></span> 
-                            </a>  --> -->
-                            <!-- <button type="submit" class="btn btn-success" id="checkout">
-                                Checkout <span class="glyphicon glyphicon-play"></span>
-                            </button> -->
+                            </button>  
+
                     </td>   
                     </tr>
                 </tbody>
