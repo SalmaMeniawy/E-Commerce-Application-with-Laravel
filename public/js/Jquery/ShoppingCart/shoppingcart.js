@@ -115,22 +115,30 @@ $(function(){
         });
        
     }
-    let send_shopping_cart_data_to_submit_order_view = function(){
-        let final_products = get_products_id();//get products ID by call get_products_id 
-        let final_quantity = get_all_quantity();//get all quantity by call get_products_id()
-        let final_total_price = get_total_price();//get total price
-        let shopping_cart_data = [
-           [ final_products ],
-            [final_quantity ] ,
-           [ final_total_price],
-        ];
+    // let send_shopping_cart_data_to_submit_order_view = function(){
+    //     let final_products = get_products_id();//get products ID by call get_products_id 
+    //     let final_quantity = get_all_quantity();//get all quantity by call get_products_id()
+    //     let final_total_price = get_total_price();//get total price
+    //     // let shopping_cart_data = [
+        //    [ final_products ],
+        //     [final_quantity ] ,
+        //    [ final_total_price],
+        // ]
         // let shopping_cart_data = {
         //     "final_products":final_products,
         //     "final_quantity":final_quantity,
         //     "final_total_price" :final_total_price,
         // }
-        $("#checkout").attr("href","/create_order"+"/"+shopping_cart_data+"'");
-       
+      
+        // $("#checkout").attr("href","/create_order"+"/"+final_products+final_quantity+final_total_price);
+    //    let req = $.ajax({
+    //        "url":"/create_order",
+    //        "type":"GET",
+    //        "data":shopping_cart_data, 
+        //    success : function(responces){
+        //     window.location.replace = responces ;
+        //    }
+       });
     }
    
     /**
@@ -143,10 +151,10 @@ $(function(){
         $(window).on('beforeunload', function(e){
             saveAllShoppingCartAfterChange();
         });
-        $("#checkout").on("click",function(){
-            console.log("hello from checkout");
-            send_shopping_cart_data_to_submit_order_view();
-        });
+        // $("#checkout").on("click",function(){
+        //     console.log("hello from checkout");
+        //     send_shopping_cart_data_to_submit_order_view();
+        // });
         
     });
    
