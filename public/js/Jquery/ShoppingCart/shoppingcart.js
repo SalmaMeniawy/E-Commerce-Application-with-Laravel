@@ -86,14 +86,7 @@ $(function(){
         });
         return final_products;
     }
-    /**
-     * 
-     * function to get the final total price in Shopping cart
-     */
-    let get_total_price = function(){
-        let total_price = $("tbody").find("#total_price_before_coupon").text();
-        return parseFloat($.trim(total_price.replace('$','')));
-    }
+  
     /**
      * 
      * function that save all changes of shopping cart
