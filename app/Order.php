@@ -28,4 +28,16 @@ class Order extends Model
        
         return $calculation_result;
     }
+    /**
+     * create calculate_subtotal_price_for_all_products_in_order to calculate total price of the order
+     * before Coupon
+     */
+    public static function calculate_subtotal_price_for_all_products_in_order($product_individual_totlal){
+        $result = 0;
+        foreach($product_individual_totlal as $total_item){
+            $result = $result + $total_item;
+        }
+        return (float)$result;
+
+    }
 }
