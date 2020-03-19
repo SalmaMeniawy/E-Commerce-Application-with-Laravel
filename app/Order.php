@@ -11,6 +11,10 @@ class Order extends Model
     public function products(){
         return $this->belongsToMany(Product::class);
     }
+    /**
+     * create calculate_total_price_for_each_product_order to get total price for
+     * each product if it is available in the Stock
+     */
     public static function calculate_total_price_for_each_product_order($products,array $product_quantity){
         $calculation_result = [];
         foreach($products as $product)
