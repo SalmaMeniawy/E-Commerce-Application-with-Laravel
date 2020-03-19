@@ -6,7 +6,9 @@
 <div class="card">
 
 
-    <form>
+    <form action="" method="POST">
+        @csrf
+        @method('POST')
         <div class="form-group">
         <div class="row">
              <div class="col">
@@ -103,22 +105,70 @@
                 </table>
             </div>
                  <div class="col">
-                    <div>
-                    <label  class="form-label "> 
-                        <strong>Enter Order data plaese</strong>
-                  </label>
-                    </div>
-                  <div>
-                        <label for="tele" class="col-md-4 col-form-label text-md-right"> 
-                                Tele :
-                        </label>
-                        <input class="form-control-md"type="telephone" name="tele" id="tele" placeholder="Enter tele">
+                            <div class="form-group">
+                                    <label  class="form-label "> 
+                                        <strong><h3>Enter Order data plaese</h3></strong>
+                                    </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="tele" class="col-md-4 col-form-label text-md-center"> 
+                                        Tele :
+                                </label>
+                                <input class="form-control-center"type="telephone" name="tele" id="tele" placeholder="Enter tele">
+
+                           </div>
+                           <div class="col">
+                               
+                                 <div class="form-row">
+                                    <label  class=" text-md-center"> 
+                                    <strong> Address details </strong>   </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="street_no" class="col-md-4 col-form-label text-md-center"> 
+                                    Street no. :   </label>
+                                    <input class="form-control-center"type="text" name="street_no" id="street_no" placeholder="Enter street number ">
+                                    <label for="street_name" class="col-md-4 col-form-label text-md-center"> 
+                                    Street name :   </label>
+                                    <input class="form-control-center"type="text" name="street_name" id="street_name" placeholder="Enter street name ">
+                                    <label for="city" class="col-md-4 col-form-label text-md-center"> 
+                                    City :   </label>
+                                    <input class="form-control-center"type="text" name="city" id="city" placeholder="Enter City ">
+
+                                </div>
+                                <div class="form-group">
+                                        <div class="row">
+                                            <label  class=" text-md-center"> 
+                                            <strong> Way of payment </strong>   </label>
+                                        </div>
+                                        
+                                        <div class="btn-group dropright ">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                            Choose the payment way!
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <button class="dropdown-item disabled" type="button">Cash</button>
+                                                <button class="dropdown-item" type="button">Visa</button>
+                                            </div>
+                                        
+                                    </div>
+                                    <div class="row invisible" >
+                                        <div>
+                                            <strong>Visa Cart details</strong>
+                                        </div>
+                                         <label for="visa_no." class="col-md-4 col-form-label text-md-center cart_data"> 
+                                        Cart no.   </label>
+                                        <input class="form-control-center"type="text" name="visa_no" id="cart_number" placeholder="Enter Cart number " value=0>
+                                    </div>
+                                </div>
+           
+                          </div>
 
                   </div>
 
                 </div>
           </div>
-           
+          <button type="submit" class="btn btn-success  btn-lg btn-block" >Submit-Order</button>
+
         
     </form>
 </div>
