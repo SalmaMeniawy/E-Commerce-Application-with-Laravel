@@ -32,7 +32,6 @@ class OrderController extends Controller
         $products = Product::find($product_id);
         $total_for_each_prooduct = Order::calculate_total_price_for_each_product_order($products,$product_quantity);
         $total_for_order_before_coupon = Order::calculate_subtotal_price_for_all_products_in_order($total_for_each_prooduct);
-        dump($total_for_each_prooduct);
         return view("buyer.order.create_order")
         ->with(compact(['products','product_quantity','total_for_order_before_coupon']));
        
