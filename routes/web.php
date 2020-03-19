@@ -37,8 +37,10 @@ Route::middleware('auth')->group(function(){
             // Route::get('buyerCouponHash','Buyer\BuyerController@get_buyer_coupon_hash_id');
         });
         Route::group([],function(){
+            //routes related to create order for each buyer
             Route::post('create_order','Order\OrderController@create_order')->name('create_order');
             Route::get('create_new_order','Order\OrderController@create')->name('create_new_order');
+            Route::post('orders','Order\OrderController@store')->name('store_order');
         });
         Route::get('homepage','Buyer\BuyerController@index')->name('buyer.index');
         Route::get('product/{product_id}','Buyer\BuyerController@get_product_details')->name('buyer.product.show');
