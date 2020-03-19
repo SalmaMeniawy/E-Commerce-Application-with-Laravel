@@ -40,4 +40,15 @@ class Order extends Model
         return (float)$result;
 
     }
+    /**
+     * create this function to get all Order items in the order
+     */
+    public static function get_the_count_of_items_in_order($quantity_in_order_for_all_products){
+        $order_items_count = 0;
+        foreach($quantity_in_order_for_all_products as $item){
+            $order_items_count = $order_items_count + $item;
+
+        }
+        return $order_items_count;
+    }
 }
