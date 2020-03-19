@@ -10,7 +10,7 @@
         <div class="form-group">
         <div class="row">
              <div class="col">
-                <table class="table table-hover">
+                <table class="table table-hover ">
                     <thead class="p-3 mb-2 bg-info  text-dark">
                     <tr>
                         <th class="text-center">Product</th>
@@ -21,20 +21,65 @@
                     </thead>
                     <tbody>
                     @foreach($products as $product)
-                  
+                        @if($product->in_stock_quantity < 1)
+                        <tr class="table-danger">
+                            <td class="col-sm-1 col-md-1 text-center">
+                                    <mark>Out-Of-Stock</mark>
+                                    <strong><del>{{$product->title}}</del></strong>
+                                </td>
+                                <td class="col-sm-1 col-md-1 text-center">
+                                    <strong>
+                                        <del>
+                                        {{$product_quantity[$product->id]}}
+                                        </del>
+                                    </strong>
+                                </td>
+                                <td class="col-sm-1 col-md-1 text-center">
+                                    <strong>
+                                        <del>
+                                        ${{$product->price}}
+                                        </del>
+                                    </strong>
+                                </td>
+                                <td class="col-sm-1 col-md-1 text-center">
+                                    <strong>
+                                        ${{0}}
+                                    </strong>
+                                </td>
+                        </tr>
+                        @else
                         <tr>
                             <td class="col-sm-1 col-md-1 text-center">
                                 <strong>{{$product->title}}</strong>
                             </td>
                             <td class="col-sm-1 col-md-1 text-center">
                                 <strong>
-                  
+                                    {{$product_quantity[$product->id]}}
                                 </strong>
                             </td>
+                            <td class="col-sm-1 col-md-1 text-center">
+                                <strong>
+                                    ${{$product->price}}
+                                </strong>
+                            </td>
+                            <td class="col-sm-1 col-md-1 text-center">
+                                <strong>
+                                    ${{$product->price * $product_quantity[$product->id]}}
+                                </strong>
+                            </td>
+                            @endif
                         </tr>
                   
                         @endforeach
-                    
+                        <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        
+                        <td><h3>Total</h3></td>
+                     
+                        <td class="text-right" id="total_price"><h3><strong>${{$total_for_order_before_coupon}}</strong></h3></td>
+                    </tr>
+                        
                     </tbody>
 
                 </table>
