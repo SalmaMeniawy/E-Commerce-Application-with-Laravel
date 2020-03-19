@@ -103,7 +103,19 @@
                 </table>
             </div>
                  <div class="col">
-                  2 of 2
+                    <div>
+                    <label  class="form-label "> 
+                        <strong>Enter Order data plaese</strong>
+                  </label>
+                    </div>
+                  <div>
+                        <label for="tele" class="col-md-4 col-form-label text-md-right"> 
+                                Tele :
+                        </label>
+                        <input class="form-control-md"type="telephone" name="tele" id="tele" placeholder="Enter tele">
+
+                  </div>
+                  
                 </div>
           </div>
            
