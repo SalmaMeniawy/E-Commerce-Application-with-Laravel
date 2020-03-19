@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{{ url('/css/order/create_order.css') }}" />
 
 @section('content')
-<h1>hello Salma</h1>
+<h1>Your order details </h1>
 <div class="card">
 
 
@@ -115,7 +115,7 @@
                         <input class="form-control-md"type="telephone" name="tele" id="tele" placeholder="Enter tele">
 
                   </div>
-                  
+
                 </div>
           </div>
            
