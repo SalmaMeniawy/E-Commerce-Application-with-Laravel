@@ -162,7 +162,6 @@ $(function(){
         req.fail(function(response){
             if(response.statusText == "OK"){
                  $("body").html(response.responseText);
-           
             }
            
         })
