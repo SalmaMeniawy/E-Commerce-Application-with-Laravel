@@ -24,10 +24,10 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {   
-        // $product_id = $request->input('product_id');
-        // $quantity_of_products = $request->input('quantity_of_products');
-        // $products = Product::find($product_id);
-        // return view("buyer.order.create_order");
+        $product_id = $request->input('product_id');
+        $quantity_of_products = $request->input('quantity_of_products');
+        $products = Product::find($product_id);
+        return view("buyer.order.create_order");
        
     }
     public function create_order(Request $request){
