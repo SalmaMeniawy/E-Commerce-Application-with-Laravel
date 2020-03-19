@@ -71,14 +71,32 @@
                         </tr>
                   
                         @endforeach
-                        <tr>
-                        <td>   </td>
-                        <td>   </td>
                         
-                        <td><h3>Total</h3></td>
-                     
-                        <td class="text-right" id="total_price"><h3><strong>${{$total_for_order_before_coupon}}</strong></h3></td>
-                    </tr>
+                        <tr class="col-sm-1 col-md-1 text-center">
+                        
+                            <td>
+                                <strong>Coupon code</strong>
+                            <input class="form-control " name="coupon_hash" id="coupon_hash" type="text" value="">
+
+                            </td>
+                            <td id="hash_coupon_value">
+                                <h5><strong>$0</strong></h5>
+                            </td>
+                            <td>
+                              
+                                <button type="button" class="btn btn-info" name="hash_coupon" id="coupon_hash_button">submit Coupon </button>
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            
+                            <td><h3>Total</h3></td>
+                        
+                            <td class="text-right" id="total_price"><h3><strong>${{$total_for_order_before_coupon}}</strong></h3></td>
+                         </tr>
                         
                     </tbody>
 
