@@ -1,7 +1,7 @@
 @extends(backpack_view('blank'))
 <head>
 <script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}" ></script>
-<script type="text/javascript" src="{{ URL::asset('js/Jquery/ShoppingCart/shoppingcart.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/Jquery/ShoppingCart/shoppingcart.js') }}" id="shopping_cart_script"></script>
 
 </head>
 @section('content')
