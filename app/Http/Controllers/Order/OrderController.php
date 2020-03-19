@@ -23,15 +23,22 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
-       
+    {   
+        // $product_id = $request->input('product_id');
+        // $quantity_of_products = $request->input('quantity_of_products');
+        // $products = Product::find($product_id);
+        // return view("buyer.order.create_order");
        
     }
     public function create_order(Request $request){
-        $shopping_cart_data = $request->input();
-        // dump($request->input());
-        return view("buyer.order.create_order");
-        // return "hello salma";
+        $products_id = $request->input('products_id') ;
+        $quantity_of_products = $request->input('quantity');
+        $data = ['product_id'=>$products_id,'quantity_of_products'=>$quantity_of_products];
+        // return view("buyer.order.create_order")->with(compact(['products_id',"quantity_of_products","products"]));
+        return route('create_new_order',$data);
+        // return route('create_new_order',['salamonty'=>'hello']);
+
+        // ->with(compact(['products_id',"quantity_of_products","products"]));
     }
     /**
      * Store a newly created resource in storage.
