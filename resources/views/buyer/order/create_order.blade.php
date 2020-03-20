@@ -1,4 +1,6 @@
 @extends(backpack_view('blank'))
+<script type="text/javascript" src="{{ asset('js/jquery-3.4.1.min.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('js/Jquery/order/buyer_order.js') }}" ></script>
 
 @section('content')
 <h1>Your order details </h1>
