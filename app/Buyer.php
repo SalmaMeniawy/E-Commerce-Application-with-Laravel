@@ -7,6 +7,7 @@ use App\User;
 use App\ShoppingCart;
 use App\BuyerCategory;
 use App\Coupon;
+use App\Order;
 class Buyer extends Model
 {
     protected $fillable = ['fname','lname','date_of_birth' 
@@ -16,6 +17,12 @@ class Buyer extends Model
     }
     public function shopping_cart(){
         return $this->hasOne(ShoppingCart::class);
+    }
+    /**
+     * eloquent relation function with Order model
+     */
+    public function orders(){
+        return $this->hasMany(Order::class);
     }
     /**
      * eloquent relation function with Coupon model
