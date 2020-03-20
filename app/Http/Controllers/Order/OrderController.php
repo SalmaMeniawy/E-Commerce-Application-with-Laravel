@@ -51,7 +51,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        dump($request->input());
+       
         $product_id = array_keys($request->input('product_quantity'));
         $quantity = array_values($request->input('product_quantity'));
         $street_no = $request->input('street_no');
