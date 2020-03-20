@@ -105,6 +105,16 @@
                 </table>
             </div>
                  <div class="col">
+                      @if($errors->any())
+                         <ul id="errors">
+             		 		@foreach($errors->all() as $error)
+             		 			 <div class="alert alert-danger" role="alert">
+                                 {{$error}}
+                                 </div>
+             		 		@endforeach
+             		 	 </ul>
+
+                     @endif
                             <div class="form-group">
                                     <label  class="form-label "> 
                                         <strong><h3>Enter Order data plaese</h3></strong>
@@ -126,7 +136,7 @@
                                 <div class="form-group">
                                     <label for="street_no" class="col-md-4 col-form-label text-md-center"> 
                                     Street no. :   </label>
-                                    <input class="form-control-center"type="text" name="street_no" id="street_no" placeholder="Enter street number ">
+                                    <input class="form-control-center"type="number" name="street_no" id="street_no" placeholder="Enter building number ">
                                     <label for="street_name" class="col-md-4 col-form-label text-md-center"> 
                                     Street name :   </label>
                                     <input class="form-control-center"type="text" name="street_name" id="street_name" placeholder="Enter street name ">
