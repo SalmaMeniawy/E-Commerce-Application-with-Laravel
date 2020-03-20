@@ -1,5 +1,4 @@
 @extends(backpack_view('blank'))
-<link rel="stylesheet" type="text/css" href="{{ url('/css/order/create_order.css') }}" />
 
 @section('content')
 <h1>Your order details </h1>
