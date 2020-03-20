@@ -158,11 +158,11 @@
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                 <button class="dropdown-item disabled" type="button">Cash</button>
-                                                <button class="dropdown-item" type="button">Visa</button>
+                                                <button class="dropdown-item" id="visa_button"type="button">Visa</button>
                                             </div>
                                         
                                     </div>
-                                    <div class="row invisible" >
+                                    <div class="form group" id ="visa_data">
                                         <div>
                                             <strong>Visa Cart details</strong>
                                         </div>
