@@ -51,7 +51,12 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-       
+       $request->validate([
+            'tele' => 'required|integer',
+            'street_no' =>'required|integer',
+            'street_name' =>'required|text',
+            'city' =>'required|text',
+       ]);
         $product_id = array_keys($request->input('product_quantity'));
         $quantity = array_values($request->input('product_quantity'));
         $street_no = $request->input('street_no');
