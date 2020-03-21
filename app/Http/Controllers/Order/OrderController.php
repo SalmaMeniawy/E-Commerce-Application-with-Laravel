@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Buyer;
 use App\Order;
 class OrderController extends Controller
 {
@@ -54,8 +55,9 @@ class OrderController extends Controller
        $request->validate([
             'tele' => 'required|integer',
             'street_no' =>'required|integer',
-            'street_name' =>'required|text',
-            'city' =>'required|text',
+            'street_name' =>'required',
+            'city' =>'required',
+            
        ]);
         $product_id = array_keys($request->input('product_quantity'));
         $quantity = array_values($request->input('product_quantity'));
@@ -64,16 +66,19 @@ class OrderController extends Controller
         $city = $request->input('city');
         $full_address = join('-', \array_wrap([$street_no,$street_name,$city]));//convert address data to one string
         $order_items = Order::get_the_count_of_items_in_order($quantity); //get_count of the order items
-    
+        dump($request->input());
+        $buyer = Buyer::get()->where('user_id', auth()->id())->first();
         
         $order = Order::create([
             'telephone_for_shipping'=>$request->input('tele'),
             'total_order_price'=>$request->input('total_for_order_before_coupon'),
             'total_order_items_quantity' =>$order_items,
+            'buyer_id'=>$buyer->id,
             'order_items' =>\json_encode($quantity) ,
             'address_for_shipping'=>$full_address,
 
         ]);
+        
         $order->products()->sync(\json_encode($product_id));
     }
 
