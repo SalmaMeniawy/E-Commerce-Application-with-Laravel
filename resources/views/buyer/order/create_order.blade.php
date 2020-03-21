@@ -87,7 +87,7 @@
                             </td>
                             <td>
                               
-                                <button type="button" class="btn btn-info" name="hash_coupon" id="coupon_hash_button">submit Coupon </button>
+                                <button type="button" class="btn btn-info" name="hash_coupon" id="submit_coupon_button">submit Coupon </button>
 
                             </td>
 
@@ -100,7 +100,13 @@
                         
                             <td class="text-right" id="total_price"><h3><strong>${{$total_for_order_before_coupon}}</strong></h3></td>
                          </tr>
+                        <tr id="total_price_after_coupon">
+                            <td>  </td>
+                            <td> </td>    
+                            <td><h5><b>Total after Coupon</b></h5></td>
                         
+                            <td class="text-right" id="total_price_after_coupon_value"><h3><strong>$0</strong></h3></td>
+                        </tr>
                     </tbody>
 
                 </table>
@@ -178,7 +184,9 @@
 
                 </div>
           </div>
-          
+          <input type="hidden" value="0" name="order_price_after_coupon_value" id="order_price_after_coupon_value">
+          <input type="hidden" value="0" name="coupon_value_from_order_price" id="coupon_value_from_order_price"> 
+          <input type="hidden" value="0" name="coupon_id" id="coupon_id">
           <button type="submit" class="btn btn-success  btn-lg btn-block" >Submit-Order</button>
 
         
