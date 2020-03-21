@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Admin;
 use App\Buyer;
+use App\Order;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 
@@ -16,6 +17,12 @@ class Coupon extends Model
     ];
     public function admin(){
         return $this->belongsTo(Admin::class);
+    }
+    /**
+     * eloquent relation function with Order model
+     */
+    public function orders(){
+        return $this->belongsToMany(Order::class);
     }
     /**
      * eloquent relation with Buyer model 
