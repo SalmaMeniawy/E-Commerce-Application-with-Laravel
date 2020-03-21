@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Product;
 use App\Buyer;
+use App\Coupon; 
 class Order extends Model
 {
     protected $fillable = ["address_for_shipping","telephone_for_shipping",
@@ -17,6 +18,12 @@ class Order extends Model
      */
     public function buyer(){
         return $this->belongsTo(Buyer::class);
+    }
+    /**
+     * eloquent relation function with Coupon model
+     */
+    public function coupon(){
+        return $this->hasOne(Coupon::class);
     }
     /**
      * create calculate_total_price_for_each_product_order to get total price for
