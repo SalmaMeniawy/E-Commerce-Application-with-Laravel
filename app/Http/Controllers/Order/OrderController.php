@@ -69,8 +69,8 @@ class OrderController extends Controller
         $city = $request->input('city');
         $full_address = join('-', \array_wrap([$street_no,$street_name,$city]));//convert address data to one string
         $order_items = Order::get_the_count_of_items_in_order($quantity); //get_count of the order items
-        dump($request->input());
         $buyer = Buyer::get()->where('user_id', auth()->id())->first();
+       
       
             $order = new Order();
             $order->telephone_for_shipping = $request->input('tele');
@@ -84,11 +84,15 @@ class OrderController extends Controller
                 $order->order_price_after_coupon_value = $order_price_after_coupon_value;
                 $order->save();
                 $order->products()->sync(\json_encode($product_id));
-
+                $buyer->shopping_cart->products()->sync("null");
+                $buyer->shopping_cart->update(['product_quantity'=>null]);
+         
              }else{
                  $order->save();
                  $order->products()->sync(\json_encode($product_id));
-
+                 $buyer->shopping_cart->products()->sync("null");
+                 $buyer->shopping_cart->update(['product_quantity'=>null]);
+               
              }
            
     }
