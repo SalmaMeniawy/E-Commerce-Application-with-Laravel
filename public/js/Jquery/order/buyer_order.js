@@ -3,7 +3,7 @@ $(function () {
     $(document).ready(function () {
         $("#visa_data").hide(); //as default visa inputs are hidden 
         $("#total_price_after_coupon").hide(); //make total price after coupon hidden
-            
+
         /**
          * event fire when click on visa button the function 
          * display_visa_code_inputs fire to display the inputs
@@ -12,27 +12,53 @@ $(function () {
         /**
          * event to check if the user use coupon when create this order
          */
-        $("#order_form").on("submit",function(event){
-            event.preventDefault();
+        $("#order_form").on("submit", function (event) {
+            
             let result = check_if_there_is_coupon_used();
-           
-          
-        });
-        $("#submit_coupon_button").on("click",  get_coupon_hash_from_buyer);
-        
-     
-       
+            if(result == true){
+                decrease_coupon_uses_number_for_buyer();
+            }
 
-    });
+        });
+        /**
+         * event that fire function  get_coupon_hash_from_buyer when the buyer enter coupon code  and click the button 
+         * to submit coupon
+         */
+        $("#submit_coupon_button").on("click", get_coupon_hash_from_buyer);
+        /**
+         * function that contain Ajax to call route decreaseCouponUsage 
+         * to decrease the coupon_uses_number if it available
+         */
+            let decrease_coupon_uses_number_for_buyer = function () {
+                let req = $.ajax({
+                    "url": "decreaseCouponUsage",
+                    "type": "GET",
+                });
+                req.done(function (data) {
+
+                    if (data == 1) {
+                        swal({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: "number of usage or lifeTime for your Coupon is Expired!!",
+                        });
+                    }
+                });
+
+            }
+
+
+
+        });
     /**
      * 
      * function to get the value of hidden input that hold the coupon id if the user use coupon
      */
-    let check_if_there_is_coupon_used = function(){
+    let check_if_there_is_coupon_used = function () {
         let coupon_id = $("#coupon_id").val();
-        if(coupon_id != 0){
+        if (coupon_id != 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -52,7 +78,7 @@ $(function () {
                 },
 
             })
-        }else{
+        } else {
             console.log(coupon_hash);
             let req = $.ajax({ //start to hit route buyerCoupon with value to get coupon of the buyer
                 "url": "buyerCoupon/" + coupon_hash,
@@ -62,23 +88,23 @@ $(function () {
                 let persentage = response.coupon_persentage;
                 let hash_coupon_value = $("#hash_coupon_value");
                 let total_price_with_dollar_sign = $("#total_price").text();
-                let total_price = parseFloat($.trim(total_price_with_dollar_sign.replace('$','')));
-                if(total_price > 0){
+                let total_price = parseFloat($.trim(total_price_with_dollar_sign.replace('$', '')));
+                if (total_price > 0) {
                     let hash_coupon_value_without_doller_sign = (persentage * total_price).toFixed(2);
                     // console.log(hash_coupon_value_without_doller_sign);
-                    hash_coupon_value.html("<h5><strong> "+"$"+hash_coupon_value_without_doller_sign+"</strong></h5>");
+                    hash_coupon_value.html("<h5><strong> " + "$" + hash_coupon_value_without_doller_sign + "</strong></h5>");
                     let total_price_val = $("#total_price").text();
-                    let total_price_val_without_doller_sign = parseFloat($.trim(total_price_val.replace('$','')));
-                    $("#total_price").html("<del><h3><strong>"+total_price_val+"</strong></h3></del>");
-                    let total_price_after_coupon_value = (total_price_val_without_doller_sign -hash_coupon_value_without_doller_sign ).toFixed(2)
+                    let total_price_val_without_doller_sign = parseFloat($.trim(total_price_val.replace('$', '')));
+                    $("#total_price").html("<del><h3><strong>" + total_price_val + "</strong></h3></del>");
+                    let total_price_after_coupon_value = (total_price_val_without_doller_sign - hash_coupon_value_without_doller_sign).toFixed(2)
                     $("#total_price_after_coupon").show();
-                    $("#total_price_after_coupon_value").html("<h3><strong>"+"$"+total_price_after_coupon_value+"</strong></h3>");
+                    $("#total_price_after_coupon_value").html("<h3><strong>" + "$" + total_price_after_coupon_value + "</strong></h3>");
                     $("#order_price_after_coupon_value").val(total_price_after_coupon_value);//add the value to hidden input in the form
                     $("#coupon_value_from_order_price").val(hash_coupon_value_without_doller_sign);//add coupon price from order in the hidden input
                     $("#coupon_id").val(response.id);
                     // console.log(response.id);
                 }
-                
+
             });
             req.fail(function (fail) {
                 swal("Invalid Code for Coupon!", {
@@ -87,14 +113,14 @@ $(function () {
                     buttons: {
                         ok: "Ok",
                     },
-    
+
                 })
             });
-    
-    
-    
+
+
+
         }
-        
+
     }
 
     /**
