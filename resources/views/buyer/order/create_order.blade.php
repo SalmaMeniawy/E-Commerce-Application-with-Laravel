@@ -7,7 +7,7 @@
 <div class="card">
 
 
-    <form action="{{route('store_order',['product_quantity'=>$product_quantity,'total_for_order_before_coupon'=>$total_for_order_before_coupon])}}" method="POST">
+    <form action="{{route('store_order',['product_quantity'=>$product_quantity,'total_for_order_before_coupon'=>$total_for_order_before_coupon])}}" method="POST" id="order_form">
         @csrf
         @method('POST')
         <div class="form-group">
