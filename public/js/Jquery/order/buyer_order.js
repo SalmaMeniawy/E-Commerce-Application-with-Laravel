@@ -9,9 +9,33 @@ $(function () {
          * display_visa_code_inputs fire to display the inputs
          */
         $("#visa_button").on("click", display_visa_code_inputs);
-        $("#submit_coupon_button").on("click", get_coupon_hash_from_buyer );
+        /**
+         * event to check if the user use coupon when create this order
+         */
+        $("#order_form").on("submit",function(event){
+            event.preventDefault();
+            let result = check_if_there_is_coupon_used();
+           
+          
+        });
+        $("#submit_coupon_button").on("click",  get_coupon_hash_from_buyer);
+        
+     
+       
+
     });
-    
+    /**
+     * 
+     * function to get the value of hidden input that hold the coupon id if the user use coupon
+     */
+    let check_if_there_is_coupon_used = function(){
+        let coupon_id = $("#coupon_id").val();
+        if(coupon_id != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
     /**
      * get the hash coupon from buyer if it right display the value of coupon from total order price 
      * 
@@ -41,7 +65,7 @@ $(function () {
                 let total_price = parseFloat($.trim(total_price_with_dollar_sign.replace('$','')));
                 if(total_price > 0){
                     let hash_coupon_value_without_doller_sign = (persentage * total_price).toFixed(2);
-                    console.log(hash_coupon_value_without_doller_sign);
+                    // console.log(hash_coupon_value_without_doller_sign);
                     hash_coupon_value.html("<h5><strong> "+"$"+hash_coupon_value_without_doller_sign+"</strong></h5>");
                     let total_price_val = $("#total_price").text();
                     let total_price_val_without_doller_sign = parseFloat($.trim(total_price_val.replace('$','')));
@@ -52,7 +76,7 @@ $(function () {
                     $("#order_price_after_coupon_value").val(total_price_after_coupon_value);//add the value to hidden input in the form
                     $("#coupon_value_from_order_price").val(hash_coupon_value_without_doller_sign);//add coupon price from order in the hidden input
                     $("#coupon_id").val(response.id);
-                    console.log(response.id);
+                    // console.log(response.id);
                 }
                 
             });
@@ -72,6 +96,7 @@ $(function () {
         }
         
     }
+
     /**
      * 
      * 
