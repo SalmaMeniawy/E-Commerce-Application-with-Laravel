@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Product;
 use App\Buyer;
 use App\Order;
@@ -19,6 +20,7 @@ class OrderController extends Controller
     {
         $buyer =Buyer::where('user_id', auth()->id())->first();
         $orders = $buyer->orders;
+       
         return view('buyer.order.index_order')->with(compact(['orders']));
     }
 
@@ -71,14 +73,15 @@ class OrderController extends Controller
         $city = $request->input('city');
         $full_address = join('-', \array_wrap([$street_no,$street_name,$city]));//convert address data to one string
         $order_items = Order::get_the_count_of_items_in_order($quantity); //get_count of the order items
-        $buyer = Buyer::get()->where('user_id', auth()->id())->first();
-       
-      
+        $buyer = Buyer::get()->where('user_id', auth()->id())->first();  
+        $random_code_order_id_for_buyer =Str::random(7);
+
         $order = new Order();
         $order->telephone_for_shipping = $request->input('tele');
         $order->total_order_price = $request->input('total_for_order_before_coupon');
         $order->total_order_items_quantity = $order_items;
         $order->buyer_id = $buyer->id;
+        $order->order_code_id_for_buyer =$random_code_order_id_for_buyer;
         $order->order_items =json_encode($quantity) ;
         $order->address_for_shipping = $full_address;
         if ($coupon_id_from_form != 0) {
