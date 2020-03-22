@@ -19,7 +19,7 @@ class OrderController extends Controller
     {
         $buyer =Buyer::where('user_id', auth()->id())->first();
         $orders = $buyer->orders;
-        // dump($orders);
+        return view('buyer.order.index_order')->with(compact(['orders']));
     }
 
     /**
