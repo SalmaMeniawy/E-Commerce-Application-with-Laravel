@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function(){
             Route::get('create_new_order','Order\OrderController@create')->name('create_new_order');
             Route::post('orders','Order\OrderController@store')->name('store_order');
             Route::get('orders','Order\OrderController@index')->name('index_order');
+            Route::get('orders/{id}','Order\OrderController@show')->name('show_order');
         });
         Route::get('homepage','Buyer\BuyerController@index')->name('buyer.index');
         Route::get('product/{product_id}','Buyer\BuyerController@get_product_details')->name('buyer.product.show');
