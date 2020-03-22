@@ -108,7 +108,8 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
-        dump($order);
+        
+        return view('buyer.order.show_order')->with(compact(['order']));
     }
 
     /**
