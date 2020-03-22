@@ -107,7 +107,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        dump($order);
     }
 
     /**
