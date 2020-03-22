@@ -11,7 +11,7 @@
        </div>
         @foreach($orders as $order)
             @if($order->order_state == "Pending")    
-            <a href="#">
+            <a href="{{route('show_order',$order->id)}}">
                 <div class="row ">
                     <div class="col p-3 mb-2 bg table-success  text-dark">
                         <h3> Order code (ID) : {{$order->order_code_id_for_buyer}}</h3>
@@ -24,7 +24,7 @@
                 </div>
             </a>
             @elseif($order->order_state == "Confirmed")
-            <a href="#">
+            <a href="{{route('show_order',$order->id)}}">
                 <div class="row table-danger ">
                     <div class="col p-3 mb-2 bg table-danger  text-dark">
                         <h3> Order code (ID) : {{$order->order_code_id_for_buyer}}</h3>
@@ -37,7 +37,7 @@
                 </div>
             </a>
             @else
-            <a href="#">
+            <a href="{{route('show_order',$order->id)}}">
                 <div class="row bg-success">
                     <div class="col p-3 mb-2 bg-success  text-dark">
                         <h3> Order code (ID) : {{$order->order_code_id_for_buyer}}</h3>
