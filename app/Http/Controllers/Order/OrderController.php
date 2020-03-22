@@ -17,7 +17,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $buyer =Buyer::where('user_id', auth()->id())->first();
+        $orders = $buyer->orders;
+        // dump($orders);
     }
 
     /**
@@ -72,29 +74,26 @@ class OrderController extends Controller
         $buyer = Buyer::get()->where('user_id', auth()->id())->first();
        
       
-            $order = new Order();
-            $order->telephone_for_shipping = $request->input('tele');
-            $order->total_order_price = $request->input('total_for_order_before_coupon');
-            $order->total_order_items_quantity = $order_items;
-            $order->buyer_id = $buyer->id;
-            $order->order_items =json_encode($quantity) ;
-            $order->address_for_shipping = $full_address;
-            if($coupon_id_from_form != 0){
-                $order->coupon_id = $coupon_id_from_form;
-                $order->order_price_after_coupon_value = $order_price_after_coupon_value;
-                $order->save();
-                $order->products()->sync(\json_encode($product_id));
-                $buyer->shopping_cart->products()->sync("null");
-                $buyer->shopping_cart->update(['product_quantity'=>null]);
-         
-             }else{
-                 $order->save();
-                 $order->products()->sync(\json_encode($product_id));
-                 $buyer->shopping_cart->products()->sync("null");
-                 $buyer->shopping_cart->update(['product_quantity'=>null]);
-               
-             }
-           
+        $order = new Order();
+        $order->telephone_for_shipping = $request->input('tele');
+        $order->total_order_price = $request->input('total_for_order_before_coupon');
+        $order->total_order_items_quantity = $order_items;
+        $order->buyer_id = $buyer->id;
+        $order->order_items =json_encode($quantity) ;
+        $order->address_for_shipping = $full_address;
+        if ($coupon_id_from_form != 0) {
+            $order->coupon_id = $coupon_id_from_form;
+            $order->order_price_after_coupon_value = $order_price_after_coupon_value;
+            $order->save();
+            $order->products()->sync(\json_encode($product_id));
+            $buyer->shopping_cart->products()->sync("null");
+            $buyer->shopping_cart->update(['product_quantity'=>null]);
+        } else {
+            $order->save();
+            $order->products()->sync(\json_encode($product_id));
+            $buyer->shopping_cart->products()->sync("null");
+            $buyer->shopping_cart->update(['product_quantity'=>null]);
+        }
     }
 
     /**
