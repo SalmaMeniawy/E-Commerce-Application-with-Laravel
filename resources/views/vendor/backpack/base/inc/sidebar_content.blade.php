@@ -11,6 +11,11 @@
 <i class="fa fa-ticket" ></i> My Coupon <span class="badge badge-light"></span>
 </a>
 </li>
+<li class="nav-item">
+<a class="nav-link"  href="{{url('orders')}}" class="btn btn-light">
+<i class="fa fa-truck" ></i> My Orders <span class="badge badge-light"></span>
+</a>
+</li>
 <li class="nav-item"> <a class="nav-link" 
 	href="{{ url('buyer/logout') }}">
 	<i  class="fa fa-sign-out"></i>
