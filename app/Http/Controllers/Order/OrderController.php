@@ -75,7 +75,7 @@ class OrderController extends Controller
         $order_items = Order::get_the_count_of_items_in_order($quantity); //get_count of the order items
         $buyer = Buyer::get()->where('user_id', auth()->id())->first();  
         $random_code_order_id_for_buyer =Str::random(7);
-
+        dd($product_id);
         $order = new Order();
         $order->telephone_for_shipping = $request->input('tele');
         $order->total_order_price = $request->input('total_for_order_before_coupon');
@@ -88,12 +88,16 @@ class OrderController extends Controller
             $order->coupon_id = $coupon_id_from_form;
             $order->order_price_after_coupon_value = $order_price_after_coupon_value;
             $order->save();
-            $order->products()->sync(\json_encode($product_id));
+            // $order->products()->sync(\json_encode($product_id));
+            $order->products()->sync($product_id);
+
             $buyer->shopping_cart->products()->sync("null");
             $buyer->shopping_cart->update(['product_quantity'=>null]);
         } else {
             $order->save();
-            $order->products()->sync(\json_encode($product_id));
+            // $order->products()->sync(\json_encode($product_id));
+            $order->products()->sync($product_id);
+
             $buyer->shopping_cart->products()->sync("null");
             $buyer->shopping_cart->update(['product_quantity'=>null]);
         }
@@ -108,7 +112,11 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
-        
+        $products_in_order = $order->products()->get();
+        \dump($products_in_order);
+       
+        dump($id);
+        // dump($buyer->orders()->where('id',$id)->get()->first()->products()->get());
         return view('buyer.order.show_order')->with(compact(['order']));
     }
 
