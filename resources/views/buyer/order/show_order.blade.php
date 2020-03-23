@@ -42,7 +42,7 @@
                          <div>
                             <label class="text-md-center">
                                 <h3><strong>
-                            Coupon
+                            Payment details
                                 </strong>
                             </label></h3>
                          </div>
@@ -58,7 +58,20 @@
                          </div>
                     </div>
 
-
+                @else
+                     <div>
+                         <div>
+                            <label class="text-md-center">
+                                <h3><strong>
+                            Payment details
+                                </strong>
+                            </label></h3>
+                         </div>
+                         
+                         <div>
+                             <h5>order price  : <strong>$ {{$order->total_order_price}}</strong></h5>
+                         </div>
+                    </div>
                  @endif
            </div>
            <div class="col">
