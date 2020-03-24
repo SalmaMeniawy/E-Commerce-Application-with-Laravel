@@ -38,4 +38,22 @@ class Product extends Model
     \dump($products->first()->in_stock_quantity ,"from product model");
 
    }
+   /**
+    * create check_if_the_stock_greater_than_order_quantity to remove from product quantity any 
+    * product that the_stock quantity less than the order
+    */
+   public static function check_if_the_stock_greater_than_order_quantity($product_quantity){
+    $product_ids = array_keys($product_quantity);
+    $products = self::find($product_ids);
+    foreach($products as $product){
+        if($product->in_stock_quantity >=  $product_quantity[$product->id]){
+            $check_result[$product->id] = true;
+        }else{
+            unset($product_quantity[$product->id]);
+        }
+    }
+   
+    dump($check_result);
+    dump($product_quantity ,"after");
+   }
 }
