@@ -34,8 +34,12 @@ class Product extends Model
    public static function decrease_product_quantity_in_the_stock_after_order($product_quantity){
     $product_ids = array_keys($product_quantity);
     $products = self::find($product_ids);
-    
-    \dump($products->first()->in_stock_quantity ,"from product model");
+    foreach($products as $product){
+        if($product->in_stock_quantity > 0){
+            $product->in_stock_quantity = $product->in_stock_quantity -1 ;
+            $product->save();
+        }
+    }
 
    }
    /**
@@ -52,8 +56,6 @@ class Product extends Model
             unset($product_quantity[$product->id]);
         }
     }
-   
-    dump($check_result);
-    dump($product_quantity ,"after");
+    return $product_quantity;
    }
 }
