@@ -31,4 +31,11 @@ class Product extends Model
     public function store(){
         return $this->belongsTo(Store::class);
     }
+   public static function decrease_product_quantity_in_the_stock_after_order($product_quantity){
+    $product_ids = array_keys($product_quantity);
+    $products = self::find($product_ids);
+    
+    \dump($products->first()->in_stock_quantity ,"from product model");
+
+   }
 }
