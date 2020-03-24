@@ -5,7 +5,13 @@
 @section('content')
 <h1>Your order details </h1>
 <div class="card">
+        @if (session()->has('error'))
+    
 
+    <div class="alert alert-danger " role="alert"  id="alert_invalid_order">
+      <strong>Oh!!!</strong> {{ session('error') }}
+    </div>
+    @endif
 
     <form action="{{route('store_order',['product_quantity'=>$product_quantity,'total_for_order_before_coupon'=>$total_for_order_before_coupon])}}" method="POST" id="order_form">
         @csrf
