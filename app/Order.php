@@ -14,8 +14,9 @@ class Order extends Model
     public function products(){
         return $this->belongsToMany(Product::class);
     }
+    
     /**
-     * 
+     * function to merge the product ID  and quantity for reach product in one associtive array 
      */
     public static function add_product_ids_and_quantity_of_items_in_one_array($products_in_the_order , $order){
         $order_items_quantity = json_decode($order->order_items);
@@ -25,6 +26,17 @@ class Order extends Model
         }
         $product_quantity  = array_combine($product_ids,$order_items_quantity);
         return $product_quantity;
+    }
+    /**
+     * create decrease_product_quantity_in_the_stock function  to get order and decrease it is 
+     * product items in this order in the stock by useing static method in decrease_product_quantity_in_the_stock_after_order
+     * in product model
+     */
+    public function decrease_product_quantity_in_the_stock(){
+        $products = $this->products;
+        $product_quantity = self::add_product_ids_and_quantity_of_items_in_one_array($products , $this);
+        $result_of_decrease = Product::decrease_product_quantity_in_the_stock_after_order($product_quantity);
+      return $product_quantity;
 
     }
     /**
