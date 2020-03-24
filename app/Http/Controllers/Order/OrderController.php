@@ -105,7 +105,7 @@ class OrderController extends Controller
             }
         }else{
            
-            return redirect()->back();
+            return redirect()->back()->with('error', 'There is no available products selected!');
         }
         
     }
