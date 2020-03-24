@@ -92,7 +92,7 @@ class OrderController extends Controller
                 $order->order_price_after_coupon_value = $order_price_after_coupon_value;
                 $order->save();
                 $order->products()->sync($product_id);
-                $order->decrease_product_quantity_in_the_stock();
+                $order->decrease_product_quantity_in_the_stock(); //to decrease the quantity of products after order
                 $buyer->shopping_cart->products()->sync("null");
                 $buyer->shopping_cart->update(['product_quantity'=>null]);
             } else {
