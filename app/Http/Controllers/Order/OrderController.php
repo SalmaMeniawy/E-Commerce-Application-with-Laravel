@@ -38,6 +38,7 @@ class OrderController extends Controller
         $products = Product::find($product_id);
         $total_for_each_prooduct = Order::calculate_total_price_for_each_product_order($products, $product_quantity);
         $total_for_order_before_coupon = Order::calculate_subtotal_price_for_all_products_in_order($total_for_each_prooduct);
+        // $valid_order = true;
         return view("buyer.order.create_order")
         ->with(compact(['products','product_quantity','total_for_order_before_coupon']));
     }
@@ -63,8 +64,9 @@ class OrderController extends Controller
             'city' =>'required',
             
        ]);
-        $product_id = array_keys($request->input('product_quantity'));
-        $quantity = array_values($request->input('product_quantity'));
+        $product_quantity = Product::check_if_the_stock_greater_than_order_quantity($request->input('product_quantity'));
+        $product_id = array_keys($product_quantity);
+        $quantity = array_values($product_quantity);
         $coupon_id_from_form =$request->input('coupon_id');
         // $coupon_id_from_form = (isset($request->input('coupon_id')))
         $order_price_after_coupon_value =$request->input('order_price_after_coupon_value');
@@ -75,32 +77,37 @@ class OrderController extends Controller
         $order_items = Order::get_the_count_of_items_in_order($quantity); //get_count of the order items
         $buyer = Buyer::get()->where('user_id', auth()->id())->first();  
         $random_code_order_id_for_buyer =Str::random(7);
-        dd($product_id);
-        $order = new Order();
-        $order->telephone_for_shipping = $request->input('tele');
-        $order->total_order_price = $request->input('total_for_order_before_coupon');
-        $order->total_order_items_quantity = $order_items;
-        $order->buyer_id = $buyer->id;
-        $order->order_code_id_for_buyer =$random_code_order_id_for_buyer;
-        $order->order_items =json_encode($quantity) ;
-        $order->address_for_shipping = $full_address;
-        if ($coupon_id_from_form != 0) {
-            $order->coupon_id = $coupon_id_from_form;
-            $order->order_price_after_coupon_value = $order_price_after_coupon_value;
-            $order->save();
-            // $order->products()->sync(\json_encode($product_id));
-            $order->products()->sync($product_id);
-
-            $buyer->shopping_cart->products()->sync("null");
-            $buyer->shopping_cart->update(['product_quantity'=>null]);
-        } else {
-            $order->save();
-            // $order->products()->sync(\json_encode($product_id));
-            $order->products()->sync($product_id);
-
-            $buyer->shopping_cart->products()->sync("null");
-            $buyer->shopping_cart->update(['product_quantity'=>null]);
+        $total_for_order_before_coupon = $request->input('total_for_order_before_coupon');
+        if($total_for_order_before_coupon != 0){
+            $order = new Order();
+            $order->telephone_for_shipping = $request->input('tele');
+            $order->total_order_price = $request->input('total_for_order_before_coupon');
+            $order->total_order_items_quantity = $order_items;
+            $order->buyer_id = $buyer->id;
+            $order->order_code_id_for_buyer =$random_code_order_id_for_buyer;
+            $order->order_items =json_encode($quantity) ;
+            $order->address_for_shipping = $full_address;
+            if ($coupon_id_from_form != 0) {
+                $order->coupon_id = $coupon_id_from_form;
+                $order->order_price_after_coupon_value = $order_price_after_coupon_value;
+                $order->save();
+                $order->products()->sync($product_id);
+                $order->decrease_product_quantity_in_the_stock();
+                $buyer->shopping_cart->products()->sync("null");
+                $buyer->shopping_cart->update(['product_quantity'=>null]);
+            } else {
+                $order->save();
+                $order->products()->sync($product_id);
+                $order->decrease_product_quantity_in_the_stock();
+    
+                $buyer->shopping_cart->products()->sync("null");
+                $buyer->shopping_cart->update(['product_quantity'=>null]);
+            }
+        }else{
+           
+            return redirect()->back();
         }
+        
     }
 
     /**
