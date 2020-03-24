@@ -113,11 +113,8 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
         $products_in_order = $order->products()->get();
-        \dump($products_in_order);
-       
-        dump($id);
-        // dump($buyer->orders()->where('id',$id)->get()->first()->products()->get());
-        return view('buyer.order.show_order')->with(compact(['order']));
+        $product_quantity = Order::add_product_ids_and_quantity_of_items_in_one_array($products_in_order,$order);
+        return view('buyer.order.show_order')->with(compact(['order','products_in_order','product_quantity']));
     }
 
     /**
