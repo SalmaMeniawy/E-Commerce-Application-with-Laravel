@@ -15,6 +15,19 @@ class Order extends Model
         return $this->belongsToMany(Product::class);
     }
     /**
+     * 
+     */
+    public static function add_product_ids_and_quantity_of_items_in_one_array($products_in_the_order , $order){
+        $order_items_quantity = json_decode($order->order_items);
+        $product_ids = [];
+        foreach($products_in_the_order as $product){
+            array_push($product_ids,$product->id);
+        }
+        $product_quantity  = array_combine($product_ids,$order_items_quantity);
+        return $product_quantity;
+
+    }
+    /**
      * eloquent relation function with Buyer model
      */
     public function buyer(){
