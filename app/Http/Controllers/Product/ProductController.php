@@ -18,7 +18,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all()->where('seller_id',auth()->id());
+        // $seller = Seller::where('user_id',auth()->id())->first();
+        // // $products = Product::all()->where('seller_id',auth()->id());
+        // $products = Product::where('seller_id',$seller->id)->get();
+        // dump($seller->id,$products);
         return view('seller.product.index_product')->with('products',$products);
     }
 
@@ -59,7 +62,8 @@ class ProductController extends Controller
             'in_stock_quantity' => $request->input('in_stock_quantity'),
             'brand_id'=>$request->input('brand_id'),
             'category_id'=>$request->input('category_id'),
-            'seller_id' =>auth()->id(),
+            'seller_id' =>$seller->id,
+
             'price' => $request->input('price'),
         ]);
         
