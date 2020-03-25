@@ -20,7 +20,7 @@ class SellerController extends Controller
        
         $seller = Seller::where('user_id',auth()->id())->first();
         $orders = $seller->get_all_seller_orders(); //get_seller_orders
-        
+        return view('seller.order.index_notify_orders')->with(\compact(['orders'])) ;
        
         
       
