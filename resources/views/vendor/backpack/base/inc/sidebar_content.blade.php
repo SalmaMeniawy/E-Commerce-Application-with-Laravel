@@ -3,7 +3,7 @@
 <li class="nav-item"><a class="nav-link" href="{{ url('homepage') }}"><i class="fa fa-dashboard nav-icon"></i>Homepage</a></li>
 <li class="nav-item">
 <a class="nav-link"  href="{{url('shoppingCart')}}" class="btn btn-light">
-<i class="fa fa-shopping-cart"></i>Shopping Cart <span class="badge badge-light">{{Facades\App\ShoppingCart::get_items_count_in_shopping_cart()}}</span>
+<i class="fa fa-shopping-basket"></i>Shopping Cart <span class="badge badge-light">{{Facades\App\ShoppingCart::get_items_count_in_shopping_cart()}}</span>
 </a>
 </li>
 <li class="nav-item">
@@ -44,13 +44,18 @@ Logout</a></li>
 @endif
 @if(auth()->user()->role == 'seller')
 <li class="nav-item"> <a class="nav-link" 
-href="{{ url('home/seller') }}">
+href="{{ url('home/seller') }}"><i class="fa fa-home"></i>
 homepage</a></li>
+<li class="nav-item">
+<a class="nav-link"  href="" class="btn btn-light">
+<i class="fa fa-truck"></i>Orders <span class="badge badge-light">{{Facades\App\Seller::get_count_of_pending_products_in_the_orders()}}</span>
+</a>
+</li>
 <li class="nav-item"> <a class="nav-link" 
-href="{{ url('products') }}">
+href="{{ url('products') }}"><i class="fa fa-gift"></i>
 Products</a></li>
 <li class="nav-item"><a class="nav-link" 
-href="{{ url('seller/logout') }}">
+href="{{ url('seller/logout') }}"><i class="fa fa-sign-out"></i>
 Logout</a></li>
 
 @endif
