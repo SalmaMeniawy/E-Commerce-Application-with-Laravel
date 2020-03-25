@@ -18,10 +18,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // $seller = Seller::where('user_id',auth()->id())->first();
-        // // $products = Product::all()->where('seller_id',auth()->id());
-        // $products = Product::where('seller_id',$seller->id)->get();
-        // dump($seller->id,$products);
+        $seller = Seller::where('user_id',auth()->id())->first();
+        $products = Product::where('seller_id',$seller->id)->get();
         return view('seller.product.index_product')->with('products',$products);
     }
 
