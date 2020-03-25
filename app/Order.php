@@ -12,7 +12,7 @@ class Order extends Model
         "total_order_items_quantity","total_order_price","order_items","buyer_id"
         ,"order_price_after_coupon_value","order_code_id_for_buyer"];
     public function products(){
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class)->withPivot('order_state_for_seller');
     }
     
     /**
