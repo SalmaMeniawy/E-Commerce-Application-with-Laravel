@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Order;
+use App\Product;
+use App\Seller;
 class SellerController extends Controller
 {
     /**
@@ -15,7 +17,13 @@ class SellerController extends Controller
      */
     public function index()
     {
-        //
+       
+        $seller = Seller::where('user_id',auth()->id())->first();
+        $orders = $seller->get_all_seller_orders(); //get_seller_orders
+        
+       
+        
+      
     }
     public function logout(){
         Auth::logout();
