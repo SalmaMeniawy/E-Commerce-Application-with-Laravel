@@ -17,7 +17,7 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
     public function orders(){
-        return $this->belongsToMany(Order::class);
+        return $this->belongsToMany(Order::class)->withPivot('order_state_for_seller');
     }
     public function category(){
         return $this->belongsTo(Category::class);

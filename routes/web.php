@@ -60,6 +60,10 @@ Route::middleware('auth')->group(function(){
         Route::delete('products/{product_id}','Product\ProductController@destroy')->name('product.destroy');
         Route::get('home/seller','Seller\SellerController@create')->name('seller.home');
         Route::get('seller/logout','Seller\SellerController@logout')->name('seller.logout');
+        Route::group([],function(){
+            //group for seller notification 
+            Route::get('notify_orders','Seller\SellerController@index')->name('notify_orders');
+        });
     });
     //routes for admin
     Route::middleware('admin-role')->group(function(){
