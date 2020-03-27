@@ -32,7 +32,7 @@
 
                             </td>
                             <td>
-                            <a  class="btn-sm btn btn-info">Confirm product</a>
+                            <a href="{{route('confirm_product',['order_id'=>$order->id , 'product_id'=>$product->id])}}" class="btn-sm btn btn-info">Confirm product</a>
 
                             </td>
                            
