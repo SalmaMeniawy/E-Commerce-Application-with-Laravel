@@ -47,7 +47,7 @@ Logout</a></li>
 href="{{ url('home/seller') }}"><i class="fa fa-home"></i>
 homepage</a></li>
 <li class="nav-item">
-<a class="nav-link"  href="" class="btn btn-light">
+<a class="nav-link"  href="{{url('notify_orders')}}" class="btn btn-light">
 <i class="fa fa-truck"></i>Orders <span class="badge badge-light">{{Facades\App\Seller::get_count_of_pending_products_in_the_orders()}}</span>
 </a>
 </li>
