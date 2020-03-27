@@ -25,6 +25,18 @@ class SellerController extends Controller
         
       
     }
+    /**
+     * create confirm_product to change product status in pivot table to be confirmed rather than 
+     * pending state
+     */
+    public function confirm_product(Request $request){
+        $order_id = $request->input('order_id');
+        $product_id = $request->input('product_id');
+        $order = Order::find($order_id);
+        $order->confirm_product($product_id);
+        
+        return redirect()->back();
+    }
     public function logout(){
         Auth::logout();
         return redirect()->route('login');
