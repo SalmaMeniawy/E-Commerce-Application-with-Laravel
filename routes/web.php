@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function(){
         Route::group([],function(){
             //group for seller notification 
             Route::get('notify_orders','Seller\SellerController@index')->name('notify_orders');
+            Route::get('confirm_product','Seller\SellerController@confirm_product')->name('confirm_product');
         });
     });
     //routes for admin
