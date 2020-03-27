@@ -81,6 +81,12 @@ class Order extends Model
 
     }
     /**
+     * craete confirm_product that change the state of each product to be Confirmed
+     */
+    public function confirm_product($product_id){
+        $this->products()->updateExistingPivot($product_id,["order_state_for_seller"=>"Confirmed"]);
+    }
+    /**
      * create this function to get all Order items in the order
      */
     public static function get_the_count_of_items_in_order($quantity_in_order_for_all_products){
