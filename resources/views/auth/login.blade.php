@@ -10,9 +10,9 @@
 <body style="background-image: url('app_backgrounds/image.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
   
 <div class="container">
-          <!--Grid row-->
+          
           <div class="row py-5">
-                <!--Grid column-->
+            
                 <div class="col-md-12 text-bold text-center">
                     <labrl>
                       <h1>  Welcome in LaraApp</h1>
@@ -87,7 +87,7 @@
                         </div>
                     </form>
                     <div class="text-center mt-4">
-                        <a class="btn btn-info" href="{{url('register')}}">Register
+                        <a class="btn btn-info k"" href="{{url('register')}}">Register
                         </a>
                     
                     </div>
