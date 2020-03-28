@@ -52,13 +52,11 @@ class CreateAdmin extends Command
             $this->error('try again later!!');
             exit();
         }
-        $date_of_birth = $this->ask('date of birth ?');
         $validator = Validator::make([
             'name'=>$name,
             'fname'=>$fname,
             'lname'=>$lname,
             'password' => $password,
-            'date_of_birth'=>$date_of_birth,
             'email'=>$email,
         ],[
             'name' => 'required|alpha',
@@ -66,7 +64,6 @@ class CreateAdmin extends Command
             'lname' => 'required|alpha',
             'email' => 'required|unique:users|email',
             'password'=>'required',
-            'date_of_birth' => 'required|date',
         ]);
         if($validator->fails()){
             $this->comment("Admin have n't been created see error messages below ");
@@ -83,7 +80,6 @@ class CreateAdmin extends Command
             $admin = Admin::create([
                 'fname' => $fname,
                 'lname' => $lname ,
-                'date_of_birth' => $date_of_birth,
                 'user_id' => $user->id,
             ]);
             if(isset($user) && isset($admin)){

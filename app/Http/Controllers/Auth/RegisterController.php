@@ -100,7 +100,6 @@ class RegisterController extends Controller
             Admin::create([
                 'fname' => $data['fname'],
                 'lname' => $data['lname'],
-                'date_of_birth' => $data['date_of_birth'],
                 'user_id' => $user->id,
             ]);
        
@@ -109,7 +108,6 @@ class RegisterController extends Controller
             Seller::create([
                 'fname' => $data['fname'],
                 'lname' => $data['lname'],
-                'date_of_birth' => $data['date_of_birth'],
                 'user_id' => $user->id,
             ]);
             return $user;
@@ -117,7 +115,6 @@ class RegisterController extends Controller
             $user->buyer()->create([
                 'fname' => $data['fname'],
                 'lname' => $data['lname'],
-                'date_of_birth' => $data['date_of_birth'],
                 
                 ]);
             $user->save();

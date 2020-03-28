@@ -8,7 +8,7 @@ use App\Store;
 use App\Product;
 class Seller extends Model
 {
-    protected $fillable = ['fname','lname' ,'date_of_birth' , 'user_id'];
+    protected $fillable = ['fname','lname' , 'user_id'];
     public function user(){
         return $this->hasOne(User::class);
     }

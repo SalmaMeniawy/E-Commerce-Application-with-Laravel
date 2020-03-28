@@ -44,7 +44,7 @@
              
              </div>
              <div>
-                    <a href="{{route('product.index')}}" class="btn btn-info">Back</a>
+                    <a href="{{URL::previous()}}" class="btn btn-info">Back</a>
                 </div>
             </div>
          </div>

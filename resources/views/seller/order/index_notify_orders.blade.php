@@ -18,7 +18,7 @@
                         <h5>order code : <strong>{{$order->order_code_id_for_buyer}}</strong></h5>
                         <h5>created at : <strong>{{$order->created_at}}</strong></h5>
                     </td>
-                @foreach($order->products as $product)
+                @foreach($order->products->unique() as $product)
                    
                     <tr>
 
@@ -32,7 +32,7 @@
 
                             </td>
                             <td>
-                            <a  class="btn-sm btn btn-info">Confirm product</a>
+                            <a href="{{route('confirm_product',['order_id'=>$order->id , 'product_id'=>$product->id])}}" class="btn-sm btn btn-info">Confirm product</a>
 
                             </td>
                            
