@@ -44,17 +44,20 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'store_name' => 'required|unique:stores|alpha_num|max:125',
             'sammary' => 'required|between:10,200',
             'seller_id'=>'required',
             
         ]);
-        $seller = Seller::find($request->input('seller'));
+        $seller = Seller::find($request->input('seller_id'));
         $seller->store()->create([
             'store_name'  => $request->input('store_name'),
             'sammary' => $request->input('sammary'),
             'admin_id' => auth()->id(),
+            'seller_id'=>$request->input('seller_id'),
+
 
         ]);
         

@@ -35,10 +35,10 @@
                           
                              <label for="seller" class="col-md-4 col-form-label text-md-right">Seller</label>
                             <div class="col-md-6">
-                                <select class="col-md-6" name="seller">
+                                <select class="col-md-6" name="seller_id">
                                     @foreach($sellers as $seller)
                                         @if($seller->store == null)
-                                        <option value="{{$seller->id}}">{{$seller->fname}}  {{$seller->lname}}</option>
+                                        <option  value="{{$seller->id}}" >{{$seller->fname}}  {{$seller->lname}}</option>
                                         @endif
                                     @endforeach
                                 </select>
