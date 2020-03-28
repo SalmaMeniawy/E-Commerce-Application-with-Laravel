@@ -1,6 +1,26 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+   
+    
+</script>
+</head>
 
-@section('content')
+<body style="background-image: url('app_backgrounds/image.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+<div class="container">
+          
+          <div class="row py-5">
+               
+                <div class="col-md-12 text-bold text-center">
+                    <labrl>
+                      <h1>  Welcome in LaraApp</h1>
+                    </labrl>
+                </div>
+
+          </div>
+         
+</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -105,14 +125,17 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    Submit
                                 </button>
                             </div>
+                            <a class="btn btn-info" href="{{url('login')}}">Login</a>
+
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+
