@@ -86,6 +86,12 @@
                             </div>
                         </div>
                     </form>
+                    <div class="text-center mt-4">
+                        <a class="btn btn-info" href="{{url('register   ')}}">Register
+                        </a>
+                    
+                    </div>
+                   
                 </div>
             </div>
         </div>
