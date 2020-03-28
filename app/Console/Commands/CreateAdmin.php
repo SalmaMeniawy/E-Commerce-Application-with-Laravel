@@ -20,7 +20,7 @@ class CreateAdmin extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Command create:admin to create new Admin in your system we need to take basic data (name , fname , lname , email , password)';
 
     /**
      * Create a new command instance.
