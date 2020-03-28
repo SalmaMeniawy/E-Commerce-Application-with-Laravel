@@ -10,7 +10,7 @@ use App\Coupon;
 use App\Order;
 class Buyer extends Model
 {
-    protected $fillable = ['fname','lname','date_of_birth' 
+    protected $fillable = ['fname','lname'
     ,'user_id','coupon_id','coupon_uses_number'];
     public function user(){
         return $this->belongsTo(User::class);

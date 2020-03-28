@@ -10,7 +10,7 @@ use App\Category;
 use App\Coupon;
 class Admin extends Model
 {
-    protected $fillable = ['fname','lname','date_of_birth','user_id'];
+    protected $fillable = ['fname','lname','user_id'];
     public function user(){
         return $this->hasOne(User::class);
     }
