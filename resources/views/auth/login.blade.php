@@ -1,6 +1,11 @@
-@extends('layouts.app')
-
-@section('content')
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+   
+    
+</script>
+</head>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -70,4 +75,4 @@
         </div>
     </div>
 </div>
-@endsection
+
