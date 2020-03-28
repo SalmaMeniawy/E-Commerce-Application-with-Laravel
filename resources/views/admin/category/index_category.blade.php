@@ -2,7 +2,7 @@
 @section('content')
    
         <div class="container">
-            <a href="{{action('Category\CategoryController@create')}}"class="btn btn-primary">Craete new category</a>
+            <a href="{{action('Category\CategoryController@create')}}"class="btn btn-primary">Create new category</a>
         	<div class="row justify-content-center">
             <div class="col-md-8">
             	

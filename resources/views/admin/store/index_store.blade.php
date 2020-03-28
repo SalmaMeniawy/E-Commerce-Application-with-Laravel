@@ -1,7 +1,7 @@
 @extends(backpack_view('blank'))
 @section('content')
 <div class="container">
-   <a href="{{action('Store\StoreController@create')}}"class="btn btn-primary">Craete new store</a>
+   <a href="{{action('Store\StoreController@create')}}"class="btn btn-primary">Create new store</a>
          <div class="row justify-content-center">
              @if(isset($failure))
                   <div class="alert alert-danger" role="alert">
