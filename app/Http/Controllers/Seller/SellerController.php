@@ -20,6 +20,26 @@ class SellerController extends Controller
        
         $seller = Seller::where('user_id',auth()->id())->first();
         $orders = $seller->get_all_seller_orders(); //get_seller_orders
+        // $product_quantity_for_each_order = [];
+        // $product_ids = [];
+        // $order_items_quantity=[];
+        // foreach($orders as $order){
+        //     // $order_items_quantity[$order->id] = \json_decode($order->order_items);
+
+        //     foreach($order->products->unique() as $product){
+        //         array_push($product_ids,$product->id);
+        //     }
+        //     // $order_items_quantity[$order->id] = array_combine();
+
+        //     // \dump($product_ids,$order_items_quantity);
+        //     // dump($product_quantity = array_combine($product_ids,$order_items_quantity));
+
+        // // $product_quantity_for_each_order[$order->id] = array_combine($product_ids,$order_items_quantity);
+        // }
+        // // \dump($product_quantity);
+        // dump($product_ids,$order_items_quantity);
+
+        // dump($product_quantity_for_each_order);
         return view('seller.order.index_notify_orders')->with(\compact(['orders'])) ;
        
         
